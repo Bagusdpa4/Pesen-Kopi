@@ -1,0 +1,79 @@
+[
+  {
+    "id": "minuman",
+    "title": "Minuman",
+    "brands": [
+      {
+        "id": "starbucks",
+        "name": "Starbucks",
+        "products": [
+          { "id": "sbux-1", "name": "Caramel Macchiato", "price": 45000 },
+          { "id": "sbux-2", "name": "Java Chip Frappuccino", "price": 48000 },
+          { "id": "sbux-3", "name": "Americano", "price": 38000 }
+        ]
+      },
+      {
+        "id": "tomoro",
+        "name": "Tomoro",
+        "products": [
+          { "id": "tmr-1", "name": "Aren Latte", "price": 22000 },
+          { "id": "tmr-2", "name": "Coconut Coffee", "price": 24000 }
+        ]
+      },
+      {
+        "id": "kopken",
+        "name": "Kopken",
+        "products": [
+          { "id": "kpk-1", "name": "Kopi Susu Gula Aren", "price": 18000 },
+          { "id": "kpk-2", "name": "Es Kopi Hitam", "price": 15000 }
+        ]
+      },
+      {
+        "id": "fore",
+        "name": "Fore",
+        "products": [
+          { "id": "fre-1", "name": "Fore Latte", "price": 25000 },
+          { "id": "fre-2", "name": "Cold Brew", "price": 27000 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "makanan",
+    "title": "Makanan",
+    "brands": [
+      {
+        "id": "mcdonalds",
+        "name": "McDonald's",
+        "products": [
+          { "id": "mcd-1", "name": "Paket Burger Ayam", "price": 35000 },
+          { "id": "mcd-2", "name": "McNuggets 6pcs", "price": 32000 }
+        ]
+      },
+      {
+        "id": "richeese-factory",
+        "name": "Richeese Factory",
+        "products": [
+          { "id": "rf-1", "name": "Ayam Geprek Set", "price": 28000 },
+          { "id": "rf-2", "name": "Cheese Fries", "price": 20000 }
+        ]
+      },
+      {
+        "id": "mixue",
+        "name": "Mixue",
+        "products": [
+          { "id": "mx-1", "name": "Ice Cream Cone", "price": 8000 },
+          { "id": "mx-2", "name": "Mango Smoothie", "price": 18000 }
+        ]
+      },
+      {
+        "id": "jco",
+        "name": "J.CO",
+        "products": [
+          { "id": "jco-1", "name": "Donut Box 6pcs", "price": 55000 },
+          { "id": "jco-2", "name": "Coffee Float", "price": 30000 }
+        ]
+      }
+    ]
+  }
+]
