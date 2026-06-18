@@ -10,6 +10,7 @@ import { Categories } from "../pages/categories/Categories";
 import { Selected } from "../pages/product/Selected";
 import { OrderSatuan } from "../pages/order/OrderSatuan";
 import { OrderBundling } from "../pages/order/OrderBundling";
+import { Bundling } from "../pages/product/Bundling";
 
 // Components
 
@@ -30,10 +31,14 @@ export const App = () => {
 
         {/* Product: pilih mode (satuan/bundling) */}
         <Route path="/:categoryId/:brandId" element={<Selected />} />
+        <Route path="/:categoryId/:brandId/bundling" element={<Bundling />} />
 
         {/* Product: form pesan per brand + mode */}
         <Route path="/:categoryId/:brandId/satuan" element={<OrderSatuan />} />
-        <Route path="/:categoryId/:brandId/bundling" element={<OrderBundling />} />
+        <Route
+          path="/:categoryId/:brandId/bundling/:bundleId"
+          element={<OrderBundling />}
+        />
 
         {/* Error */}
         <Route path="*" element={<Error404 />} />

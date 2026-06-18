@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import { formatRupiah } from "../../helper/FormatRupiah";
-import { getBrand } from "../../helper/BrandUtils";
+import { getBrand, getModeKeys } from "../../helper/BrandUtils";
+import { HiArrowLeft } from "react-icons/hi2";
 
 const WHATSAPP_NUMBER = "6282229749462";
 
@@ -12,6 +12,9 @@ export const OrderSatuan = () => {
 
   const { brand } = getBrand(categoryId, brandId); // ✅ cari brand yang benar
   const products = brand?.modes?.satuan || []; // ✅ ambil dari modes.satuan
+
+  const modeKeys = getModeKeys(brand);
+  const hasMultipleModes = modeKeys.length > 1;
 
   const [customerName, setCustomerName] = useState("");
   const [outletAddress, setOutletAddress] = useState("");
@@ -27,9 +30,10 @@ export const OrderSatuan = () => {
         <button
           type="button"
           onClick={() => navigate("/kategori")}
-          className="mt-4 cursor-pointer text-sm font-semibold text-orange-600"
+          className="mb-10 inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-stone-500 shadow-sm transition-colors hover:text-orange-600"
         >
-          ← Kembali ke kategori
+          <HiArrowLeft className="h-4 w-4" />
+          Kembali
         </button>
       </div>
     );
@@ -71,7 +75,10 @@ export const OrderSatuan = () => {
   };
 
   const isFormValid =
-    customerName.trim() && outletAddress.trim() && cartItems.length > 0;
+    customerName.trim() &&
+    outletAddress.trim() &&
+    pickupTime &&
+    cartItems.length > 0;
 
   const handleOrder = () => {
     if (!isFormValid) return;
@@ -101,10 +108,15 @@ export const OrderSatuan = () => {
       <div className="mx-auto max-w-2xl px-6 py-10">
         <button
           type="button"
-          onClick={() => navigate(`/${categoryId}`)}
-          className="mb-8 inline-flex cursor-pointer items-center gap-1 rounded-full bg-white px-4 py-2 text-sm font-medium text-stone-500 shadow-sm transition-colors hover:text-orange-600"
+          onClick={() =>
+            navigate(
+              hasMultipleModes ? `/${categoryId}/${brandId}` : `/${categoryId}`,
+            )
+          }
+          className="mb-10 inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-stone-500 shadow-sm transition-colors hover:text-orange-600"
         >
-          ← Pilih Brand Lain
+          <HiArrowLeft className="h-4 w-4" />{" "}
+          {hasMultipleModes ? "Pilih Paket Lain" : "Pilih Brand Lain"}
         </button>
 
         <h1 className="mb-1 text-xl font-bold text-stone-900">{brand.name}</h1>
@@ -112,8 +124,8 @@ export const OrderSatuan = () => {
 
         <div className="space-y-5 rounded-2xl border border-stone-200 bg-white p-6">
           <div>
-            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
-              Nama Customer (wajib) *
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
+              Nama Customer <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -124,8 +136,8 @@ export const OrderSatuan = () => {
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
-              Alamat Outlet (wajib) *
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
+              Alamat Outlet <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -136,8 +148,8 @@ export const OrderSatuan = () => {
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
-              Jam Pengambilan
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
+              Jam Pengambilan <span className="text-red-500">*</span>
             </label>
             <input
               type="time"
@@ -147,14 +159,14 @@ export const OrderSatuan = () => {
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
+          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
               Catatan (tidak wajib)
             </label>
             <input
               type="text"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder="Contoh: less sugar less ice"
+              placeholder="Permintaan tambahan"
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>
@@ -186,7 +198,7 @@ export const OrderSatuan = () => {
                   <img
                     src={thumbnail}
                     alt={product.name}
-                    className="h-16 w-16 shrink-0 rounded-xl object-cover"
+                    className="h-24 w-20 shrink-0 rounded-xl object-cover"
                   />
                 )}
                 <div className="flex-1">

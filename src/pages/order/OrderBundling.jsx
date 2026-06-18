@@ -1,13 +1,13 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import { formatRupiah } from "../../helper/FormatRupiah";
 import { getBrand } from "../../helper/BrandUtils";
+import { HiArrowLeft } from "react-icons/hi2";
 
 const WHATSAPP_NUMBER = "6282229749462";
 
 export const OrderBundling = () => {
-  const { categoryId, brandId } = useParams();
+  const { categoryId, brandId, bundleId } = useParams();
   const navigate = useNavigate();
 
   const { brand } = getBrand(categoryId, brandId); // ✅ cari brand yang benar
@@ -15,7 +15,7 @@ export const OrderBundling = () => {
   const satuanProducts = brand?.modes?.satuan || [];
 
   const [selectedBundleId, setSelectedBundleId] = useState(
-    bundles?.[0]?.id || null,
+    bundleId || bundles?.[0]?.id || null,
   );
   const [customerName, setCustomerName] = useState("");
   const [outletAddress, setOutletAddress] = useState("");
@@ -30,9 +30,10 @@ export const OrderBundling = () => {
         <button
           type="button"
           onClick={() => navigate("/kategori")}
-          className="mt-4 cursor-pointer text-sm font-semibold text-orange-600"
+          className="mb-10 inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-stone-500 shadow-sm transition-colors hover:text-orange-600"
         >
-          ← Kembali ke kategori
+          <HiArrowLeft className="h-4 w-4" />
+          Kembali
         </button>
       </div>
     );
@@ -82,7 +83,10 @@ export const OrderBundling = () => {
     (group, index) => (picks[index]?.length || 0) === group.chooseCount,
   );
   const isFormValid =
-    customerName.trim() && outletAddress.trim() && isGroupsComplete;
+    customerName.trim() &&
+    outletAddress.trim() &&
+    pickupTime &&
+    isGroupsComplete;
 
   const handleOrder = () => {
     if (!isFormValid || !bundle) return;
@@ -119,10 +123,11 @@ export const OrderBundling = () => {
       <div className="mx-auto max-w-2xl px-6 py-10">
         <button
           type="button"
-          onClick={() => navigate(`/${categoryId}/${brandId}`)}
-          className="mb-8 inline-flex cursor-pointer items-center gap-1 rounded-full bg-white px-4 py-2 text-sm font-medium text-stone-500 shadow-sm transition-colors hover:text-orange-600"
+          onClick={() => navigate(`/${categoryId}/${brandId}/bundling`)}
+          className="mb-10 inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-stone-500 shadow-sm transition-colors hover:text-orange-600"
         >
-          ← Pilih Paket Lain
+          <HiArrowLeft className="h-4 w-4" />
+          Pilih Paket Lain
         </button>
 
         <h1 className="mb-1 text-xl font-bold text-stone-900">{brand.name}</h1>
@@ -137,7 +142,7 @@ export const OrderBundling = () => {
                 key={b.id}
                 type="button"
                 onClick={() => handleSelectBundle(b.id)}
-                className={`shrink-0 cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors ${b.id === selectedBundleId ? "bg-orange-600 text-white" : "bg-white text-stone-500 hover:text-orange-600"}`}
+                className={`shrink-0 cursor-pointer rounded-full border border-stone-300 px-4 py-2 text-sm font-semibold transition-colors ${b.id === selectedBundleId ? "bg-orange-600 text-white" : "bg-white text-stone-500 hover:text-orange-600"}`}
               >
                 {b.name}
               </button>
@@ -146,23 +151,28 @@ export const OrderBundling = () => {
         )}
 
         {bundle && (
-          <div className="mb-6 rounded-2xl border border-orange-200 bg-orange-50 px-5 py-4">
-            <p className="text-sm font-bold text-stone-900">{bundle.name}</p>
+          <div className="mb-6 flex items-center justify-center bg-orange-50">
+            {/* <p className="text-sm font-bold text-stone-900">{bundle.name}</p>
             {bundle.description && (
               <p className="mt-0.5 text-xs text-stone-500">
                 {bundle.description}
               </p>
-            )}
-            <p className="mt-2 text-lg font-extrabold text-orange-600">
+            )} */}
+            <img
+              src={bundle.image}
+              alt={bundle.name}
+              className="h-full w-full object-contain sm:h-auto sm:w-[80%]"
+            />
+            {/* <p className="mt-2 text-lg font-extrabold text-orange-600">
               {formatRupiah(bundle.price)}
-            </p>
+            </p> */}
           </div>
         )}
 
         <div className="space-y-5 rounded-2xl border border-stone-200 bg-white p-6">
           <div>
-            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
-              Nama Customer (wajib) *
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
+              Nama Customer <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -173,8 +183,8 @@ export const OrderBundling = () => {
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
-              Alamat Outlet (wajib) *
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
+              Alamat Outlet <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -185,8 +195,8 @@ export const OrderBundling = () => {
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
-              Jam Pengambilan
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
+              Jam Pengambilan <span className="text-red-500">*</span>
             </label>
             <input
               type="time"
@@ -196,14 +206,14 @@ export const OrderBundling = () => {
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
               Catatan (tidak wajib)
             </label>
             <input
               type="text"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder="Contoh: less sugar less ice"
+              placeholder="Permintaan tambahan"
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>

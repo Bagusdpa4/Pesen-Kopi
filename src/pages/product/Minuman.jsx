@@ -47,7 +47,7 @@ export const Minuman = () => {
               onClick={() => goToBrand(brand)}
               className="group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white text-left transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md hover:shadow-orange-100"
             >
-              <div className="flex h-40 items-center justify-center bg-white p-6">
+              <div className="h-50 flex items-center justify-center bg-white p-4">
                 <img
                   src={brand.logo}
                   alt={brand.name}
@@ -59,11 +59,11 @@ export const Minuman = () => {
                   <span className="text-sm font-semibold text-stone-900">
                     {brand.name}
                   </span>
-                  {getModeKeys(brand).includes("bundling") && ( // ✅ bukan brand.modes.includes(...)
+                  {/* {getModeKeys(brand).includes("bundling") && ( // ✅ bukan brand.modes.includes(...)
                     <span className="ml-2 rounded-full bg-orange-100 px-2 py-0.5 text-xs font-semibold text-orange-600">
                       Promo
                     </span>
-                  )}
+                  )} */}
                 </div>
                 <span className="text-stone-400 transition-transform group-hover:translate-x-1">
                   <HiChevronRight className="h-4 w-4" />
