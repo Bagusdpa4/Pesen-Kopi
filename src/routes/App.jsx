@@ -5,9 +5,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Homepage } from "../pages/Homepage";
 import { Error404 } from "../pages/errors/Error404";
 import { Minuman } from "../pages/product/Minuman";
-import { Makanan } from "../pages/product/Makanan";
+// import { Makanan } from "../pages/product/Makanan";
 import { Categories } from "../pages/categories/Categories";
-import { OrderBrand } from "../pages/order/OrderBrand";
+import { Selected } from "../pages/product/Selected";
+import { OrderSatuan } from "../pages/order/OrderSatuan";
+import { OrderBundling } from "../pages/order/OrderBundling";
 
 // Components
 
@@ -24,10 +26,14 @@ export const App = () => {
 
         {/* Product: pilih brand */}
         <Route path="/minuman" element={<Minuman />} />
-        <Route path="/makanan" element={<Makanan />} />
+        {/* <Route path="/makanan" element={<Makanan />} /> */}
 
-        {/* Product: form pesan per brand */}
-        <Route path="/:categoryId/:brandId" element={<OrderBrand />} />
+        {/* Product: pilih mode (satuan/bundling) */}
+        <Route path="/:categoryId/:brandId" element={<Selected />} />
+
+        {/* Product: form pesan per brand + mode */}
+        <Route path="/:categoryId/:brandId/satuan" element={<OrderSatuan />} />
+        <Route path="/:categoryId/:brandId/bundling" element={<OrderBundling />} />
 
         {/* Error */}
         <Route path="*" element={<Error404 />} />

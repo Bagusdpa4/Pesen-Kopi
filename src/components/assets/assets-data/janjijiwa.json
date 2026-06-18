@@ -1,0 +1,10 @@
+{
+  "satuan": [
+    { "id": "jj-001", "name": "Jiwa Signature Latte", "size": "Regular", "price": 25000, "disc_price": null, "image": "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=400&q=80" },
+    { "id": "jj-002", "name": "Cold Brew", "size": "Regular", "price": 27000, "disc_price": null, "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=80" },
+    { "id": "jj-003", "name": "Aren Latte", "size": "Regular", "price": 24000, "disc_price": null, "image": "https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=400&q=80" },
+    { "id": "jj-004", "name": "Matcha Latte", "size": "Regular", "price": 26000, "disc_price": null, "image": "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400&q=80" },
+    { "id": "jj-005", "name": "Americano", "size": "Regular", "price": 18000, "disc_price": null, "image": "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=400&q=80" },
+    { "id": "jj-006", "name": "Cappuccino", "size": "Regular", "price": 22000, "disc_price": null, "image": "https://images.unsplash.com/photo-1520901005955-8b1a35e8cf4e?w=400&q=80" }
+  ]
+}

@@ -1,16 +1,17 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import categories from "../../components/assets/assets-data/categories.json";
+
 import { formatRupiah } from "../../helper/FormatRupiah";
+import { getBrand } from "../../helper/BrandUtils";
 
 const WHATSAPP_NUMBER = "6282229749462";
 
-export const OrderBrand = () => {
+export const OrderSatuan = () => {
   const { categoryId, brandId } = useParams();
   const navigate = useNavigate();
 
-  const category = categories.find((c) => c.id === categoryId);
-  const brand = category?.brands.find((b) => b.id === brandId);
+  const { brand } = getBrand(categoryId, brandId); // ✅ cari brand yang benar
+  const products = brand?.modes?.satuan || []; // ✅ ambil dari modes.satuan
 
   const [customerName, setCustomerName] = useState("");
   const [outletAddress, setOutletAddress] = useState("");
@@ -19,10 +20,10 @@ export const OrderBrand = () => {
   const [search, setSearch] = useState("");
   const [cart, setCart] = useState({});
 
-  if (!category || !brand) {
+  if (!brand || !products) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-orange-50 px-6 text-center text-stone-900">
-        <p className="text-lg font-semibold">Brand tidak ditemukan</p>
+        <p className="text-lg font-semibold">Menu satuan tidak ditemukan</p>
         <button
           type="button"
           onClick={() => navigate("/kategori")}
@@ -34,31 +35,38 @@ export const OrderBrand = () => {
     );
   }
 
-  const filteredProducts = brand.products.filter((product) =>
+  const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase()),
   );
 
   const cartItems = useMemo(
     () =>
       Object.entries(cart)
-        .map(([productId, qty]) => {
-          const product = brand.products.find((p) => p.id === productId);
-          return product ? { ...product, qty } : null;
+        .map(([key, qty]) => {
+          const [productId, size] = key.split(":");
+          const product = products.find((p) => p.id === productId);
+          const sizeInfo = product?.sizes?.[size];
+          if (!product || !sizeInfo) return null;
+          const unitPrice = sizeInfo.discPrice ?? sizeInfo.price;
+          return { key, product, size, unitPrice, qty };
         })
         .filter(Boolean),
-    [cart, brand.products],
+    [cart, products],
   );
 
-  const total = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const total = cartItems.reduce(
+    (sum, item) => sum + item.unitPrice * item.qty,
+    0,
+  );
 
-  const updateQty = (productId, delta) => {
+  const updateQty = (key, delta) => {
     setCart((prev) => {
-      const nextQty = (prev[productId] || 0) + delta;
+      const nextQty = (prev[key] || 0) + delta;
       if (nextQty <= 0) {
-        const { [productId]: _omit, ...rest } = prev;
+        const { [key]: _omit, ...rest } = prev;
         return rest;
       }
-      return { ...prev, [productId]: nextQty };
+      return { ...prev, [key]: nextQty };
     });
   };
 
@@ -69,19 +77,19 @@ export const OrderBrand = () => {
     if (!isFormValid) return;
 
     const lines = [
-      `Halo, saya ingin memesan ${brand.name}:`,
-      "",
+      `PESANAN ${brand.name.toUpperCase()} - PAKET SATUAN`,
+      ``,
+      `Nama Customer (Wajib): ${customerName}`,
+      `Alamat Outlet (Wajib): ${outletAddress}`,
+      pickupTime ? `Jam Pengambilan: ${pickupTime}` : null,
+      note ? `Catatan (Tidak Wajib): ${note}` : null,
+      ``,
       ...cartItems.map(
-        (item) =>
-          `- ${item.name} x${item.qty} (${formatRupiah(item.price * item.qty)})`,
+        (item, i) =>
+          `${i + 1}. ${item.product.name} (${item.size}) x${item.qty} - ${formatRupiah(item.unitPrice * item.qty)}`,
       ),
-      "",
+      ``,
       `Total: ${formatRupiah(total)}`,
-      "",
-      `Nama: ${customerName}`,
-      `Alamat outlet: ${outletAddress}`,
-      pickupTime ? `Jam pengambilan: ${pickupTime}` : null,
-      note ? `Catatan: ${note}` : null,
     ].filter(Boolean);
 
     const text = encodeURIComponent(lines.join("\n"));
@@ -99,7 +107,8 @@ export const OrderBrand = () => {
           ← Pilih Brand Lain
         </button>
 
-        <h1 className="mb-6 text-xl font-bold text-stone-900">{brand.name}</h1>
+        <h1 className="mb-1 text-xl font-bold text-stone-900">{brand.name}</h1>
+        <p className="mb-6 text-sm font-medium text-orange-600">Paket Satuan</p>
 
         <div className="space-y-5 rounded-2xl border border-stone-200 bg-white p-6">
           <div>
@@ -114,7 +123,6 @@ export const OrderBrand = () => {
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>
-
           <div>
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
               Alamat Outlet (wajib) *
@@ -127,7 +135,6 @@ export const OrderBrand = () => {
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>
-
           <div>
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
               Jam Pengambilan
@@ -139,7 +146,6 @@ export const OrderBrand = () => {
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>
-
           <div>
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
               Catatan (tidak wajib)
@@ -169,54 +175,95 @@ export const OrderBrand = () => {
 
         <div className="mt-5 space-y-3">
           {filteredProducts.map((product) => {
-            const qty = cart[product.id] || 0;
+            const sizeKeys = Object.keys(product.sizes);
+            const thumbnail = product.sizes[sizeKeys[0]]?.image;
             return (
               <div
                 key={product.id}
-                className="flex items-center justify-between rounded-2xl border border-stone-200 bg-white px-5 py-4"
+                className="flex gap-4 rounded-2xl border border-stone-200 bg-white px-5 py-4"
               >
-                <div>
-                  <p className="text-sm font-semibold text-stone-900">
+                {thumbnail && (
+                  <img
+                    src={thumbnail}
+                    alt={product.name}
+                    className="h-16 w-16 shrink-0 rounded-xl object-cover"
+                  />
+                )}
+                <div className="flex-1">
+                  <p className="mb-3 text-sm font-semibold text-stone-900">
                     {product.name}
                   </p>
-                  <p className="text-sm text-stone-400">
-                    {formatRupiah(product.price)}
-                  </p>
-                </div>
-
-                {qty === 0 ? (
-                  <button
-                    type="button"
-                    onClick={() => updateQty(product.id, 1)}
-                    className="rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-orange-700"
-                  >
-                    Tambah
-                  </button>
-                ) : (
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => updateQty(product.id, -1)}
-                      className="flex h-8 w-8 items-center justify-center rounded-full border border-stone-200 text-stone-500 hover:border-orange-300"
-                    >
-                      −
-                    </button>
-                    <span className="w-4 text-center text-sm font-semibold">
-                      {qty}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => updateQty(product.id, 1)}
-                      className="flex h-8 w-8 items-center justify-center rounded-full border border-stone-200 text-stone-500 hover:border-orange-300"
-                    >
-                      +
-                    </button>
+                  <div className="space-y-2">
+                    {sizeKeys.map((size) => {
+                      const sizeInfo = product.sizes[size];
+                      const key = `${product.id}:${size}`;
+                      const qty = cart[key] || 0;
+                      const hasDiscount =
+                        sizeInfo.discPrice &&
+                        sizeInfo.discPrice < sizeInfo.price;
+                      return (
+                        <div
+                          key={size}
+                          className="flex items-center justify-between"
+                        >
+                          <div className="flex items-center gap-3">
+                            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-stone-100 text-xs font-bold text-stone-500">
+                              {size}
+                            </span>
+                            <div>
+                              {hasDiscount ? (
+                                <div className="flex items-center gap-2">
+                                  <span className="text-sm font-semibold text-orange-600">
+                                    {formatRupiah(sizeInfo.discPrice)}
+                                  </span>
+                                  <span className="text-xs text-stone-400 line-through">
+                                    {formatRupiah(sizeInfo.price)}
+                                  </span>
+                                </div>
+                              ) : (
+                                <span className="text-sm font-semibold text-stone-900">
+                                  {formatRupiah(sizeInfo.price)}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          {qty === 0 ? (
+                            <button
+                              type="button"
+                              onClick={() => updateQty(key, 1)}
+                              className="cursor-pointer rounded-full bg-orange-600 px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-orange-700"
+                            >
+                              Tambah
+                            </button>
+                          ) : (
+                            <div className="flex items-center gap-2.5">
+                              <button
+                                type="button"
+                                onClick={() => updateQty(key, -1)}
+                                className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-stone-200 text-stone-500 hover:border-orange-300"
+                              >
+                                −
+                              </button>
+                              <span className="w-4 text-center text-sm font-semibold">
+                                {qty}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => updateQty(key, 1)}
+                                className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-stone-200 text-stone-500 hover:border-orange-300"
+                              >
+                                +
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
-
           {filteredProducts.length === 0 && (
             <p className="py-6 text-center text-sm text-stone-400">
               Menu tidak ditemukan
@@ -239,7 +286,7 @@ export const OrderBrand = () => {
             type="button"
             disabled={!isFormValid}
             onClick={handleOrder}
-            className="rounded-full bg-orange-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-stone-300"
+            className="cursor-pointer rounded-full bg-orange-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-stone-300"
           >
             Pesan Sekarang
           </button>

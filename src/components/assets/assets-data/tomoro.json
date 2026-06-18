@@ -1,0 +1,12 @@
+{
+  "satuan": [
+    { "id": "tmr-001", "name": "Aren Latte", "size": "Regular", "price": 22000, "disc_price": null, "image": "https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=400&q=80" },
+    { "id": "tmr-002", "name": "Coconut Coffee", "size": "Regular", "price": 24000, "disc_price": null, "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80" },
+    { "id": "tmr-003", "name": "Americano", "size": "Regular", "price": 15000, "disc_price": null, "image": "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=400&q=80" },
+    { "id": "tmr-004", "name": "Latte", "size": "Regular", "price": 20000, "disc_price": null, "image": "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=400&q=80" },
+    { "id": "tmr-005", "name": "Matcha Latte", "size": "Regular", "price": 23000, "disc_price": null, "image": "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400&q=80" },
+    { "id": "tmr-006", "name": "Cappuccino", "size": "Regular", "price": 20000, "disc_price": null, "image": "https://images.unsplash.com/photo-1520901005955-8b1a35e8cf4e?w=400&q=80" },
+    { "id": "tmr-007", "name": "Caramel Latte", "size": "Regular", "price": 24000, "disc_price": null, "image": "https://images.unsplash.com/photo-1485808191679-5f86510bd9a3?w=400&q=80" },
+    { "id": "tmr-008", "name": "Hazelnut Latte", "size": "Regular", "price": 24000, "disc_price": null, "image": "https://images.unsplash.com/photo-1558618047-f4e90e1cfbd3?w=400&q=80" }
+  ]
+}

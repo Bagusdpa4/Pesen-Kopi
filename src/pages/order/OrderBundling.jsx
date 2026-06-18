@@ -1,0 +1,277 @@
+import React, { useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { formatRupiah } from "../../helper/FormatRupiah";
+import { getBrand } from "../../helper/BrandUtils";
+
+const WHATSAPP_NUMBER = "6282229749462";
+
+export const OrderBundling = () => {
+  const { categoryId, brandId } = useParams();
+  const navigate = useNavigate();
+
+  const { brand } = getBrand(categoryId, brandId); // ✅ cari brand yang benar
+  const bundles = brand?.modes?.bundling || []; // ✅ ambil dari modes.bundling
+  const satuanProducts = brand?.modes?.satuan || [];
+
+  const [selectedBundleId, setSelectedBundleId] = useState(
+    bundles?.[0]?.id || null,
+  );
+  const [customerName, setCustomerName] = useState("");
+  const [outletAddress, setOutletAddress] = useState("");
+  const [pickupTime, setPickupTime] = useState("");
+  const [note, setNote] = useState("");
+  const [picks, setPicks] = useState({});
+
+  if (!brand || !bundles?.length) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center bg-orange-50 px-6 text-center text-stone-900">
+        <p className="text-lg font-semibold">Paket bundling tidak ditemukan</p>
+        <button
+          type="button"
+          onClick={() => navigate("/kategori")}
+          className="mt-4 cursor-pointer text-sm font-semibold text-orange-600"
+        >
+          ← Kembali ke kategori
+        </button>
+      </div>
+    );
+  }
+
+  const bundle = bundles.find((b) => b.id === selectedBundleId);
+
+  const groups = useMemo(() => {
+    if (!bundle) return [];
+    if (bundle.chooseGroups) return bundle.chooseGroups;
+    if (bundle.chooseFrom === "satuan") {
+      const options = satuanProducts
+        .filter((p) => p.sizes?.[bundle.sizeFilter])
+        .map((p) => ({ id: p.id, name: `${p.name} (${bundle.sizeFilter})` }));
+      return [
+        {
+          chooseCount: bundle.chooseCount,
+          label: bundle.description || "Pilih menu",
+          options,
+        },
+      ];
+    }
+    return [];
+  }, [bundle, satuanProducts]);
+
+  const togglePick = (groupIndex, optionId, chooseCount) => {
+    setPicks((prev) => {
+      const current = prev[groupIndex] || [];
+      const isSelected = current.includes(optionId);
+      if (isSelected)
+        return {
+          ...prev,
+          [groupIndex]: current.filter((id) => id !== optionId),
+        };
+      if (current.length >= chooseCount)
+        return { ...prev, [groupIndex]: [...current.slice(1), optionId] };
+      return { ...prev, [groupIndex]: [...current, optionId] };
+    });
+  };
+
+  const handleSelectBundle = (id) => {
+    setSelectedBundleId(id);
+    setPicks({});
+  };
+
+  const isGroupsComplete = groups.every(
+    (group, index) => (picks[index]?.length || 0) === group.chooseCount,
+  );
+  const isFormValid =
+    customerName.trim() && outletAddress.trim() && isGroupsComplete;
+
+  const handleOrder = () => {
+    if (!isFormValid || !bundle) return;
+
+    const pickedLines = groups.flatMap((group, index) => {
+      const ids = picks[index] || [];
+      return ids.map((id, i) => {
+        const option = group.options.find((o) => o.id === id);
+        return `Pilih ${i + 1} Menu: ${option?.name || id}`;
+      });
+    });
+
+    const lines = [
+      `PESANAN ${brand.name.toUpperCase()} - PROMO ${bundle.name.toUpperCase()}`,
+      ``,
+      `Nama Customer (Wajib): ${customerName}`,
+      `Alamat Outlet (Wajib): ${outletAddress}`,
+      pickupTime ? `Jam Pengambilan: ${pickupTime}` : null,
+      note ? `Catatan (Tidak Wajib): ${note}` : null,
+      ``,
+      ...pickedLines,
+      ``,
+      `Harga Paket: ${formatRupiah(bundle.price)}`,
+      `Jumlah: 1`,
+      `Total: ${formatRupiah(bundle.price)}`,
+    ].filter(Boolean);
+
+    const text = encodeURIComponent(lines.join("\n"));
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
+  };
+
+  return (
+    <div className="min-h-screen bg-orange-50 pb-32 text-stone-900">
+      <div className="mx-auto max-w-2xl px-6 py-10">
+        <button
+          type="button"
+          onClick={() => navigate(`/${categoryId}/${brandId}`)}
+          className="mb-8 inline-flex cursor-pointer items-center gap-1 rounded-full bg-white px-4 py-2 text-sm font-medium text-stone-500 shadow-sm transition-colors hover:text-orange-600"
+        >
+          ← Pilih Paket Lain
+        </button>
+
+        <h1 className="mb-1 text-xl font-bold text-stone-900">{brand.name}</h1>
+        <p className="mb-6 text-sm font-medium text-orange-600">
+          Paket Bundling
+        </p>
+
+        {bundles.length > 1 && (
+          <div className="mb-6 flex gap-2 overflow-x-auto pb-1">
+            {bundles.map((b) => (
+              <button
+                key={b.id}
+                type="button"
+                onClick={() => handleSelectBundle(b.id)}
+                className={`shrink-0 cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors ${b.id === selectedBundleId ? "bg-orange-600 text-white" : "bg-white text-stone-500 hover:text-orange-600"}`}
+              >
+                {b.name}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {bundle && (
+          <div className="mb-6 rounded-2xl border border-orange-200 bg-orange-50 px-5 py-4">
+            <p className="text-sm font-bold text-stone-900">{bundle.name}</p>
+            {bundle.description && (
+              <p className="mt-0.5 text-xs text-stone-500">
+                {bundle.description}
+              </p>
+            )}
+            <p className="mt-2 text-lg font-extrabold text-orange-600">
+              {formatRupiah(bundle.price)}
+            </p>
+          </div>
+        )}
+
+        <div className="space-y-5 rounded-2xl border border-stone-200 bg-white p-6">
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
+              Nama Customer (wajib) *
+            </label>
+            <input
+              type="text"
+              value={customerName}
+              onChange={(e) => setCustomerName(e.target.value)}
+              placeholder="Nama"
+              className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
+            />
+          </div>
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
+              Alamat Outlet (wajib) *
+            </label>
+            <input
+              type="text"
+              value={outletAddress}
+              onChange={(e) => setOutletAddress(e.target.value)}
+              placeholder="Alamat outlet"
+              className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
+            />
+          </div>
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
+              Jam Pengambilan
+            </label>
+            <input
+              type="time"
+              value={pickupTime}
+              onChange={(e) => setPickupTime(e.target.value)}
+              className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
+            />
+          </div>
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-orange-600">
+              Catatan (tidak wajib)
+            </label>
+            <input
+              type="text"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              placeholder="Contoh: less sugar less ice"
+              className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
+            />
+          </div>
+        </div>
+
+        <div className="mt-8 space-y-6">
+          {groups.map((group, groupIndex) => {
+            const selectedIds = picks[groupIndex] || [];
+            return (
+              <div key={groupIndex}>
+                <div className="mb-3 flex items-center justify-between">
+                  <p className="text-sm font-bold text-stone-900">
+                    {group.label}
+                  </p>
+                  <span className="text-xs font-semibold text-stone-400">
+                    {selectedIds.length}/{group.chooseCount} dipilih
+                  </span>
+                </div>
+                <div className="space-y-2">
+                  {group.options.map((option) => {
+                    const isSelected = selectedIds.includes(option.id);
+                    return (
+                      <button
+                        key={option.id}
+                        type="button"
+                        onClick={() =>
+                          togglePick(groupIndex, option.id, group.chooseCount)
+                        }
+                        className={`flex w-full cursor-pointer items-center justify-between rounded-2xl border px-5 py-3.5 text-left transition-colors ${isSelected ? "border-orange-400 bg-orange-50" : "border-stone-200 bg-white hover:border-orange-200"}`}
+                      >
+                        <span className="text-sm font-medium text-stone-900">
+                          {option.name}
+                        </span>
+                        <span
+                          className={`flex h-5 w-5 cursor-pointer items-center justify-center rounded-full border-2 text-xs ${isSelected ? "border-orange-500 bg-orange-500 text-white" : "border-stone-300"}`}
+                        >
+                          {isSelected && "✓"}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="fixed inset-x-0 bottom-0 border-t border-stone-200 bg-white/95 px-6 py-4 backdrop-blur">
+        <div className="mx-auto flex max-w-2xl items-center justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-stone-400">
+              Total
+            </p>
+            <p className="text-lg font-extrabold text-orange-600">
+              {bundle ? formatRupiah(bundle.price) : "-"}
+            </p>
+          </div>
+          <button
+            type="button"
+            disabled={!isFormValid}
+            onClick={handleOrder}
+            className="cursor-pointer rounded-full bg-orange-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-stone-300"
+          >
+            Pesan Sekarang
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};

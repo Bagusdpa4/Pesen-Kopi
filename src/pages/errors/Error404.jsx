@@ -11,7 +11,7 @@ export const Error404 = () => {
         </p>
         <a
           href="/"
-          className="inline-block bg-orange-600 text-white text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-orange-700 transition-colors"
+          className="inline-block rounded-xl bg-orange-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-orange-700"
         >
           Kembali ke Halaman Utama
         </a>
