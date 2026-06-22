@@ -9,7 +9,6 @@ export const ProductOptionModal = ({ product, onClose, onAdd }) => {
   const sizeKeys = Object.keys(product.sizes);
   const [size, setSize] = useState(sizeKeys[0]);
   const [sugar, setSugar] = useState("Normal Sugar");
-  const [ice, setIce] = useState("Normal Ice");
 
   const baseSizeInfo = product.sizes[sizeKeys[0]];
   const basePrice = baseSizeInfo.discPrice ?? baseSizeInfo.price;
@@ -17,6 +16,16 @@ export const ProductOptionModal = ({ product, onClose, onAdd }) => {
   const selectedSizeInfo = product.sizes[size];
   const selectedPrice = selectedSizeInfo.discPrice ?? selectedSizeInfo.price;
   const diff = selectedPrice - basePrice;
+
+  const availableIceLevels = product.noHot
+    ? ICE_LEVELS.filter((level) => level !== "Hot")
+    : ICE_LEVELS;
+
+  const [ice, setIce] = useState(
+    availableIceLevels.includes("Normal Ice")
+      ? "Normal Ice"
+      : availableIceLevels[0],
+  );
 
   const handleAdd = () => {
     onAdd({ size, sugar, ice });
@@ -108,7 +117,7 @@ export const ProductOptionModal = ({ product, onClose, onAdd }) => {
             Level Ice
           </p>
           <div className="grid grid-cols-2 gap-2">
-            {ICE_LEVELS.map((level) => {
+            {availableIceLevels.map((level) => {
               const isSelected = ice === level;
               return (
                 <button
