@@ -4,464 +4,107 @@
     "title": "Minuman",
     "brands": [
       {
-        "id": "tomoro",
-        "name": "Tomoro",
-        "logo": "/logo/minuman/tomoro.png",
-        "tagline": "Kopi kekinian, harga ramah kantong ☕",
-        "modes": {
-          "satuan": []
-        }
-      },
-      {
         "id": "kopken",
         "name": "Kopi Kenangan",
         "logo": "/logo/minuman/kopken.png",
         "tagline": "Harga spesial, kualitas terjamin ✨",
         "modes": {
-          "satuan": [
-            {
-              "id": "kpk-blueberry-americano",
-              "name": "Blueberry Americano",
-              "sizes": {
-                "R": { "price": 19000, "discPrice": 14500, "image": "/product/minuman/kopken/Blueberry Americano.png" },
-                "L": { "price": 26000, "discPrice": 18000, "image": "/product/minuman/kopken/Blueberry Americano.png" }
-              }
+          "satuan": {
+            "minuman": {
+              "coffee_series": [
+                { "id": "kpk-kopi-kenangan-mantan",          "name": "Kopi Kenangan Mantan",              "image": "/product/minuman/kopken/Kopi Kenangan Mantan.png",             "sizes": { "R": { "price": 19000, "discPrice": 14500 }, "L": { "price": 25000, "discPrice": 17500 } } },
+                { "id": "kpk-americano",                     "name": "Americano",                         "image": "/product/minuman/kopken/Americano.PNG",                        "sizes": { "R": { "price": 17000, "discPrice": 13500 }, "L": { "price": 22000, "discPrice": 17500 } } },
+                { "id": "kpk-cappuccino",                    "name": "Cappuccino",                        "image": "/product/minuman/kopken/Cappuccino.PNG",                       "sizes": { "R": { "price": 22000, "discPrice": 16000 }, "L": { "price": 29000, "discPrice": 19500 } } },
+                { "id": "kpk-latte",                         "name": "Latte",                             "image": "/product/minuman/kopken/Latte.PNG",                            "sizes": { "R": { "price": 22000, "discPrice": 16000 }, "L": { "price": 29000, "discPrice": 19500 } } },
+                { "id": "kpk-pistachio-aren-latte",          "name": "Pistachio Aren Latte",              "image": "/product/minuman/kopken/Pistachio Aren Latte.PNG",             "sizes": { "R": { "price": 19000, "discPrice": 14500 }, "L": { "price": 26000, "discPrice": 18000 } } },
+                { "id": "kpk-caramel-latte",                 "name": "Caramel Latte",                     "image": "/product/minuman/kopken/Caramel Latte.png",                    "sizes": { "R": { "price": 26000, "discPrice": 18000 }, "L": { "price": 34000, "discPrice": 22000 } } },
+                { "id": "kpk-dua-shot-ice-shaken",           "name": "Dua Shot Ice Shaken",               "image": "/product/minuman/kopken/Dua Shot Iced Shaken.png",             "sizes": { "R": { "price": 28000, "discPrice": 19000 }, "L": { "price": 38000, "discPrice": 24000 } } },
+                { "id": "kpk-caramel-macchiato",             "name": "Caramel Macchiato",                 "image": "/product/minuman/kopken/Caramel Macchiato.png",                "sizes": { "R": { "price": 28000, "discPrice": 19000 }, "L": { "price": 38000, "discPrice": 24000 } } },
+                { "id": "kpk-hazelnut-latte",                "name": "Hazelnut Latte",                    "image": "/product/minuman/kopken/Hazelnut Latte.png",                   "sizes": { "R": { "price": 26000, "discPrice": 18000 }, "L": { "price": 34000, "discPrice": 22000 } } },
+                { "id": "kpk-kopi-susu-black-aren",          "name": "Kopi Susu Black Aren",              "image": "/product/minuman/kopken/Kopi Susu Black Aren.png",             "sizes": { "R": { "price": 21000, "discPrice": 15500 }, "L": { "price": 30000, "discPrice": 20000 } } },
+                { "id": "kpk-matcha-espresso",               "name": "Matcha Espresso",                   "image": "/product/minuman/kopken/Matcha Espresso.png",                  "sizes": { "R": { "price": 26000, "discPrice": 18000 }, "L": { "price": 35000, "discPrice": 22500 } } },
+                { "id": "kpk-mocha-latte",                   "name": "Mocha Latte",                       "image": "/product/minuman/kopken/Mocha Latte.png",                      "sizes": { "R": { "price": 28000, "discPrice": 19000 }, "L": { "price": 38000, "discPrice": 24000 } } },
+                { "id": "kpk-vanilla-latte",                 "name": "Vanilla Latte",                     "image": "/product/minuman/kopken/Vanilla Latte.png",                    "sizes": { "R": { "price": 26000, "discPrice": 18000 }, "L": { "price": 34000, "discPrice": 22000 } } },
+                { "id": "kpk-avocado-coffee",                "name": "Avocado Coffee",                    "image": "/product/minuman/kopken/Avocado Coffee.png",                   "sizes": { "R": { "price": 28000, "discPrice": 19000 }, "L": { "price": 38000, "discPrice": 24000 } } },
+                { "id": "kpk-spanish-latte",                 "name": "Spanish Latte",                     "image": "/product/minuman/kopken/Spanish Latte.png",                    "sizes": { "R": { "price": 19000, "discPrice": 14500 }, "L": { "price": 27000, "discPrice": 18500 } } },
+                { "id": "kpk-creamy-aren-latte",             "name": "Creamy Aren Latte",                 "image": "/product/minuman/kopken/Creamy Aren Latte.png",                "sizes": { "R": { "price": 22000, "discPrice": 16000 }, "L": { "price": 31000, "discPrice": 20500 } } },
+                { "id": "kpk-butterscotch-aren-latte",       "name": "Butterscotch Aren Latte",           "image": "/product/minuman/kopken/Butterscotch Aren Latte.PNG",          "sizes": { "R": { "price": 20000, "discPrice": 15000 }, "L": { "price": 27000, "discPrice": 18500 } } },
+                { "id": "kpk-butterscotch-sea-salt-latte",   "name": "Butterscotch Sea Salt Latte",       "image": "/product/minuman/kopken/Butterscotch Sea Salt Latte.PNG",      "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 33000, "discPrice": 21500 } } },
+                { "id": "kpk-butterscotch-sea-salt-crumble", "name": "Butterscotch Sea Salt Crumble",     "image": "/product/minuman/kopken/Butterscotch Sea Salt Crumble.PNG",    "sizes": { "R": { "price": 22000, "discPrice": 16000 } } },
+                { "id": "kpk-babyccino",                     "name": "Babyccino",                         "image": "/product/minuman/kopken/Babyccino.png",                        "sizes": { "R": { "price": 19000, "discPrice": 14500 } } },
+                { "id": "kpk-cafe-malt-latte",               "name": "Cafe Malt Latte",                   "image": "/product/minuman/kopken/Cafe Malt Latte.PNG",                  "sizes": { "R": { "price": 23000, "discPrice": 16500 }, "L": { "price": 30000, "discPrice": 20000 } } },
+                { "id": "kpk-og-aren-milky-speculoos",       "name": "OG Aren Milky Speculoos",           "image": "/product/minuman/kopken/OG Aren Milky Speculoos.PNG",          "sizes": { "R": { "price": 23000, "discPrice": 16500 }, "L": { "price": 30000, "discPrice": 20000 } } },
+                { "id": "kpk-og-aren-speculoos-latte",       "name": "OG Aren Speculoos Latte",           "image": "/product/minuman/kopken/OG Aren Speculoos Latte.PNG",          "sizes": { "R": { "price": 21000, "discPrice": 15500 }, "L": { "price": 28000, "discPrice": 19000 } } },
+                { "id": "kpk-duo-shot-og-aren",              "name": "Duo Shot OG Aren",                  "image": "/product/minuman/kopken/Dua Shot OG Aren.PNG",                 "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 32000, "discPrice": 21000 } } }
+              ],
+              "non_coffee_series": [
+                { "id": "kpk-og-thai-tea",                   "name": "OG Thai Tea",                       "image": "/product/minuman/kopken/OG Thai Tea.png",                      "sizes": { "R": { "price": 19000, "discPrice": 14500 }, "L": { "price": 23000, "discPrice": 17500 } } },
+                { "id": "kpk-thai-tea-loaded",               "name": "Thai Tea Loaded",                   "image": "/product/minuman/kopken/Thai Tea Loaded.jpg",                  "sizes": { "L": { "price": 27000, "discPrice": 18500 } } },
+                { "id": "kpk-thai-tea-aren",                 "name": "Thai Tea Aren",                     "image": "/product/minuman/kopken/Thai Tea Aren.png",                    "sizes": { "L": { "price": 24000, "discPrice": 18000 } } },
+                { "id": "kpk-thai-tea-coffee",               "name": "Thai Tea Coffee",                   "image": "/product/minuman/kopken/Thai Tea Coffe.png",                   "sizes": { "L": { "price": 25000, "discPrice": 18000 } } },
+                { "id": "kpk-fresh-lemonade",                "name": "Fresh Lemonade",                    "image": "/product/minuman/kopken/Fresh Lemonade.jpg",                   "sizes": { "R": { "price": 17000, "discPrice": 15000 }, "L": { "price": 27000, "discPrice": 18500 } } },
+                { "id": "kpk-lemon-black-tea",               "name": "Lemon Black Tea",                   "image": "/product/minuman/kopken/Lemon Black Tea.PNG",                  "sizes": { "R": { "price": 17000, "discPrice": 14000 }, "L": { "price": 24000, "discPrice": 17500 } } },
+                { "id": "kpk-raspberry-hibiscus",            "name": "Raspberry Hibiscus",                "image": "/product/minuman/kopken/Raspberry Hibiscus.jpg",               "sizes": { "R": { "price": 20000, "discPrice": 15000 }, "L": { "price": 27000, "discPrice": 18500 } } },
+                { "id": "kpk-hazelnut-choco-milk-tea",       "name": "Hazelnut Choco Milk Tea",           "image": "/product/minuman/kopken/Hazelnut Choco Milk Tea.png",          "sizes": { "R": { "price": 22000, "discPrice": 16000 }, "L": { "price": 29000, "discPrice": 19500 } } },
+                { "id": "kpk-caramel-dutch-choco",           "name": "Caramel Dutch Choco",               "image": "/product/minuman/kopken/Caramel Dutch Choco.png",              "sizes": { "R": { "price": 28000, "discPrice": 19000 }, "L": { "price": 38000, "discPrice": 24000 } } },
+                { "id": "kpk-dutch-chocolate",               "name": "Dutch Chocolate",                   "image": "/product/minuman/kopken/Dutch Chocolate.PNG",                  "sizes": { "R": { "price": 26000, "discPrice": 18000 }, "L": { "price": 36000, "discPrice": 23000 } } },
+                { "id": "kpk-hazelnut-dutch-choco",          "name": "Hazelnut Dutch Choco",              "image": "/product/minuman/kopken/Hazelnut Dutch Choco.PNG",             "sizes": { "R": { "price": 28000, "discPrice": 19000 }, "L": { "price": 38000, "discPrice": 24000 } } },
+                { "id": "kpk-avocado-caramel",               "name": "Avocado Caramel",                   "image": "/product/minuman/kopken/Avocado Caramel.png",                  "sizes": { "R": { "price": 28000, "discPrice": 19000 }, "L": { "price": 38000, "discPrice": 24000 } } },
+                { "id": "kpk-avocado-milk",                  "name": "Avocado Milk",                      "image": "/product/minuman/kopken/Avocado Milk.png",                     "sizes": { "R": { "price": 24000, "discPrice": 17000 }, "L": { "price": 34000, "discPrice": 22000 } } },
+                { "id": "kpk-kenangan-milk-tea",             "name": "Kenangan Milk Tea",                 "image": "/product/minuman/kopken/Kenangan Milk Tea.PNG",                "sizes": { "R": { "price": 21000, "discPrice": 15500 }, "L": { "price": 27000, "discPrice": 18500 } } },
+                { "id": "kpk-milo-dinosaurus",               "name": "Milo Dinosaurus",                   "image": "/product/minuman/kopken/Milo Dinosaurus.PNG",                  "sizes": { "R": { "price": 23000, "discPrice": 16500 }, "L": { "price": 30000, "discPrice": 20000 } } },
+                { "id": "kpk-oreo-shake",                    "name": "Oreo Shake",                        "image": "/product/minuman/kopken/Oreo Shake.PNG",                       "sizes": { "R": { "price": 26000, "discPrice": 18000 }, "L": { "price": 34000, "discPrice": 22000 } } },
+                { "id": "kpk-milk-oreo-crumble",             "name": "Milk Oreo Crumble",                 "image": "/product/minuman/kopken/Milk Oreo Crumble.jpg",                "sizes": { "R": { "price": 26000, "discPrice": 18000 } } },
+                { "id": "kpk-susu-grass-jelly",              "name": "Susu Grass Jelly",                  "image": "/product/minuman/kopken/Susu Grass Jelly.PNG",                 "sizes": { "R": { "price": 24000, "discPrice": 17000 }, "L": { "price": 32000, "discPrice": 21000 } } },
+                { "id": "kpk-matcha-latte",                  "name": "Matcha Latte",                      "image": "/product/minuman/kopken/Matcha Latte.PNG",                     "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 32000, "discPrice": 21000 } } }
+              ],
+              "frappe_series": [
+                { "id": "kpk-choco-caramel-frappe",          "name": "Choco Caramel Frappe",              "image": "/product/minuman/kopken/Choco Caramel Frappe.jpg",             "sizes": { "R": { "price": 28000, "discPrice": 19000 }, "L": { "price": 35000, "discPrice": 23000 } } },
+                { "id": "kpk-butterscotch-kenangan-frappe",  "name": "Butterscotch Kenangan Frappe",      "image": "/product/minuman/kopken/Butterscotch Kenangan Frappe.PNG",     "sizes": { "R": { "price": 30000, "discPrice": 20000 }, "L": { "price": 40000, "discPrice": 25000 } } },
+                { "id": "kpk-matcha-kenangan-frappe",        "name": "Matcha Kenangan Frappe",            "image": "/product/minuman/kopken/Matcha Kenangan Frappe.PNG",           "sizes": { "R": { "price": 32000, "discPrice": 21000 }, "L": { "price": 42000, "discPrice": 26000 } } },
+                { "id": "kpk-kopi-kenangan-mantan-frappe",   "name": "Kopi Kenangan Mantan Frappe",       "image": "/product/minuman/kopken/Kopi Kenangan Mantan Frappe.PNG",      "sizes": { "R": { "price": 27000, "discPrice": 18500 }, "L": { "price": 34000, "discPrice": 22000 } } },
+                { "id": "kpk-vanilla-kenangan-frappe",       "name": "Vanilla Kenangan Frappe",           "image": "/product/minuman/kopken/Vanilla Kenangan Frappe.jpg",          "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 32000, "discPrice": 21000 } } },
+                { "id": "kpk-dutch-choco-kenangan-frappe",   "name": "Dutch Choco Kenangan Frappe",       "image": "/product/minuman/kopken/Dutch Choco Kenangan Frappe.jpg",      "sizes": { "R": { "price": 29000, "discPrice": 19500 }, "L": { "price": 36000, "discPrice": 23000 } } }
+              ],
+              "oatside_series": [
+                { "id": "kpk-oatside-kopi-kenangan-mantan",  "name": "Oatside Kopi Kenangan Mantan",      "image": "/product/minuman/kopken/Oatside Kopi Kenangan Mantan.jpg",     "sizes": { "R": { "price": 22000, "discPrice": 16000 }, "L": { "price": 28000, "discPrice": 19000 } } },
+                { "id": "kpk-oatside-latte",                 "name": "Oatside Latte",                     "image": "/product/minuman/kopken/Oatside Latte.PNG",                    "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 32000, "discPrice": 21000 } } },
+                { "id": "kpk-oatside-matcha-latte",          "name": "Oatside Matcha Latte",              "image": "/product/minuman/kopken/Oatside Matcha Latte.PNG",             "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 32000, "discPrice": 21000 } } }
+              ],
+              "berry_series": [
+                { "id": "kpk-blueberry-americano",           "name": "Blueberry Americano",               "image": "/product/minuman/kopken/Blueberry Americano.png",              "sizes": { "R": { "price": 19000, "discPrice": 14500 }, "L": { "price": 26000, "discPrice": 18000 } } },
+                { "id": "kpk-blueberry-frappe",              "name": "Blueberry Frappe",                  "image": "/product/minuman/kopken/Blueberry Frappe.png",                 "sizes": { "R": { "price": 23000, "discPrice": 16500 }, "L": { "price": 30000, "discPrice": 20000 } } },
+                { "id": "kpk-chocoberry-frappe",             "name": "Chocoberry Frappe",                 "image": "/product/minuman/kopken/Chocoberry Frappe.png",                "sizes": { "R": { "price": 27000, "discPrice": 18500 }, "L": { "price": 34000, "discPrice": 22000 } } },
+                { "id": "kpk-coffeeberry-frappe",            "name": "Coffeeberry Frappe",                "image": "/product/minuman/kopken/Coffeeberry Frappe.png",               "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 32000, "discPrice": 21000 } } }
+              ]
             },
-            {
-              "id": "kpk-blueberry-frappe",
-              "name": "Blueberry Frappe",
-              "sizes": {
-                "R": { "price": 23000, "discPrice": 16500, "image": "/product/minuman/kopken/Blueberry Frappe.png" },
-                "L": { "price": 30000, "discPrice": 20000, "image": "/product/minuman/kopken/Blueberry Frappe.png" }
-              }
-            },
-            {
-              "id": "kpk-chocoberry-frappe",
-              "name": "Chocoberry Frappe",
-              "sizes": {
-                "R": { "price": 27000, "discPrice": 18500, "image": "/product/minuman/kopken/Chocoberry Frappe.png" },
-                "L": { "price": 34000, "discPrice": 22000, "image": "/product/minuman/kopken/Chocoberry Frappe.png" }
-              }
-            },
-            {
-              "id": "kpk-coffeeberry-frappe",
-              "name": "Coffeeberry Frappe",
-              "sizes": {
-                "R": { "price": 25000, "discPrice": 17500, "image": "/product/minuman/kopken/Coffeeberry Frappe.png" },
-                "L": { "price": 32000, "discPrice": 21000, "image": "/product/minuman/kopken/Coffeeberry Frappe.png" }
-              }
-            },
-            {
-              "id": "kpk-og-thai-tea",
-              "name": "OG Thai Tea",
-              "sizes": {
-                "R": { "price": 19000, "discPrice": 14500, "image": "/product/minuman/kopken/OG Thai Tea.png" },
-                "L": { "price": 23000, "discPrice": 17500, "image": "/product/minuman/kopken/OG Thai Tea.png" }
-              }
-            },
-            {
-              "id": "kpk-thai-tea-loaded",
-              "name": "Thai Tea Loaded (Large)",
-              "sizes": {
-                "L": { "price": 27000, "discPrice": 18500, "image": "/product/minuman/kopken/Thai Tea Loaded.jpg" }
-              }
-            },
-            {
-              "id": "kpk-fresh-lemonade",
-              "name": "Fresh Lemonade",
-              "sizes": {
-                "R": { "price": 17000, "discPrice": 15000, "image": "/product/minuman/kopken/Fresh Lemonade.jpg" },
-                "L": { "price": 27000, "discPrice": 18500, "image": "/product/minuman/kopken/Fresh Lemonade.jpg" }
-              }
-            },
-            {
-              "id": "kpk-raspberry-hibiscus",
-              "name": "Raspberry Hibiscus",
-              "sizes": {
-                "R": { "price": 20000, "discPrice": 15000, "image": "/product/minuman/kopken/Raspberry Hibiscus.jpg" },
-                "L": { "price": 27000, "discPrice": 18500, "image": "/product/minuman/kopken/Raspberry Hibiscus.jpg" }
-              }
-            },
-            {
-              "id": "kpk-milk-oreo-crumble",
-              "name": "Milk Oreo Crumble (Reguler)",
-              "sizes": {
-                "R": { "price": 26000, "discPrice": 18000, "image": "/product/minuman/kopken/Milk Oreo Crumble.jpg" }
-              }
-            },
-            {
-              "id": "kpk-thai-tea-aren",
-              "name": "Thai Tea Aren (Large)",
-              "sizes": {
-                "L": { "price": 24000, "discPrice": 18000, "image": "/product/minuman/kopken/Thai Tea Aren.png" }
-              }
-            },
-            {
-              "id": "kpk-thai-tea-coffee",
-              "name": "Thai Tea Coffee (Large)",
-              "sizes": {
-                "L": { "price": 25000, "discPrice": 18000, "image": "/product/minuman/kopken/Thai Tea Coffe.png" }
-              }
-            },
-            {
-              "id": "kpk-og-aren-speculoos-latte",
-              "name": "OG Aren Speculoos Latte",
-              "sizes": {
-                "R": { "price": 21000, "discPrice": 15500, "image": "/product/minuman/kopken/OG Aren Speculoos Latte.PNG" },
-                "L": { "price": 28000, "discPrice": 19000, "image": "/product/minuman/kopken/OG Aren Speculoos Latte.PNG" }
-              }
-            },
-            {
-              "id": "kpk-duo-shot-og-aren",
-              "name": "Duo Shot OG Aren",
-              "sizes": {
-                "R": { "price": 25000, "discPrice": 17500, "image": "/product/minuman/kopken/Dua Shot OG Aren.PNG" },
-                "L": { "price": 32000, "discPrice": 21000, "image": "/product/minuman/kopken/Dua Shot OG Aren.PNG" }
-              }
-            },
-            {
-              "id": "kpk-pistachio-aren-latte",
-              "name": "Pistachio Aren Latte",
-              "sizes": {
-                "R": { "price": 19000, "discPrice": 14500, "image": "/product/minuman/kopken/Pistachio Aren Latte.PNG" },
-                "L": { "price": 26000, "discPrice": 18000, "image": "/product/minuman/kopken/Pistachio Aren Latte.PNG" }
-              }
-            },
-            {
-              "id": "kpk-cafe-malt-latte",
-              "name": "Cafe Malt Latte",
-              "sizes": {
-                "R": { "price": 23000, "discPrice": 16500, "image": "/product/minuman/kopken/Cafe Malt Latte.PNG" },
-                "L": { "price": 30000, "discPrice": 20000, "image": "/product/minuman/kopken/Cafe Malt Latte.PNG" }
-              }
-            },
-            {
-              "id": "kpk-kopi-kenangan-mantan",
-              "name": "Kopi Kenangan Mantan",
-              "sizes": {
-                "R": { "price": 19000, "discPrice": 14500, "image": "/product/minuman/kopken/Kopi Kenangan Mantan.png" },
-                "L": { "price": 25000, "discPrice": 17500, "image": "/product/minuman/kopken/Kopi Kenangan Mantan.png" }
-              }
-            },
-            {
-              "id": "kpk-caramel-latte",
-              "name": "Caramel Latte",
-              "sizes": {
-                "R": { "price": 26000, "discPrice": 18000, "image": "/product/minuman/kopken/Caramel Latte.png" },
-                "L": { "price": 34000, "discPrice": 22000, "image": "/product/minuman/kopken/Caramel Latte.png" }
-              }
-            },
-            {
-              "id": "kpk-dua-shot-ice-shaken",
-              "name": "Dua Shot Ice Shaken",
-              "sizes": {
-                "R": { "price": 28000, "discPrice": 19000, "image": "/product/minuman/kopken/Dua Shot Iced Shaken.png" },
-                "L": { "price": 38000, "discPrice": 24000, "image": "/product/minuman/kopken/Dua Shot Iced Shaken.png" }
-              }
-            },
-            {
-              "id": "kpk-caramel-macchiato",
-              "name": "Caramel Macchiato",
-              "sizes": {
-                "R": { "price": 28000, "discPrice": 19000, "image": "/product/minuman/kopken/Caramel Macchiato.png" },
-                "L": { "price": 38000, "discPrice": 24000, "image": "/product/minuman/kopken/Caramel Macchiato.png" }
-              }
-            },
-            {
-              "id": "kpk-hazelnut-latte",
-              "name": "Hazelnut Latte",
-              "sizes": {
-                "R": { "price": 26000, "discPrice": 18000, "image": "/product/minuman/kopken/Hazelnut Latte.png" },
-                "L": { "price": 34000, "discPrice": 22000, "image": "/product/minuman/kopken/Hazelnut Latte.png" }
-              }
-            },
-            {
-              "id": "kpk-kopi-susu-black-aren",
-              "name": "Kopi Susu Black Aren",
-              "sizes": {
-                "R": { "price": 21000, "discPrice": 15500, "image": "/product/minuman/kopken/Kopi Susu Black Aren.png" },
-                "L": { "price": 30000, "discPrice": 20000, "image": "/product/minuman/kopken/Kopi Susu Black Aren.png" }
-              }
-            },
-            {
-              "id": "kpk-matcha-espresso",
-              "name": "Matcha Espresso",
-              "sizes": {
-                "R": { "price": 26000, "discPrice": 18000, "image": "/product/minuman/kopken/Matcha Espresso.png" },
-                "L": { "price": 35000, "discPrice": 22500, "image": "/product/minuman/kopken/Matcha Espresso.png" }
-              }
-            },
-            {
-              "id": "kpk-mocha-latte",
-              "name": "Mocha Latte",
-              "sizes": {
-                "R": { "price": 28000, "discPrice": 19000, "image": "/product/minuman/kopken/Mocha Latte.png" },
-                "L": { "price": 38000, "discPrice": 24000, "image": "/product/minuman/kopken/Mocha Latte.png" }
-              }
-            },
-            {
-              "id": "kpk-vanilla-latte",
-              "name": "Vanilla Latte",
-              "sizes": {
-                "R": { "price": 26000, "discPrice": 18000, "image": "/product/minuman/kopken/Vanilla Latte.png" },
-                "L": { "price": 34000, "discPrice": 22000, "image": "/product/minuman/kopken/Vanilla Latte.png" }
-              }
-            },
-            {
-              "id": "kpk-avocado-coffee",
-              "name": "Avocado Coffee",
-              "sizes": {
-                "R": { "price": 28000, "discPrice": 19000, "image": "/product/minuman/kopken/Avocado Coffee.png" },
-                "L": { "price": 38000, "discPrice": 24000, "image": "/product/minuman/kopken/Avocado Coffee.png" }
-              }
-            },
-            {
-              "id": "kpk-spanish-latte",
-              "name": "Spanish Latte",
-              "sizes": {
-                "R": { "price": 19000, "discPrice": 14500, "image": "/product/minuman/kopken/Spanish Latte.png" },
-                "L": { "price": 27000, "discPrice": 18500, "image": "/product/minuman/kopken/Spanish Latte.png" }
-              }
-            },
-            {
-              "id": "kpk-creamy-aren-latte",
-              "name": "Creamy Aren Latte",
-              "sizes": {
-                "R": { "price": 22000, "discPrice": 16000, "image": "/product/minuman/kopken/Creamy Aren Latte.png" },
-                "L": { "price": 31000, "discPrice": 20500, "image": "/product/minuman/kopken/Creamy Aren Latte.png" }
-              }
-            },
-            {
-              "id": "kpk-butterscotch-aren-latte",
-              "name": "Butterscotch Aren Latte",
-              "sizes": {
-                "R": { "price": 20000, "discPrice": 15000, "image": "/product/minuman/kopken/Butterscotch Aren Latte.PNG" },
-                "L": { "price": 27000, "discPrice": 18500, "image": "/product/minuman/kopken/Butterscotch Aren Latte.PNG" }
-              }
-            },
-            {
-              "id": "kpk-butterscotch-sea-salt-latte",
-              "name": "Butterscotch Sea Salt Latte",
-              "sizes": {
-                "R": { "price": 25000, "discPrice": 17500, "image": "/product/minuman/kopken/Butterscotch Sea Salt Latte.PNG" },
-                "L": { "price": 33000, "discPrice": 21500, "image": "/product/minuman/kopken/Butterscotch Sea Salt Latte.PNG" }
-              }
-            },
-            {
-              "id": "kpk-americano",
-              "name": "Americano",
-              "sizes": {
-                "R": { "price": 17000, "discPrice": 13500, "image": "/product/minuman/kopken/Americano.PNG" },
-                "L": { "price": 22000, "discPrice": 17500, "image": "/product/minuman/kopken/Americano.PNG" }
-              }
-            },
-            {
-              "id": "kpk-cappuccino",
-              "name": "Cappuccino",
-              "sizes": {
-                "R": { "price": 22000, "discPrice": 16000, "image": "/product/minuman/kopken/Cappuccino.PNG" },
-                "L": { "price": 29000, "discPrice": 19500, "image": "/product/minuman/kopken/Cappuccino.PNG" }
-              }
-            },
-            {
-              "id": "kpk-latte",
-              "name": "Latte",
-              "sizes": {
-                "R": { "price": 22000, "discPrice": 16000, "image": "/product/minuman/kopken/Latte.PNG" },
-                "L": { "price": 29000, "discPrice": 19500, "image": "/product/minuman/kopken/Latte.PNG" }
-              }
-            },
-            {
-              "id": "kpk-og-aren-milky-speculoos",
-              "name": "OG Aren Milky Speculoos",
-              "sizes": {
-                "R": { "price": 23000, "discPrice": 16500, "image": "/product/minuman/kopken/OG Aren Milky Speculoos.PNG" },
-                "L": { "price": 30000, "discPrice": 20000, "image": "/product/minuman/kopken/OG Aren Milky Speculoos.PNG" }
-              }
-            },
-            {
-              "id": "kpk-butterscotch-sea-salt-crumble",
-              "name": "Butterscotch Sea Salt Crumble (Reguler)",
-              "sizes": {
-                "R": { "price": 22000, "discPrice": 16000, "image": "/product/minuman/kopken/Butterscotch Sea Salt Crumble.PNG" }
-              }
-            },
-            {
-              "id": "kpk-babyccino",
-              "name": "Babyccino (Reguler)",
-              "sizes": {
-                "R": { "price": 19000, "discPrice": 14500, "image": "/product/minuman/kopken/Babyccino.png" }
-              }
-            },
-            {
-              "id": "kpk-hazelnut-choco-milk-tea",
-              "name": "Hazelnut Choco Milk Tea",
-              "sizes": {
-                "R": { "price": 22000, "discPrice": 16000, "image": "/product/minuman/kopken/Hazelnut Choco Milk Tea.png" },
-                "L": { "price": 29000, "discPrice": 19500, "image": "/product/minuman/kopken/Hazelnut Choco Milk Tea.png" }
-              }
-            },
-            {
-              "id": "kpk-avocado-caramel",
-              "name": "Avocado Caramel",
-              "sizes": {
-                "R": { "price": 28000, "discPrice": 19000, "image": "/product/minuman/kopken/Avocado Caramel.png" },
-                "L": { "price": 38000, "discPrice": 24000, "image": "/product/minuman/kopken/Avocado Caramel.png" }
-              }
-            },
-            {
-              "id": "kpk-avocado-milk",
-              "name": "Avocado Milk",
-              "sizes": {
-                "R": { "price": 24000, "discPrice": 17000, "image": "/product/minuman/kopken/Avocado Milk.png" },
-                "L": { "price": 34000, "discPrice": 22000, "image": "/product/minuman/kopken/Avocado Milk.png" }
-              }
-            },
-            {
-              "id": "kpk-caramel-dutch-choco",
-              "name": "Caramel Dutch Choco",
-              "sizes": {
-                "R": { "price": 28000, "discPrice": 19000, "image": "/product/minuman/kopken/Caramel Dutch Choco.png" },
-                "L": { "price": 38000, "discPrice": 24000, "image": "/product/minuman/kopken/Caramel Dutch Choco.png" }
-              }
-            },
-            {
-              "id": "kpk-dutch-chocolate",
-              "name": "Dutch Chocolate",
-              "sizes": {
-                "R": { "price": 26000, "discPrice": 18000, "image": "/product/minuman/kopken/Dutch Chocolate.PNG" },
-                "L": { "price": 36000, "discPrice": 23000, "image": "/product/minuman/kopken/Dutch Chocolate.PNG" }
-              }
-            },
-            {
-              "id": "kpk-hazelnut-dutch-choco",
-              "name": "Hazelnut Dutch Choco",
-              "sizes": {
-                "R": { "price": 28000, "discPrice": 19000, "image": "/product/minuman/kopken/Hazelnut Dutch Choco.PNG" },
-                "L": { "price": 38000, "discPrice": 24000, "image": "/product/minuman/kopken/Hazelnut Dutch Choco.PNG" }
-              }
-            },
-            {
-              "id": "kpk-lemon-black-tea",
-              "name": "Lemon Black Tea",
-              "sizes": {
-                "R": { "price": 17000, "discPrice": 14000, "image": "/product/minuman/kopken/Lemon Black Tea.PNG" },
-                "L": { "price": 24000, "discPrice": 17500, "image": "/product/minuman/kopken/Lemon Black Tea.PNG" }
-              }
-            },
-            {
-              "id": "kpk-kenangan-milk-tea",
-              "name": "Kenangan Milk Tea",
-              "sizes": {
-                "R": { "price": 21000, "discPrice": 15500, "image": "/product/minuman/kopken/Kenangan Milk Tea.PNG" },
-                "L": { "price": 27000, "discPrice": 18500, "image": "/product/minuman/kopken/Kenangan Milk Tea.PNG" }
-              }
-            },
-            {
-              "id": "kpk-milo-dinosaurus",
-              "name": "Milo Dinosaurus",
-              "sizes": {
-                "R": { "price": 23000, "discPrice": 16500, "image": "/product/minuman/kopken/Milo Dinosaurus.PNG" },
-                "L": { "price": 30000, "discPrice": 20000, "image": "/product/minuman/kopken/Milo Dinosaurus.PNG" }
-              }
-            },
-            {
-              "id": "kpk-oreo-shake",
-              "name": "Oreo Shake",
-              "sizes": {
-                "R": { "price": 26000, "discPrice": 18000, "image": "/product/minuman/kopken/Oreo Shake.PNG" },
-                "L": { "price": 34000, "discPrice": 22000, "image": "/product/minuman/kopken/Oreo Shake.PNG" }
-              }
-            },
-            {
-              "id": "kpk-susu-grass-jelly",
-              "name": "Susu Grass Jelly",
-              "sizes": {
-                "R": { "price": 24000, "discPrice": 17000, "image": "/product/minuman/kopken/Susu Grass Jelly.PNG" },
-                "L": { "price": 32000, "discPrice": 21000, "image": "/product/minuman/kopken/Susu Grass Jelly.PNG" }
-              }
-            },
-            {
-              "id": "kpk-matcha-latte",
-              "name": "Matcha Latte",
-              "sizes": {
-                "R": { "price": 25000, "discPrice": 17500, "image": "/product/minuman/kopken/Matcha Latte.PNG" },
-                "L": { "price": 32000, "discPrice": 21000, "image": "/product/minuman/kopken/Matcha Latte.PNG" }
-              }
-            },
-            {
-              "id": "kpk-oatside-kopi-kenangan-mantan",
-              "name": "Oatside Kopi Kenangan Mantan",
-              "sizes": {
-                "R": { "price": 22000, "discPrice": 16000, "image": "/product/minuman/kopken/Oatside Kopi Kenangan Mantan.jpg" },
-                "L": { "price": 28000, "discPrice": 19000, "image": "/product/minuman/kopken/Oatside Kopi Kenangan Mantan.jpg" }
-              }
-            },
-            {
-              "id": "kpk-oatside-latte",
-              "name": "Oatside Latte",
-              "sizes": {
-                "R": { "price": 25000, "discPrice": 17500, "image": "/product/minuman/kopken/Oatside Latte.PNG" },
-                "L": { "price": 32000, "discPrice": 21000, "image": "/product/minuman/kopken/Oatside Latte.PNG" }
-              }
-            },
-            {
-              "id": "kpk-oatside-matcha-latte",
-              "name": "Oatside Matcha Latte",
-              "sizes": {
-                "R": { "price": 25000, "discPrice": 17500, "image": "/product/minuman/kopken/Oatside Matcha Latte.PNG" },
-                "L": { "price": 32000, "discPrice": 21000, "image": "/product/minuman/kopken/Oatside Matcha Latte.PNG" }
-              }
-            },
-            {
-              "id": "kpk-choco-caramel-frappe",
-              "name": "Choco Caramel Frappe",
-              "sizes": {
-                "R": { "price": 28000, "discPrice": 19000, "image": "/product/minuman/kopken/Choco Caramel Frappe.jpg" },
-                "L": { "price": 35000, "discPrice": 23000, "image": "/product/minuman/kopken/Choco Caramel Frappe.jpg" }
-              }
-            },
-            {
-              "id": "kpk-butterscotch-kenangan-frappe",
-              "name": "Butterscotch Kenangan Frappe",
-              "sizes": {
-                "R": { "price": 30000, "discPrice": 20000, "image": "/product/minuman/kopken/Butterscotch Kenangan Frappe.PNG" },
-                "L": { "price": 40000, "discPrice": 25000, "image": "/product/minuman/kopken/Butterscotch Kenangan Frappe.PNG" }
-              }
-            },
-            {
-              "id": "kpk-matcha-kenangan-frappe",
-              "name": "Matcha Kenangan Frappe",
-              "sizes": {
-                "R": { "price": 32000, "discPrice": 21000, "image": "/product/minuman/kopken/Matcha Kenangan Frappe.PNG" },
-                "L": { "price": 42000, "discPrice": 26000, "image": "/product/minuman/kopken/Matcha Kenangan Frappe.PNG" }
-              }
-            },
-            {
-              "id": "kpk-kopi-kenangan-mantan-frappe",
-              "name": "Kopi Kenangan Mantan Frappe",
-              "sizes": {
-                "R": { "price": 27000, "discPrice": 18500, "image": "/product/minuman/kopken/Kopi Kenangan Mantan Frappe.PNG" },
-                "L": { "price": 34000, "discPrice": 22000, "image": "/product/minuman/kopken/Kopi Kenangan Mantan Frappe.PNG" }
-              }
-            },
-            {
-              "id": "kpk-vanilla-kenangan-frappe",
-              "name": "Vanilla Kenangan Frappe",
-              "sizes": {
-                "R": { "price": 25000, "discPrice": 17500, "image": "/product/minuman/kopken/Vanilla Kenangan Frappe.jpg" },
-                "L": { "price": 32000, "discPrice": 21000, "image": "/product/minuman/kopken/Vanilla Kenangan Frappe.jpg" }
-              }
-            },
-            {
-              "id": "kpk-dutch-choco-kenangan-frappe",
-              "name": "Dutch Choco Kenangan Frappe",
-              "sizes": {
-                "R": { "price": 29000, "discPrice": 19500, "image": "/product/minuman/kopken/Dutch Choco Kenangan Frappe.jpg" },
-                "L": { "price": 36000, "discPrice": 23000, "image": "/product/minuman/kopken/Dutch Choco Kenangan Frappe.jpg" }
-              }
-            }
-          ],
+            "makanan": [
+              { "id": "kpk-m-aren-apple-pie",               "name": "Aren Apple Pie",                    "price": 21000, "discPrice": 14000, "image": "/public/product/makanan/kopken/Aren Apple Pie.png" },
+              { "id": "kpk-m-vanilla-choux-puff",           "name": "Vanilla Choux Puff",                "price": 16000, "discPrice": 11500, "image": "/public/product/makanan/kopken/Vanilla Choux Puff.png" },
+              { "id": "kpk-m-strawberry-choux-puff",        "name": "Strawberry Choux Puff",             "price": 16000, "discPrice": 11500, "image": "/public/product/makanan/kopken/Strawberry Choux Puff.png" },
+              { "id": "kpk-m-chocolate-choux-puff",         "name": "Chocolate Choux Puff",              "price": 16000, "discPrice": 11500, "image": "/public/product/makanan/kopken/Chocolate Choux Puff.png" },
+              { "id": "kpk-m-salt-bread-original",          "name": "Salt Bread Original",               "price": 15000, "discPrice": 11000, "image": "/public/product/makanan/kopken/Salt Bread Original.png" },
+              { "id": "kpk-m-donut-almond",                 "name": "Donut Almond",                      "price": 17000, "discPrice": 12000, "image": "/public/product/makanan/kopken/Donut Almond.png" },
+              { "id": "kpk-m-sandwich-smoked-beef",         "name": "Sandwich Smoked Beef",              "price": 25000, "discPrice": 16000, "image": "/public/product/makanan/kopken/Sandwich Smoked Beef.png" },
+              { "id": "kpk-m-sandwich-chicken-tartar",      "name": "Sandwich Chicken Tartar",           "price": 25000, "discPrice": 16000, "image": "/public/product/makanan/kopken/Sandwich Chicken Tartar.png" },
+              { "id": "kpk-m-croissant-abon",               "name": "Croissant Abon",                    "price": 21000, "discPrice": 14000, "image": "/public/product/makanan/kopken/Croissant Abon.png" },
+              { "id": "kpk-m-bambang-choco-cheese",         "name": "Bambang Choco Cheese",              "price": 22000, "discPrice": 14500, "image": "/public/product/makanan/kopken/Bambang Choco Cheese.png" },
+              { "id": "kpk-m-adam-ayam-toast",              "name": "Adam Ayam Toast",                   "price": 25000, "discPrice": 16000, "image": "/public/product/makanan/kopken/Adam Ayam Toast.png" },
+              { "id": "kpk-m-wahyu-sapi-toast",             "name": "Wahyu Sapi Toast",                  "price": 25000, "discPrice": 16000, "image": "/public/product/makanan/kopken/Wahyu Sapi Toast.png" },
+              { "id": "kpk-m-salt-bread-abon",              "name": "Salt Bread Abon",                   "price": 18000, "discPrice": 12500, "image": "/public/product/makanan/kopken/Salt Bread Abon.png" },
+              { "id": "kpk-m-butter-croissant",             "name": "Butter Croissant",                  "price": 15000, "discPrice": 11000, "image": "/public/product/makanan/kopken/Butter Croissant.png" },
+              { "id": "kpk-m-chocolate-croissant",          "name": "Chocolate Croissant",               "price": 19000, "discPrice": 13000, "image": "/public/product/makanan/kopken/Chocolate Croissant.png" },
+              { "id": "kpk-m-chocolate-donut",              "name": "Chocolate Donut",                   "price": 13000, "discPrice": 10000, "image": "/public/product/makanan/kopken/Chocolate Donut.png" },
+              { "id": "kpk-m-sugar-donut",                  "name": "Sugar Donut",                       "price": 10000, "discPrice": 8500,  "image": "/public/product/makanan/kopken/Sugar Donut.png" },
+              { "id": "kpk-m-roti-coklat-klasik",           "name": "Roti Coklat Klasik",                "price": 9000,  "discPrice": 8000,  "image": "/public/product/makanan/kopken/Roti Coklat Klasik.png" },
+              { "id": "kpk-m-roti-susu-manis",              "name": "Roti Susu Manis",                   "price": 10000, "discPrice": 8500,  "image": "/public/product/makanan/kopken/Roti Susu Manis.png" },
+              { "id": "kpk-m-roti-keju-manis",              "name": "Roti Keju Manis",                   "price": 13000, "discPrice": 10000, "image": "/public/product/makanan/kopken/Roti Keju Manis.png" },
+              { "id": "kpk-m-roti-srikaya",                 "name": "Roti Srikaya",                      "price": 15000, "discPrice": 11000, "image": "/public/product/makanan/kopken/Roti Srikaya.png" },
+              { "id": "kpk-m-choco-chip-cookies",           "name": "Choco Chip Cookies",                "price": 14000, "discPrice": 10500, "image": "/public/product/makanan/kopken/Choco Chip Cookies.png" },
+              { "id": "kpk-m-join-the-dark-side-cookies",   "name": "Join The Dark Side Cookies",        "price": 21000, "discPrice": 14000, "image": "/public/product/makanan/kopken/Join the Dark Side Cookies.png" },
+              { "id": "kpk-m-fried-chip-cookie",            "name": "Fried Chip Cookie",                 "price": 17000, "discPrice": 12000, "image": "/public/product/makanan/kopken/Friend Chip Cookies.png" }
+            ]
+          },
           "bundling": [
             {
               "id": "kpk-b-001",
@@ -474,25 +117,25 @@
                   "label": "Pilih 3 menu Regular",
                   "chooseCount": 3,
                   "options": [
-                    { "id": "kpk-blueberry-americano", "name": "Blueberry Americano (R)", "image": "/product/minuman/kopken/Blueberry Americano.png" },
-                    { "id": "kpk-blueberry-frappe", "name": "Blueberry Frappe (R)", "image": "/product/minuman/kopken/Blueberry Frappe.png" },
-                    { "id": "kpk-og-thai-tea", "name": "OG Thai Tea (R)", "image": "/product/minuman/kopken/OG Thai Tea.png" },
-                    { "id": "kpk-og-aren-speculoos-latte", "name": "OG Aren Speculoos Latte (R)", "image": "/product/minuman/kopken/OG Aren Speculoos Latte.PNG" },
-                    { "id": "kpk-pistachio-aren-latte", "name": "Pistachio Aren Latte (R)", "image": "/product/minuman/kopken/Pistachio Aren Latte.PNG" },
-                    { "id": "kpk-cafe-malt-latte", "name": "Cafe Malt Latte (R)", "image": "/product/minuman/kopken/Cafe Malt Latte.PNG" },
-                    { "id": "kpk-kopi-kenangan-mantan", "name": "Kopi Kenangan Mantan (R)", "image": "/product/minuman/kopken/Kopi Kenangan Mantan.png" },
-                    { "id": "kpk-kopi-susu-black-aren", "name": "Kopi Susu Black Aren (R)", "image": "/product/minuman/kopken/Kopi Susu Black Aren.png" },
-                    { "id": "kpk-spanish-latte", "name": "Spanish Latte (R)", "image": "/product/minuman/kopken/Spanish Latte.png" },
-                    { "id": "kpk-creamy-aren-latte", "name": "Creamy Aren Latte (R)", "image": "/product/minuman/kopken/Creamy Aren Latte.png" },
-                    { "id": "kpk-butterscotch-aren-latte", "name": "Butterscotch Aren Latte (R)", "image": "/product/minuman/kopken/Butterscotch Aren Latte.PNG" },
-                    { "id": "kpk-americano", "name": "Americano (R)", "image": "/product/minuman/kopken/Americano.PNG" },
-                    { "id": "kpk-butterscotch-sea-salt-crumble", "name": "Butterscotch Sea Salt Crumble (R)", "image": "/product/minuman/kopken/Butterscotch Sea Salt Crumble.PNG" },
-                    { "id": "kpk-babyccino", "name": "Babyccino (R)", "image": "/product/minuman/kopken/Babyccino.png" },
-                    { "id": "kpk-hazelnut-choco-milk-tea", "name": "Hazelnut Choco Milk Tea (R)", "image": "/product/minuman/kopken/Hazelnut Choco Milk Tea.png" },
-                    { "id": "kpk-lemon-black-tea", "name": "Lemon Black Tea (R)", "image": "/product/minuman/kopken/Lemon Black Tea.PNG" },
-                    { "id": "kpk-kenangan-milk-tea", "name": "Kenangan Milk Tea (R)", "image": "/product/minuman/kopken/Kenangan Milk Tea.PNG" },
-                    { "id": "kpk-milo-dinosaurus", "name": "Milo Dinosaurus (R)", "image": "/product/minuman/kopken/Milo Dinosaurus.PNG" },
-                    { "id": "kpk-oatside-kopi-kenangan-mantan", "name": "Oatside Kopi Kenangan Mantan (R)", "image": "/product/minuman/kopken/Oatside Kopi Kenangan Mantan.jpg" }
+                    { "id": "kpk-blueberry-americano",            "name": "Blueberry Americano (R)",            "image": "/product/minuman/kopken/Blueberry Americano.png" },
+                    { "id": "kpk-blueberry-frappe",               "name": "Blueberry Frappe (R)",               "image": "/product/minuman/kopken/Blueberry Frappe.png" },
+                    { "id": "kpk-og-thai-tea",                    "name": "OG Thai Tea (R)",                    "image": "/product/minuman/kopken/OG Thai Tea.png" },
+                    { "id": "kpk-og-aren-speculoos-latte",        "name": "OG Aren Speculoos Latte (R)",        "image": "/product/minuman/kopken/OG Aren Speculoos Latte.PNG" },
+                    { "id": "kpk-pistachio-aren-latte",           "name": "Pistachio Aren Latte (R)",           "image": "/product/minuman/kopken/Pistachio Aren Latte.PNG" },
+                    { "id": "kpk-cafe-malt-latte",                "name": "Cafe Malt Latte (R)",                "image": "/product/minuman/kopken/Cafe Malt Latte.PNG" },
+                    { "id": "kpk-kopi-kenangan-mantan",           "name": "Kopi Kenangan Mantan (R)",           "image": "/product/minuman/kopken/Kopi Kenangan Mantan.png" },
+                    { "id": "kpk-kopi-susu-black-aren",           "name": "Kopi Susu Black Aren (R)",           "image": "/product/minuman/kopken/Kopi Susu Black Aren.png" },
+                    { "id": "kpk-spanish-latte",                  "name": "Spanish Latte (R)",                  "image": "/product/minuman/kopken/Spanish Latte.png" },
+                    { "id": "kpk-creamy-aren-latte",              "name": "Creamy Aren Latte (R)",              "image": "/product/minuman/kopken/Creamy Aren Latte.png" },
+                    { "id": "kpk-butterscotch-aren-latte",        "name": "Butterscotch Aren Latte (R)",        "image": "/product/minuman/kopken/Butterscotch Aren Latte.PNG" },
+                    { "id": "kpk-americano",                      "name": "Americano (R)",                      "image": "/product/minuman/kopken/Americano.PNG" },
+                    { "id": "kpk-butterscotch-sea-salt-crumble",  "name": "Butterscotch Sea Salt Crumble (R)",  "image": "/product/minuman/kopken/Butterscotch Sea Salt Crumble.PNG" },
+                    { "id": "kpk-babyccino",                      "name": "Babyccino (R)",                      "image": "/product/minuman/kopken/Babyccino.png" },
+                    { "id": "kpk-hazelnut-choco-milk-tea",        "name": "Hazelnut Choco Milk Tea (R)",        "image": "/product/minuman/kopken/Hazelnut Choco Milk Tea.png" },
+                    { "id": "kpk-lemon-black-tea",                "name": "Lemon Black Tea (R)",                "image": "/product/minuman/kopken/Lemon Black Tea.PNG" },
+                    { "id": "kpk-kenangan-milk-tea",              "name": "Kenangan Milk Tea (R)",              "image": "/product/minuman/kopken/Kenangan Milk Tea.PNG" },
+                    { "id": "kpk-milo-dinosaurus",                "name": "Milo Dinosaurus (R)",                "image": "/product/minuman/kopken/Milo Dinosaurus.PNG" },
+                    { "id": "kpk-oatside-kopi-kenangan-mantan",   "name": "Oatside Kopi Kenangan Mantan (R)",   "image": "/product/minuman/kopken/Oatside Kopi Kenangan Mantan.jpg" }
                   ]
                 }
               ]
@@ -508,27 +151,27 @@
                   "label": "Pilih 2 menu Large",
                   "chooseCount": 2,
                   "options": [
-                    { "id": "kpk-blueberry-americano-l", "name": "Blueberry Americano (L)", "image": "/product/minuman/kopken/Blueberry Americano.png" },
-                    { "id": "kpk-blueberry-frappe-l", "name": "Blueberry Frappe (L)", "image": "/product/minuman/kopken/Blueberry Frappe.png" },
-                    { "id": "kpk-og-thai-tea-l", "name": "OG Thai Tea (L)", "image": "/product/minuman/kopken/OG Thai Tea.png" },
-                    { "id": "kpk-thai-tea-aren-l", "name": "Thai Tea Aren (L)", "image": "/product/minuman/kopken/Thai Tea Aren.png" },
-                    { "id": "kpk-thai-tea-coffee-l", "name": "Thai Tea Coffee (L)", "image": "/product/minuman/kopken/Thai Tea Coffe.png" },
-                    { "id": "kpk-og-aren-speculoos-latte-l", "name": "OG Aren Speculoos Latte (L)", "image": "/product/minuman/kopken/OG Aren Speculoos Latte.PNG" },
-                    { "id": "kpk-pistachio-aren-latte-l", "name": "Pistachio Aren Latte (L)", "image": "/product/minuman/kopken/Pistachio Aren Latte.PNG" },
-                    { "id": "kpk-cafe-malt-latte-l", "name": "Cafe Malt Latte (L)", "image": "/product/minuman/kopken/Cafe Malt Latte.PNG" },
-                    { "id": "kpk-kopi-kenangan-mantan-l", "name": "Kopi Kenangan Mantan (L)", "image": "/product/minuman/kopken/Kopi Kenangan Mantan.png" },
-                    { "id": "kpk-kopi-susu-black-aren-l", "name": "Kopi Susu Black Aren (L)", "image": "/product/minuman/kopken/Kopi Susu Black Aren.png" },
-                    { "id": "kpk-spanish-latte-l", "name": "Spanish Latte (L)", "image": "/product/minuman/kopken/Spanish Latte.png" },
-                    { "id": "kpk-butterscotch-aren-latte-l", "name": "Butterscotch Aren Latte (L)", "image": "/product/minuman/kopken/Butterscotch Aren Latte.PNG" },
-                    { "id": "kpk-americano-l", "name": "Americano (L)", "image": "/product/minuman/kopken/Americano.PNG" },
-                    { "id": "kpk-cappuccino-l", "name": "Cappuccino (L)", "image": "/product/minuman/kopken/Cappuccino.PNG" },
-                    { "id": "kpk-latte-l", "name": "Latte (L)", "image": "/product/minuman/kopken/Latte.PNG" },
-                    { "id": "kpk-og-aren-milky-speculoos-l", "name": "OG Aren Milky Speculoos (L)", "image": "/product/minuman/kopken/OG Aren Milky Speculoos.PNG" },
-                    { "id": "kpk-hazelnut-choco-milk-tea-l", "name": "Hazelnut Choco Milk Tea (L)", "image": "/product/minuman/kopken/Hazelnut Choco Milk Tea.png" },
-                    { "id": "kpk-lemon-black-tea-l", "name": "Lemon Black Tea (L)", "image": "/product/minuman/kopken/Lemon Black Tea.PNG" },
-                    { "id": "kpk-kenangan-milk-tea-l", "name": "Kenangan Milk Tea (L)", "image": "/product/minuman/kopken/Kenangan Milk Tea.PNG" },
-                    { "id": "kpk-milo-dinosaurus-l", "name": "Milo Dinosaurus (L)", "image": "/product/minuman/kopken/Milo Dinosaurus.PNG" },
-                    { "id": "kpk-oatside-kopi-kenangan-mantan-l", "name": "Oatside Kopi Kenangan Mantan (L)", "image": "/product/minuman/kopken/Oatside Kopi Kenangan Mantan.jpg" }
+                    { "id": "kpk-blueberry-americano-l",          "name": "Blueberry Americano (L)",            "image": "/product/minuman/kopken/Blueberry Americano.png" },
+                    { "id": "kpk-blueberry-frappe-l",             "name": "Blueberry Frappe (L)",               "image": "/product/minuman/kopken/Blueberry Frappe.png" },
+                    { "id": "kpk-og-thai-tea-l",                  "name": "OG Thai Tea (L)",                    "image": "/product/minuman/kopken/OG Thai Tea.png" },
+                    { "id": "kpk-thai-tea-aren-l",                "name": "Thai Tea Aren (L)",                  "image": "/product/minuman/kopken/Thai Tea Aren.png" },
+                    { "id": "kpk-thai-tea-coffee-l",              "name": "Thai Tea Coffee (L)",                "image": "/product/minuman/kopken/Thai Tea Coffe.png" },
+                    { "id": "kpk-og-aren-speculoos-latte-l",      "name": "OG Aren Speculoos Latte (L)",        "image": "/product/minuman/kopken/OG Aren Speculoos Latte.PNG" },
+                    { "id": "kpk-pistachio-aren-latte-l",         "name": "Pistachio Aren Latte (L)",           "image": "/product/minuman/kopken/Pistachio Aren Latte.PNG" },
+                    { "id": "kpk-cafe-malt-latte-l",              "name": "Cafe Malt Latte (L)",                "image": "/product/minuman/kopken/Cafe Malt Latte.PNG" },
+                    { "id": "kpk-kopi-kenangan-mantan-l",         "name": "Kopi Kenangan Mantan (L)",           "image": "/product/minuman/kopken/Kopi Kenangan Mantan.png" },
+                    { "id": "kpk-kopi-susu-black-aren-l",         "name": "Kopi Susu Black Aren (L)",           "image": "/product/minuman/kopken/Kopi Susu Black Aren.png" },
+                    { "id": "kpk-spanish-latte-l",                "name": "Spanish Latte (L)",                  "image": "/product/minuman/kopken/Spanish Latte.png" },
+                    { "id": "kpk-butterscotch-aren-latte-l",      "name": "Butterscotch Aren Latte (L)",        "image": "/product/minuman/kopken/Butterscotch Aren Latte.PNG" },
+                    { "id": "kpk-americano-l",                    "name": "Americano (L)",                      "image": "/product/minuman/kopken/Americano.PNG" },
+                    { "id": "kpk-cappuccino-l",                   "name": "Cappuccino (L)",                     "image": "/product/minuman/kopken/Cappuccino.PNG" },
+                    { "id": "kpk-latte-l",                        "name": "Latte (L)",                          "image": "/product/minuman/kopken/Latte.PNG" },
+                    { "id": "kpk-og-aren-milky-speculoos-l",      "name": "OG Aren Milky Speculoos (L)",        "image": "/product/minuman/kopken/OG Aren Milky Speculoos.PNG" },
+                    { "id": "kpk-hazelnut-choco-milk-tea-l",      "name": "Hazelnut Choco Milk Tea (L)",        "image": "/product/minuman/kopken/Hazelnut Choco Milk Tea.png" },
+                    { "id": "kpk-lemon-black-tea-l",              "name": "Lemon Black Tea (L)",                "image": "/product/minuman/kopken/Lemon Black Tea.PNG" },
+                    { "id": "kpk-kenangan-milk-tea-l",            "name": "Kenangan Milk Tea (L)",              "image": "/product/minuman/kopken/Kenangan Milk Tea.PNG" },
+                    { "id": "kpk-milo-dinosaurus-l",              "name": "Milo Dinosaurus (L)",                "image": "/product/minuman/kopken/Milo Dinosaurus.PNG" },
+                    { "id": "kpk-oatside-kopi-kenangan-mantan-l", "name": "Oatside Kopi Kenangan Mantan (L)",   "image": "/product/minuman/kopken/Oatside Kopi Kenangan Mantan.jpg" }
                   ]
                 }
               ]
@@ -537,26 +180,26 @@
               "id": "kpk-b-003",
               "name": "Bundling Berry Series 40K",
               "price": 40000,
-              "description": "Bebas pilih 2 menu dari Berry Series + 1 menu makanan",
+              "description": "Bebas pilih 2 menu Berry Series + 1 menu makanan",
               "image": "/bundling kopken/Berry Series.PNG",
               "chooseGroups": [
                 {
                   "label": "Pilih 2 menu Berry Series (Regular)",
                   "chooseCount": 2,
                   "options": [
-                    { "id": "kpk-blueberry-americano-b", "name": "Blueberry Americano (R)", "image": "/product/minuman/kopken/Blueberry Americano.png" },
-                    { "id": "kpk-blueberry-frappe-b", "name": "Blueberry Frappe (R)", "image": "/product/minuman/kopken/Blueberry Frappe.png" },
-                    { "id": "kpk-og-thai-tea-b", "name": "OG Thai Tea (R)", "image": "/product/minuman/kopken/OG Thai Tea.png" },
-                    { "id": "kpk-chocoberry-frappe-b", "name": "Chocoberry Frappe (R)", "image": "/product/minuman/kopken/Chocoberry Frappe.png" },
-                    { "id": "kpk-coffeeberry-frappe-b", "name": "Coffeeberry Frappe (R)", "image": "/product/minuman/kopken/Coffeeberry Frappe.png" }
+                    { "id": "kpk-blueberry-americano-b",  "name": "Blueberry Americano (R)",  "image": "/product/minuman/kopken/Blueberry Americano.png" },
+                    { "id": "kpk-blueberry-frappe-b",     "name": "Blueberry Frappe (R)",     "image": "/product/minuman/kopken/Blueberry Frappe.png" },
+                    { "id": "kpk-og-thai-tea-b",          "name": "OG Thai Tea (R)",          "image": "/product/minuman/kopken/OG Thai Tea.png" },
+                    { "id": "kpk-chocoberry-frappe-b",    "name": "Chocoberry Frappe (R)",    "image": "/product/minuman/kopken/Chocoberry Frappe.png" },
+                    { "id": "kpk-coffeeberry-frappe-b",   "name": "Coffeeberry Frappe (R)",   "image": "/product/minuman/kopken/Coffeeberry Frappe.png" }
                   ]
                 },
                 {
                   "label": "Pilih 1 menu Makanan",
                   "chooseCount": 1,
                   "options": [
-                    { "id": "kpk-salt-bread-choco-butter", "name": "Salt Bread Choco Butter", "image": "/product/makanan/kopken/Salt Bread Choco Butter.png"},
-                    { "id": "kpk-salt-bread-sausage", "name": "Salt Bread Sausage", "image": "/product/makanan/kopken/Salt Bread Sausage.png" }
+                    { "id": "kpk-salt-bread-choco-butter", "name": "Salt Bread Choco Butter", "image": "/product/makanan/kopken/Salt Bread Choco Butter.png" },
+                    { "id": "kpk-salt-bread-sausage",      "name": "Salt Bread Sausage",      "image": "/product/makanan/kopken/Salt Bread Sausage.png" }
                   ]
                 }
               ]
@@ -569,6 +212,15 @@
         "name": "Janji Jiwa",
         "logo": "/logo/minuman/janjiw.jfif",
         "tagline": "Janji rasa, jiwa kopi Indonesia 🇮🇩",
+        "modes": {
+          "satuan": []
+        }
+      },
+      {
+        "id": "tomoro",
+        "name": "Tomoro",
+        "logo": "/logo/minuman/tomoro.png",
+        "tagline": "Kopi kekinian, harga ramah kantong ☕",
         "modes": {
           "satuan": []
         }
