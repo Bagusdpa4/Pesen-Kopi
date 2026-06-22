@@ -36,7 +36,7 @@ export const Selected = () => {
 
   return (
     <div className="min-h-screen bg-orange-50 text-stone-900">
-      <div className="mx-auto max-w-2xl px-6 py-10">
+      <div className="mx-auto max-w-4xl px-6 py-10">
         <button
           type="button"
           onClick={() => navigate(`/${categoryId}`)} // ✅ dinamis
@@ -72,12 +72,12 @@ export const Selected = () => {
           Pilih jenis pembelian
         </p>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-2 gap-4">
           {hasSatuan && (
             <button
               type="button"
-              onClick={() => navigate(`/${categoryId}/${brandId}/satuan`)} // ✅ dinamis
-              className="cursor-pointer rounded-2xl border border-stone-200 bg-white px-6 py-10 text-center transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md hover:shadow-orange-100"
+              onClick={() => navigate(`/${categoryId}/${brandId}/satuan`)}
+              className="cursor-pointer rounded-2xl border border-stone-200 bg-white px-4 py-6 text-center transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md hover:shadow-orange-100 sm:px-6 sm:py-10"
             >
               <div className="mb-2 text-2xl">☕</div>
               <span className="text-sm font-bold uppercase tracking-wide text-stone-900">
@@ -89,8 +89,8 @@ export const Selected = () => {
           {hasBundling && (
             <button
               type="button"
-              onClick={() => navigate(`/${categoryId}/${brandId}/bundling`)} // ✅ dinamis
-              className="cursor-pointer rounded-2xl border border-stone-200 bg-white px-6 py-10 text-center transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md hover:shadow-orange-100"
+              onClick={() => navigate(`/${categoryId}/${brandId}/bundling`)}
+              className="cursor-pointer rounded-2xl border border-stone-200 bg-white px-4 py-6 text-center transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md hover:shadow-orange-100 sm:px-6 sm:py-10"
             >
               <div className="mb-2 text-2xl">🎁</div>
               <span className="text-sm font-bold uppercase tracking-wide text-stone-900">

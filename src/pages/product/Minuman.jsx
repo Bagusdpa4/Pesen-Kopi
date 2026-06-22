@@ -39,7 +39,7 @@ export const Minuman = () => {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           {category.brands.map((brand) => (
             <button
               key={brand.id}
@@ -47,23 +47,18 @@ export const Minuman = () => {
               onClick={() => goToBrand(brand)}
               className="group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white text-left transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md hover:shadow-orange-100"
             >
-              <div className="h-50 flex items-center justify-center bg-white p-4">
+              <div className="sm:h-50 flex h-32 items-center justify-center bg-white p-4">
                 <img
                   src={brand.logo}
                   alt={brand.name}
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
-              <div className="flex items-center justify-between px-5 py-4">
+              <div className="flex items-center justify-between px-3 py-3 sm:px-5 sm:py-4">
                 <div>
                   <span className="text-sm font-semibold text-stone-900">
                     {brand.name}
                   </span>
-                  {/* {getModeKeys(brand).includes("bundling") && ( // ✅ bukan brand.modes.includes(...)
-                    <span className="ml-2 rounded-full bg-orange-100 px-2 py-0.5 text-xs font-semibold text-orange-600">
-                      Promo
-                    </span>
-                  )} */}
                 </div>
                 <span className="text-stone-400 transition-transform group-hover:translate-x-1">
                   <HiChevronRight className="h-4 w-4" />

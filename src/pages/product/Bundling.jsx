@@ -35,7 +35,7 @@ export const Bundling = () => {
     <div className="min-h-screen bg-orange-50 text-stone-900">
       {/* Background pattern */}
 
-      <div className="mx-auto max-w-3xl px-6 py-10">
+      <div className="mx-auto max-w-4xl px-6 py-10">
         <button
           type="button"
           onClick={() =>
@@ -61,13 +61,13 @@ export const Bundling = () => {
               onClick={() =>
                 navigate(`/${categoryId}/${brandId}/bundling/${bundle.id}`)
               }
-              className="group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md hover:shadow-orange-100"
+              className="group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-stone-300 bg-white text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md hover:shadow-orange-100"
             >
               {bundle.image ? (
                 <img
                   src={bundle.image}
                   alt={bundle.name}
-                  className="h-44 w-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               ) : (
                 <div className="flex h-44 items-center justify-center bg-orange-50 text-4xl">

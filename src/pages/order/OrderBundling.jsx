@@ -63,13 +63,20 @@ export const OrderBundling = () => {
     setPicks((prev) => {
       const current = prev[groupIndex] || [];
       const isSelected = current.includes(optionId);
-      if (isSelected)
+
+      if (isSelected) {
+        // Unpilih
         return {
           ...prev,
           [groupIndex]: current.filter((id) => id !== optionId),
         };
-      if (current.length >= chooseCount)
-        return { ...prev, [groupIndex]: [...current.slice(1), optionId] };
+      }
+
+      // Kalau sudah penuh, jangan tambah apapun (terkunci)
+      if (current.length >= chooseCount) {
+        return prev;
+      }
+
       return { ...prev, [groupIndex]: [...current, optionId] };
     });
   };
@@ -77,6 +84,7 @@ export const OrderBundling = () => {
   const handleSelectBundle = (id) => {
     setSelectedBundleId(id);
     setPicks({});
+    navigate(`/${categoryId}/${brandId}/bundling/${id}`, { replace: true });
   };
 
   const isGroupsComplete = groups.every(
@@ -120,7 +128,7 @@ export const OrderBundling = () => {
 
   return (
     <div className="min-h-screen bg-orange-50 pb-32 text-stone-900">
-      <div className="mx-auto max-w-2xl px-6 py-10">
+      <div className="mx-auto max-w-4xl px-6 py-10">
         <button
           type="button"
           onClick={() => navigate(`/${categoryId}/${brandId}/bundling`)}
@@ -136,13 +144,13 @@ export const OrderBundling = () => {
         </p>
 
         {bundles.length > 1 && (
-          <div className="mb-6 flex gap-2 overflow-x-auto pb-1">
+          <div className="mb-6 flex w-full flex-nowrap gap-2 overflow-x-auto pb-1">
             {bundles.map((b) => (
               <button
                 key={b.id}
                 type="button"
                 onClick={() => handleSelectBundle(b.id)}
-                className={`shrink-0 cursor-pointer rounded-full border border-stone-300 px-4 py-2 text-sm font-semibold transition-colors ${b.id === selectedBundleId ? "bg-orange-600 text-white" : "bg-white text-stone-500 hover:text-orange-600"}`}
+                className={`shrink-0 cursor-pointer whitespace-nowrap rounded-full border border-stone-300 px-4 py-2 text-sm font-semibold transition-colors ${b.id === selectedBundleId ? "bg-orange-600 text-white" : "bg-white text-stone-500 hover:text-orange-600"}`}
               >
                 {b.name}
               </button>
@@ -161,7 +169,7 @@ export const OrderBundling = () => {
             <img
               src={bundle.image}
               alt={bundle.name}
-              className="h-full w-full object-contain sm:h-auto sm:w-[80%]"
+              className="max-h-full max-w-full object-contain sm:h-auto sm:w-[80%]"
             />
             {/* <p className="mt-2 text-lg font-extrabold text-orange-600">
               {formatRupiah(bundle.price)}
@@ -232,25 +240,47 @@ export const OrderBundling = () => {
                     {selectedIds.length}/{group.chooseCount} dipilih
                   </span>
                 </div>
-                <div className="space-y-2">
+                <div className="grid grid-cols-3 gap-3">
                   {group.options.map((option) => {
                     const isSelected = selectedIds.includes(option.id);
+                    const isLocked =
+                      !isSelected && selectedIds.length >= group.chooseCount;
                     return (
                       <button
                         key={option.id}
                         type="button"
+                        disabled={isLocked}
                         onClick={() =>
                           togglePick(groupIndex, option.id, group.chooseCount)
                         }
-                        className={`flex w-full cursor-pointer items-center justify-between rounded-2xl border px-5 py-3.5 text-left transition-colors ${isSelected ? "border-orange-400 bg-orange-50" : "border-stone-200 bg-white hover:border-orange-200"}`}
+                        className={`relative flex flex-col overflow-hidden rounded-2xl border text-center transition-colors ${
+                          isSelected
+                            ? "cursor-pointer border-orange-400 bg-orange-50"
+                            : isLocked
+                              ? "cursor-not-allowed border-stone-200 bg-stone-50 opacity-50"
+                              : "cursor-pointer border-stone-400 bg-white hover:border-orange-400"
+                        }`}
                       >
-                        <span className="text-sm font-medium text-stone-900">
+                        {isSelected && (
+                          <span className="absolute right-2 top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full border-2 border-orange-500 bg-orange-500 text-xs text-white">
+                            ✓
+                          </span>
+                        )}
+                        {option.image ? (
+                          <div className="flex h-24 items-center justify-center bg-white sm:h-60">
+                            <img
+                              src={option.image}
+                              alt={option.name}
+                              className="h-full w-full object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex h-24 items-center justify-center bg-orange-50 text-2xl sm:h-60">
+                            🍽️
+                          </div>
+                        )}
+                        <span className="px-2 pb-3 pt-1 text-xs font-medium leading-snug text-stone-900">
                           {option.name}
-                        </span>
-                        <span
-                          className={`flex h-5 w-5 cursor-pointer items-center justify-center rounded-full border-2 text-xs ${isSelected ? "border-orange-500 bg-orange-500 text-white" : "border-stone-300"}`}
-                        >
-                          {isSelected && "✓"}
                         </span>
                       </button>
                     );
