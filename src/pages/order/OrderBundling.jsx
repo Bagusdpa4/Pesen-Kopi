@@ -3,6 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { formatRupiah } from "../../helper/FormatRupiah";
 import { getBrand } from "../../helper/BrandUtils";
 import { HiArrowLeft } from "react-icons/hi2";
+import {
+  ScrollPicker,
+  HOUR_OPTIONS,
+  MINUTE_OPTIONS,
+  getNowHour,
+  getNowMinute,
+} from "../../helper/ScrollPicker";
 
 const WHATSAPP_NUMBER = "6285837086310";
 
@@ -19,9 +26,12 @@ export const OrderBundling = () => {
   );
   const [customerName, setCustomerName] = useState("");
   const [outletAddress, setOutletAddress] = useState("");
-  const [pickupTime, setPickupTime] = useState("");
+  const [pickupHour, setPickupHour] = useState("");
+  const [pickupMinute, setPickupMinute] = useState("");
   const [note, setNote] = useState("");
   const [picks, setPicks] = useState({});
+  const pickupTime =
+    pickupHour && pickupMinute ? `${pickupHour}:${pickupMinute}` : "";
 
   if (!brand || !bundles?.length) {
     return (
@@ -128,7 +138,8 @@ export const OrderBundling = () => {
     setPicks({});
     setCustomerName("");
     setOutletAddress("");
-    setPickupTime("");
+    setPickupHour("");
+    setPickupMinute("");
     setNote("");
   };
 
@@ -212,12 +223,22 @@ export const OrderBundling = () => {
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
               Jam Pengambilan <span className="text-red-500">*</span>
             </label>
-            <input
-              type="time"
-              value={pickupTime}
-              onChange={(e) => setPickupTime(e.target.value)}
-              className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
-            />
+            <div className="flex gap-2">
+              <ScrollPicker
+                value={pickupHour}
+                options={HOUR_OPTIONS}
+                onChange={setPickupHour}
+                placeholder="Jam"
+                defaultValue={getNowHour()}
+              />
+              <ScrollPicker
+                value={pickupMinute}
+                options={MINUTE_OPTIONS}
+                onChange={setPickupMinute}
+                placeholder="Menit"
+                defaultValue={getNowMinute()}
+              />
+            </div>
           </div>
           <div>
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
