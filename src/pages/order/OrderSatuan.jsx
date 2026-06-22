@@ -6,7 +6,7 @@ import { HiArrowLeft, HiShoppingCart } from "react-icons/hi2";
 import { ProductOptionModal } from "../modal/ProductOptionModal";
 import { CartSummaryModal } from "../modal/CartSummaryModal";
 
-const WHATSAPP_NUMBER = "6282229749462";
+const WHATSAPP_NUMBER = "6285837086310";
 
 // Label tampilan untuk tiap kategori minuman
 const DRINK_CATEGORY_LABELS = {
@@ -115,9 +115,15 @@ export const OrderSatuan = () => {
             const product = makananProducts.find((p) => p.id === productId);
             if (!product) return null;
             const unitPrice = product.discPrice ?? product.price;
-            return { key, product, type: "food", unitPrice, qty };
+            return {
+              key,
+              product,
+              type: "food",
+              unitPrice,
+              originalPrice: product.price,
+              qty,
+            };
           } else {
-            // drink:productId:size:sugar:ice
             const parts = key.split(":");
             const productId = parts[1];
             const size = parts[2];
@@ -135,6 +141,7 @@ export const OrderSatuan = () => {
               sugar,
               ice,
               unitPrice,
+              originalPrice: sizeInfo.price,
               qty,
             };
           }
@@ -148,6 +155,11 @@ export const OrderSatuan = () => {
     0,
   );
 
+  const totalOriginal = cartItems.reduce(
+    (sum, item) => sum + item.originalPrice * item.qty,
+    0,
+  );
+
   const isFormValid =
     customerName.trim() &&
     outletAddress.trim() &&
@@ -156,32 +168,48 @@ export const OrderSatuan = () => {
 
   const handleOrder = () => {
     if (!isFormValid) return;
+
     const lines = [
-      `PESANAN ${brand.name.toUpperCase()} - PAKET SATUAN`,
+      `*PESANAN ${brand.name.toUpperCase()} - SATUAN*`,
       ``,
-      `Nama Customer: ${customerName}`,
-      `Alamat Outlet: ${outletAddress}`,
+      `Nama Customer : ${customerName}`,
+      `Alamat Outlet : ${outletAddress}`,
       `Jam Pengambilan: ${pickupTime}`,
-      note ? `Catatan: ${note}` : null,
-      ``,
-      ...cartItems.map((item, i) => {
-        if (item.type === "food") {
-          return `${i + 1}. [Makanan] ${item.product.name} x${item.qty} - ${formatRupiah(item.unitPrice * item.qty)}`;
-        }
-        const sizeLabel =
-          item.size === "R"
-            ? "Regular"
-            : item.size === "L"
-              ? "Large"
-              : item.size;
-        return `${i + 1}. ${item.product.name} (${sizeLabel}, ${item.sugar}, ${item.ice}) x${item.qty} - ${formatRupiah(item.unitPrice * item.qty)}`;
+      `Catatan : ${note || "-"}`,
+      ` `, // ← pakai spasi " " bukan ""
+      ...cartItems.map((item) => {
+        const tag = item.type === "food" ? "[Makanan]" : "[Minuman]";
+        const itemTotal = item.unitPrice * item.qty;
+        const originalTotal = item.originalPrice * item.qty;
+        const hasDiscount = originalTotal > itemTotal;
+
+        const variantNote =
+          item.type === "drink"
+            ? ` (${item.size === "R" ? "Reguler" : item.size === "L" ? "Large" : item.size}, ${item.sugar}, ${item.ice})`
+            : "";
+
+        const priceText = hasDiscount
+          ? `~${formatRupiah(originalTotal)}~ ${formatRupiah(itemTotal)}`
+          : formatRupiah(itemTotal);
+
+        return `${tag}: ${item.product.name}${variantNote} x${item.qty} - ${priceText}`;
       }),
-      ``,
-      `Total: ${formatRupiah(total)}`,
-    ].filter(Boolean);
+      ``, // ← baris kosong sebelum harga asli
+      totalOriginal > total
+        ? `Harga Asli: ~${formatRupiah(totalOriginal)}~`
+        : null,
+      `*Total: ${formatRupiah(total)}*`,
+    ].filter((line) => line !== null); // ← filter null saja, bukan falsy
 
     const text = encodeURIComponent(lines.join("\n"));
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
+
+    // ← Reset setelah order
+    setCart({});
+    setCustomerName("");
+    setOutletAddress("");
+    setPickupTime("");
+    setNote("");
   };
 
   // ─── Render helpers ────────────────────────────────────────────────

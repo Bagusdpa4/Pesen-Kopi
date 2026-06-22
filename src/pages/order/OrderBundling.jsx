@@ -4,7 +4,7 @@ import { formatRupiah } from "../../helper/FormatRupiah";
 import { getBrand } from "../../helper/BrandUtils";
 import { HiArrowLeft } from "react-icons/hi2";
 
-const WHATSAPP_NUMBER = "6282229749462";
+const WHATSAPP_NUMBER = "6285837086310";
 
 export const OrderBundling = () => {
   const { categoryId, brandId, bundleId } = useParams();
@@ -99,31 +99,37 @@ export const OrderBundling = () => {
   const handleOrder = () => {
     if (!isFormValid || !bundle) return;
 
-    const pickedLines = groups.flatMap((group, index) => {
-      const ids = picks[index] || [];
-      return ids.map((id, i) => {
+    const allPickedLines = [];
+    groups.forEach((group, groupIndex) => {
+      const ids = picks[groupIndex] || [];
+      ids.forEach((id) => {
         const option = group.options.find((o) => o.id === id);
-        return `Pilih ${i + 1} Menu: ${option?.name || id}`;
+        allPickedLines.push(option?.name || id);
       });
     });
 
     const lines = [
-      `PESANAN ${brand.name.toUpperCase()} - PROMO ${bundle.name.toUpperCase()}`,
+      `*PESANAN ${brand.name.toUpperCase()} - PROMO ${bundle.name.toUpperCase()}*`,
       ``,
-      `Nama Customer (Wajib): ${customerName}`,
-      `Alamat Outlet (Wajib): ${outletAddress}`,
-      pickupTime ? `Jam Pengambilan: ${pickupTime}` : null,
-      note ? `Catatan (Tidak Wajib): ${note}` : null,
-      ``,
-      ...pickedLines,
-      ``,
-      `Harga Paket: ${formatRupiah(bundle.price)}`,
-      `Jumlah: 1`,
+      `Nama Customer : ${customerName}`,
+      `Alamat Outlet : ${outletAddress}`,
+      `Jam Pengambilan: ${pickupTime}`,
+      note ? `Catatan : ${note}` : null,
+      ` `, // ← pakai spasi " " bukan ""
+      ...allPickedLines.map((name, i) => `Pilih ${i + 1} Menu: ${name}`),
+      ` `, // ← pakai spasi " " bukan ""
       `Total: ${formatRupiah(bundle.price)}`,
-    ].filter(Boolean);
+    ].filter((line) => line !== null); // ← filter null saja, bukan falsy
 
     const text = encodeURIComponent(lines.join("\n"));
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
+
+    // ← Reset setelah order
+    setPicks({});
+    setCustomerName("");
+    setOutletAddress("");
+    setPickupTime("");
+    setNote("");
   };
 
   return (
