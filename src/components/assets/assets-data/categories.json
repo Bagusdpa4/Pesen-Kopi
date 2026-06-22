@@ -67,9 +67,9 @@
                 { "id": "kpk-dutch-choco-kenangan-frappe",   "name": "Dutch Choco Kenangan Frappe",       "image": "/product/minuman/kopken/Dutch Choco Kenangan Frappe.jpg",    "noHot": true,  "sizes": { "R": { "price": 29000, "discPrice": 19500 }, "L": { "price": 36000, "discPrice": 23000 } } }
               ],
               "oatside_series": [
-                { "id": "kpk-oatside-kopi-kenangan-mantan",  "name": "Oatside Kopi Kenangan Mantan",      "image": "/product/minuman/kopken/Oatside Kopi Kenangan Mantan.jpg",     "sizes": { "R": { "price": 22000, "discPrice": 16000 }, "L": { "price": 28000, "discPrice": 19000 } } },
-                { "id": "kpk-oatside-latte",                 "name": "Oatside Latte",                     "image": "/product/minuman/kopken/Oatside Latte.png",                    "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 32000, "discPrice": 21000 } } },
-                { "id": "kpk-oatside-matcha-latte",          "name": "Oatside Matcha Latte",              "image": "/product/minuman/kopken/Oatside Matcha Latte.PNG",             "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 32000, "discPrice": 21000 } } }
+                { "id": "kpk-oatside-kopi-kenangan-mantan",  "name": "Oatside Kopi Kenangan Mantan",      "image": "/product/minuman/kopken/Oatside Kopi Kenangan Mantan.jpg",    "sizes": { "R": { "price": 22000, "discPrice": 16000 }, "L": { "price": 28000, "discPrice": 19000 } } },
+                { "id": "kpk-oatside-latte",                 "name": "Oatside Latte",                     "image": "/product/minuman/kopken/Oatside Latte.png",                   "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 32000, "discPrice": 21000 } } },
+                { "id": "kpk-oatside-matcha-latte",          "name": "Oatside Matcha Latte",              "image": "/product/minuman/kopken/Oatside Matcha Latte.PNG",            "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 32000, "discPrice": 21000 } } }
               ],
               "berry_series": [
                 { "id": "kpk-blueberry-americano",           "name": "Blueberry Americano",               "image": "/product/minuman/kopken/Blueberry Americano.png",              "sizes": { "R": { "price": 19000, "discPrice": 14500 }, "L": { "price": 26000, "discPrice": 18000 } } },
