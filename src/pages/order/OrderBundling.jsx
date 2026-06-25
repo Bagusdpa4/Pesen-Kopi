@@ -11,7 +11,7 @@ import {
   getNowMinute,
 } from "../../helper/ScrollPicker";
 
-const WHATSAPP_NUMBER = "6285837086310";
+const WHATSAPP_NUMBER = "6289664498880";
 
 export const OrderBundling = () => {
   const { categoryId, brandId, bundleId } = useParams();

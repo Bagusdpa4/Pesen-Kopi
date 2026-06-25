@@ -13,7 +13,7 @@ import {
   getNowMinute,
 } from "../../helper/ScrollPicker";
 
-const WHATSAPP_NUMBER = "6285837086310";
+const WHATSAPP_NUMBER = "6289664498880";
 
 // Label tampilan untuk tiap kategori minuman
 const DRINK_CATEGORY_LABELS = {
