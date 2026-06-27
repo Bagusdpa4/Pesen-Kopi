@@ -297,7 +297,7 @@ export const OrderBundling = () => {
                 </div>
                 {isDuoPayHighest && (
                   <p className="mb-3 text-xs font-medium text-orange-500">
-                    💡 Pilih 2 menu — kamu hanya bayar harga yang lebih mahal
+                    💡 Pilih 2 menu — kamu hanya bayar harga yang tertinggi saja
                   </p>
                 )}
                 <div className="grid grid-cols-3 gap-3">
