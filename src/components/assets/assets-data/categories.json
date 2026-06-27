@@ -111,7 +111,7 @@
               "name": "Trio Reguler 45K",
               "price": 45000,
               "description": "Bebas pilih 3 minuman ukuran Regular",
-              "image": "/bundling kopken/Trio Reguler.PNG",
+              "image": "/bundling kopken/Trio Reguler.JPG",
               "chooseGroups": [
                 {
                   "label": "Pilih 3 menu Regular",
@@ -181,7 +181,7 @@
               "name": "Bundling Berry Series 40K",
               "price": 40000,
               "description": "Bebas pilih 2 menu Berry Series + 1 menu makanan",
-              "image": "/bundling kopken/Berry Series.PNG",
+              "image": "/bundling kopken/Berry Series.JPG",
               "chooseGroups": [
                 {
                   "label": "Pilih 2 menu Berry Series (Regular)",
@@ -225,66 +225,66 @@
           "satuan": {
             "minuman": {
               "matcha_series": [
-                { "id": "tmr-strawberry-matcha-latte",             "name": "Strawberry Matcha Latte",        "image": "/product/minuman/tomoro/Strawberry Matcha Latte.png",         "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-matcha-caramel-coffee-mousse",        "name": "Matcha Caramel Coffe Mousse",    "image": "/product/minuman/tomoro/Matcha Caramel Coffe Mousse.png",     "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-matcha-jasmine-milk-tea",             "name": "Matcha Jasmine Milk Tea",        "image": "/product/minuman/tomoro/Matcha Jasmine Milk Tea.png",         "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-matcha-espresso",                     "name": "Matcha Espresso",                "image": "/product/minuman/tomoro/Matcha Espresso.png",                 "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-pistachio-matcha-latte",              "name": "Pistachio Matcha Latte",         "image": "/product/minuman/tomoro/Pistachio Matcha Latte.png",          "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-matcha-oat-latte",                    "name": "Matcha Oat Latte",               "image": "/product/minuman/tomoro/Matcha Oat Latte.png",                "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } }
+                { "id": "tmr-strawberry-matcha-latte",             "name": "Strawberry Matcha Latte",        "image": "/product/minuman/tomoro/Strawberry Matcha Latte.png",         "noHot": true,  "sizes": { "S": { "price": 30000, "discPrice": 20000 } } },
+                { "id": "tmr-matcha-caramel-coffee-mousse",        "name": "Matcha Caramel Coffe Mousse",    "image": "/product/minuman/tomoro/Matcha Caramel Coffe Mousse.png",     "noHot": true,  "sizes": { "S": { "price": 26000, "discPrice": 18000 } } },
+                { "id": "tmr-matcha-jasmine-milk-tea",             "name": "Matcha Jasmine Milk Tea",        "image": "/product/minuman/tomoro/Matcha Jasmine Milk Tea.png",         "noHot": true,  "sizes": { "S": { "price": 23000, "discPrice": 16500 } } },
+                { "id": "tmr-matcha-espresso",                     "name": "Matcha Espresso",                "image": "/product/minuman/tomoro/Matcha Espresso.png",                 "noHot": true,  "sizes": { "S": { "price": 30000, "discPrice": 20000 } } },
+                { "id": "tmr-pistachio-matcha-latte",              "name": "Pistachio Matcha Latte",         "image": "/product/minuman/tomoro/Pistachio Matcha Latte.png",          "noHot": true,  "sizes": { "S": { "price": 29000, "discPrice": 19500 } } },
+                { "id": "tmr-matcha-oat-latte",                    "name": "Matcha Oat Latte",               "image": "/product/minuman/tomoro/Matcha Oat Latte.png",                "noHot": true,  "sizes": { "S": { "price": 28000, "discPrice": 19000 } } }
               ],
               "tomoro_signature": [
-                { "id": "tmr-tomoro-aren-latte",                    "name": "TOMORO Aren Latte",                   "image": "/product/minuman/tomoro/TOMORO Aren Latte.png",                    "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-sea-salt-cloud-caramel-macchiato",     "name": "Sea Salt Cloud Caramel Macchiato",    "image": "/product/minuman/tomoro/Sea Salt Cloud Caramel Macchiato.png",     "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-tomoro-oat-latte",                     "name": "TOMORO Oat Latte",                    "image": "/product/minuman/tomoro/TOMORO Oat Latte.png",                     "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-cheese-cloud-chocolate",               "name": "Cheese Cloud Chocolate",              "image": "/product/minuman/tomoro/Cheese Cloud Chocolate.png",               "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } }
+                { "id": "tmr-tomoro-aren-latte",                    "name": "TOMORO Aren Latte",                   "image": "/product/minuman/tomoro/TOMORO Aren Latte.png",                    "noHot": true,  "sizes": { "S": { "price": 21000, "discPrice": 15500 } } },
+                { "id": "tmr-sea-salt-cloud-caramel-macchiato",     "name": "Sea Salt Cloud Caramel Macchiato",    "image": "/product/minuman/tomoro/Sea Salt Cloud Caramel Macchiato.png",     "noHot": true,  "sizes": { "S": { "price": 30000, "discPrice": 20000 } } },
+                { "id": "tmr-tomoro-oat-latte",                     "name": "TOMORO Oat Latte",                    "image": "/product/minuman/tomoro/TOMORO Oat Latte.png",                     "noHot": true,  "sizes": { "S": { "price": 24000, "discPrice": 17000 } } },
+                { "id": "tmr-cheese-cloud-chocolate",               "name": "Cheese Cloud Chocolate",              "image": "/product/minuman/tomoro/Cheese Cloud Chocolate.png",               "noHot": true,  "sizes": { "S": { "price": 26000, "discPrice": 18000 } } }
               ],
               "classic_coffee": [
-                { "id": "tmr-caffe-americano",     "name": "Caffe Americano",         "image": "/product/minuman/tomoro/Caffe Americano.jpg",      "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-breve-latte",         "name": "Breve Latte",             "image": "/product/minuman/tomoro/Breve Latte.jpg",          "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-caffe-latte",         "name": "Caffe Latte",             "image": "/product/minuman/tomoro/Caffe Latte.png",          "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-kopi-susu-aren",      "name": "Kopi Susu Aren",          "image": "/product/minuman/tomoro/Kopi Susu Aren.png",       "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-caffe-mocha",         "name": "Caffe Mocha",             "image": "/product/minuman/tomoro/Caffe Mocha.png",          "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-cappuccino",          "name": "Cappuccino",              "image": "/product/minuman/tomoro/Cappuccino.png",           "noHot": true,  "sizes": { "S": { "price": 19000, "discPrice": 19000 } } }
+                { "id": "tmr-caffe-americano",     "name": "Caffe Americano",         "image": "/product/minuman/tomoro/Caffe Americano.PNG",      "noHot": true,  "sizes": { "S": { "price": 18000, "discPrice": 14000 } } },
+                { "id": "tmr-breve-latte",         "name": "Breve Latte",             "image": "/product/minuman/tomoro/Breve Latte.PNG",          "noHot": true,  "sizes": { "S": { "price": 30000, "discPrice": 20000 } } },
+                { "id": "tmr-caffe-latte",         "name": "Caffe Latte",             "image": "/product/minuman/tomoro/Caffe Latte.png",          "noHot": true,  "sizes": { "S": { "price": 24000, "discPrice": 17000 } } },
+                { "id": "tmr-kopi-susu-aren",      "name": "Kopi Susu Aren",          "image": "/product/minuman/tomoro/Kopi Susu Aren.png",       "noHot": true,  "sizes": { "S": { "price": 18000, "discPrice": 14000 } } },
+                { "id": "tmr-caffe-mocha",         "name": "Caffe Mocha",             "image": "/product/minuman/tomoro/Caffe Mocha.png",          "noHot": true,  "sizes": { "S": { "price": 25000, "discPrice": 17500 } } },
+                { "id": "tmr-cappuccino",          "name": "Cappuccino",              "image": "/product/minuman/tomoro/Cappuccino.png",           "noHot": true,  "sizes": { "S": { "price": 24000, "discPrice": 17000 } } }
               ],
               "flavored_latte": [
-                { "id": "tmr-spanish-latte",              "name": "Spanish Latte",               "image": "/product/minuman/tomoro/Spanish Latte.jpg",            "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-spanish-aren-latte",         "name": "Spanish Aren Latte",          "image": "/product/minuman/tomoro/Spanish Aren Latte.jpg",       "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-pistachio-latte",            "name": "Pistachio Latte",             "image": "/product/minuman/tomoro/Pistachio Latte.png",          "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-caramel-macchiato",          "name": "Caramel Macchiato",           "image": "/product/minuman/tomoro/Caramel Macchiato.png",        "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-coconut-aren-latte",         "name": "Coconut Aren Latte",          "image": "/product/minuman/tomoro/Coconut Aren Latte.png",       "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-tomoro-coconut-latte",       "name": "TOMORO Coconut Latte",        "image": "/product/minuman/tomoro/TOMORO Coconut Latte.png",     "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-manuka-oat-latte",           "name": "Manuka Oat Latte",            "image": "/product/minuman/tomoro/Manuka Oat Latte.png",         "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } }
+                { "id": "tmr-spanish-latte",              "name": "Spanish Latte",               "image": "/product/minuman/tomoro/Spanish Latte.PNG",            "noHot": true,       "sizes": { "S": { "price": 25000, "discPrice": 17500 } } },
+                { "id": "tmr-spanish-aren-latte",         "name": "Spanish Aren Latte",          "image": "/product/minuman/tomoro/Spanish Aren Latte.PNG",       "noHot": true,       "sizes": { "S": { "price": 26000, "discPrice": 18000 } } },
+                { "id": "tmr-pistachio-latte",            "name": "Pistachio Latte",             "image": "/product/minuman/tomoro/Pistachio Latte.png",          "noHot": true,       "sizes": { "S": { "price": 26000, "discPrice": 18000 } } },
+                { "id": "tmr-caramel-macchiato",          "name": "Caramel Macchiato",           "image": "/product/minuman/tomoro/Caramel Macchiato.png",        "noHot": true,       "sizes": { "S": { "price": 26000, "discPrice": 18000 } } },
+                { "id": "tmr-coconut-aren-latte",         "name": "Coconut Aren Latte",          "image": "/product/minuman/tomoro/Coconut Aren Latte.png",       "noHot": true,       "sizes": { "S": { "price": 25000, "discPrice": 17500 } } },
+                { "id": "tmr-tomoro-coconut-latte",       "name": "TOMORO Coconut Latte",        "image": "/product/minuman/tomoro/TOMORO Coconut Latte.png",     "noHot": true,       "sizes": { "S": { "price": 23000, "discPrice": 16500 } } },
+                { "id": "tmr-manuka-oat-latte",           "name": "Manuka Oat Latte",            "image": "/product/minuman/tomoro/Manuka Oat Latte.png",         "noHot": true,       "sizes": { "S": { "price": 30000, "discPrice": 20000 } } }
               ],
               "cheese_x_nailoong_series": [
-                { "id": "tmr-cheese-cloud-latte",            "name": "Cheese Cloud Latte",                "image": "/product/minuman/tomoro/Cheese Cloud Latte.png",           "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-caramel-cheese-latte",          "name": "Caramel Cheese Latte",              "image": "/product/minuman/tomoro/Caramel Cheese Latte.png",         "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-dino-mite-mango-frappe",        "name": "Dino-mite Mango Frappe",            "image": "/product/minuman/tomoro/Dino-mite Mango Frappe.png",       "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } }
+                { "id": "tmr-cheese-cloud-latte",            "name": "Cheese Cloud Latte",                "image": "/product/minuman/tomoro/Cheese Cloud Latte.png",           "noHot": true,       "sizes": { "S": { "price": 26000, "discPrice": 18000 } } },
+                { "id": "tmr-caramel-cheese-latte",          "name": "Caramel Cheese Latte",              "image": "/product/minuman/tomoro/Caramel Cheese Latte.png",         "noHot": true,       "sizes": { "S": { "price": 26000, "discPrice": 18000 } } },
+                { "id": "tmr-dino-mite-mango-frappe",        "name": "Dino-mite Mango Frappe",            "image": "/product/minuman/tomoro/Dino-mite Mango Frappe.png",       "noHot": true,       "sizes": { "S": { "price": 26000, "discPrice": 18000 } } }
               ],
               "cloud_series": [
-                { "id": "tmr-sea-salt-cloud-matcha-latte",   "name": "Sea Salt Cloud Matcha Latte",       "image": "/product/minuman/tomoro/Sea Salt Cloud Matcha Latte.png",  "noHot": true,      "sizes": { "S": { "price": 19000, "discPrice": 19000 } } }
+                { "id": "tmr-sea-salt-cloud-matcha-latte",   "name": "Sea Salt Cloud Matcha Latte",       "image": "/product/minuman/tomoro/Sea Salt Cloud Matcha Latte.png",  "noHot": true,      "sizes": { "S": { "price": 30000, "discPrice": 20000 } } }
               ],
               "refreshing_series": [
-                { "id": "tmr-strawberry-americano",          "name": "Strawberry Americano",              "image": "/product/minuman/tomoro/Strawberry Americano.png",         "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-strawberry-jasmine-tea",        "name": "Strawberry Jasmine Tea",            "image": "/product/minuman/tomoro/Strawberry Jasmine Tea.png",       "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-peach-americano",               "name": "Peach Americano",                   "image": "/product/minuman/tomoro/Peach Americano.png",              "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-peach-jasmine-tea",             "name": "Peach Jasmine Tea",                 "image": "/product/minuman/tomoro/Peach Jasmine Tea.png",            "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-grapefruit-americano",          "name": "Grapefruit Americano",              "image": "/product/minuman/tomoro/Grapefruit Americano.png",         "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-lemonade-americano",            "name": "Lemonade Americano",                "image": "/product/minuman/tomoro/Lemonade Americano.png",           "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } }
+                { "id": "tmr-strawberry-americano",          "name": "Strawberry Americano",              "image": "/product/minuman/tomoro/Strawberry Americano.png",         "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 14500 } } },
+                { "id": "tmr-strawberry-jasmine-tea",        "name": "Strawberry Jasmine Tea",            "image": "/product/minuman/tomoro/Strawberry Jasmine Tea.png",       "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 14500 } } },
+                { "id": "tmr-peach-americano",               "name": "Peach Americano",                   "image": "/product/minuman/tomoro/Peach Americano.png",              "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 14500 } } },
+                { "id": "tmr-peach-jasmine-tea",             "name": "Peach Jasmine Tea",                 "image": "/product/minuman/tomoro/Peach Jasmine Tea.png",            "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 14500 } } },
+                { "id": "tmr-grapefruit-americano",          "name": "Grapefruit Americano",              "image": "/product/minuman/tomoro/Grapefruit Americano.png",         "noHot": true,       "sizes": { "S": { "price": 20000, "discPrice": 15000 } } },
+                { "id": "tmr-lemonade-americano",            "name": "Lemonade Americano",                "image": "/product/minuman/tomoro/Lemonade Americano.png",           "noHot": true,       "sizes": { "S": { "price": 20000, "discPrice": 15000 } } }
               ],
               "non_coffee_series": [
-                { "id": "tmr-pistachio-chocolate",           "name": "Pistachio Chocolate",               "image": "/product/minuman/tomoro/Pistachio Chocolate.png",          "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-sea-salt-cloud-chocolate",      "name": "Sea Salt Cloud Chocolate",          "image": "/product/minuman/tomoro/Sea Salt Cloud Chocolate.png",     "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-hojicha-oat-latte",             "name": "Hojicha Oat Latte",                 "image": "/product/minuman/tomoro/Hojicha Oat Latte.png",            "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-matcha-latte",                  "name": "Matcha Latte",                      "image": "/product/minuman/tomoro/Matcha Latte.png",                 "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-chocolate",                     "name": "Chocolate",                         "image": "/product/minuman/tomoro/Chocolate.png",                    "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-choco-oat-latte",               "name": "Choco Oat Latte",                   "image": "/product/minuman/tomoro/Choco Oat Latte.png",              "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-peach-oolong-milk-tea",         "name": "Peach Oolong Milk Tea",             "image": "/product/minuman/tomoro/Peach Oolong Milk Tea.png",        "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 19000 } } }
+                { "id": "tmr-pistachio-chocolate",           "name": "Pistachio Chocolate",               "image": "/product/minuman/tomoro/Pistachio Chocolate.png",          "noHot": true,       "sizes": { "S": { "price": 26000, "discPrice": 18000 } } },
+                { "id": "tmr-sea-salt-cloud-chocolate",      "name": "Sea Salt Cloud Chocolate",          "image": "/product/minuman/tomoro/Sea Salt Cloud Chocolate.png",     "noHot": true,       "sizes": { "S": { "price": 28000, "discPrice": 19000 } } },
+                { "id": "tmr-hojicha-oat-latte",             "name": "Hojicha Oat Latte",                 "image": "/product/minuman/tomoro/Hojicha Oat Latte.png",            "noHot": true,       "sizes": { "S": { "price": 30000, "discPrice": 20000 } } },
+                { "id": "tmr-matcha-latte",                  "name": "Matcha Latte",                      "image": "/product/minuman/tomoro/Matcha Latte.png",                 "noHot": true,       "sizes": { "S": { "price": 27000, "discPrice": 18500 } } },
+                { "id": "tmr-chocolate",                     "name": "Chocolate",                         "image": "/product/minuman/tomoro/Chocolate.png",                    "noHot": true,       "sizes": { "S": { "price": 24000, "discPrice": 17000 } } },
+                { "id": "tmr-choco-oat-latte",               "name": "Choco Oat Latte",                   "image": "/product/minuman/tomoro/Choco Oat Latte.png",              "noHot": true,       "sizes": { "S": { "price": 28000, "discPrice": 19000 } } },
+                { "id": "tmr-peach-oolong-milk-tea",         "name": "Peach Oolong Milk Tea",             "image": "/product/minuman/tomoro/Peach Oolong Milk Tea.png",        "noHot": true,       "sizes": { "S": { "price": 19000, "discPrice": 14500 } } }
               ],
               "frappe_series": [
-                { "id": "tmr-chocolate-frappe",              "name": "Chocolate Frappe",                  "image": "/product/minuman/tomoro/Chocolate Frappe.png",               "noHot": true,   "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-matcha-frappe",                 "name": "Matcha Frappe",                     "image": "/product/minuman/tomoro/Matcha Frappe.png",                  "noHot": true,   "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-peach-coconut-frappe",          "name": "Peach Coconut Frappe",              "image": "/product/minuman/tomoro/Peach Coconut Frappe.png",           "noHot": true,   "sizes": { "S": { "price": 19000, "discPrice": 19000 } } },
-                { "id": "tmr-strawberry-jasmine-smoothie",   "name": "Strawberry Jasmine Smoothie",       "image": "/product/minuman/tomoro/Strawberry Jasmine Smoothie.png",    "noHot": true,   "sizes": { "S": { "price": 19000, "discPrice": 19000 } } }
+                { "id": "tmr-chocolate-frappe",              "name": "Chocolate Frappe",                  "image": "/product/minuman/tomoro/Chocolate Frappe.png",               "noHot": true,   "sizes": { "S": { "price": 24000, "discPrice": 17000 } } },
+                { "id": "tmr-matcha-frappe",                 "name": "Matcha Frappe",                     "image": "/product/minuman/tomoro/Matcha Frappe.png",                  "noHot": true,   "sizes": { "S": { "price": 27000, "discPrice": 18500 } } },
+                { "id": "tmr-peach-coconut-frappe",          "name": "Peach Coconut Frappe",              "image": "/product/minuman/tomoro/Peach Coconut Frappe.png",           "noHot": true,   "sizes": { "S": { "price": 19000, "discPrice": 14500 } } },
+                { "id": "tmr-strawberry-jasmine-smoothie",   "name": "Strawberry Jasmine Smoothie",       "image": "/product/minuman/tomoro/Strawberry Jasmine Smoothie.png",    "noHot": true,   "sizes": { "S": { "price": 19000, "discPrice": 14500 } } }
               ]
             }
           }
