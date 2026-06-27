@@ -89,21 +89,32 @@ export const OrderBundling = () => {
   const togglePick = (groupIndex, optionId, chooseCount) => {
     setPicks((prev) => {
       const current = prev[groupIndex] || [];
-      const isSelected = current.includes(optionId);
 
+      if (isDuoPayHighest) {
+        const countOfThis = current.filter((id) => id === optionId).length;
+        const totalSelected = current.length;
+
+        if (countOfThis > 0 && totalSelected >= chooseCount) {
+          // Sudah penuh & item ini ada → kurangi 1
+          const idx = current.lastIndexOf(optionId);
+          const next = [...current];
+          next.splice(idx, 1);
+          return { ...prev, [groupIndex]: next };
+        }
+        if (totalSelected >= chooseCount) return prev; // Penuh, item berbeda
+        // Tambah 1
+        return { ...prev, [groupIndex]: [...current, optionId] };
+      }
+
+      // Logika lama untuk bundle biasa
+      const isSelected = current.includes(optionId);
       if (isSelected) {
-        // Unpilih
         return {
           ...prev,
           [groupIndex]: current.filter((id) => id !== optionId),
         };
       }
-
-      // Kalau sudah penuh, jangan tambah apapun (terkunci)
-      if (current.length >= chooseCount) {
-        return prev;
-      }
-
+      if (current.length >= chooseCount) return prev;
       return { ...prev, [groupIndex]: [...current, optionId] };
     });
   };
@@ -291,20 +302,29 @@ export const OrderBundling = () => {
                   <p className="text-sm font-bold text-stone-900">
                     {group.label}
                   </p>
-                  <span className="text-xs font-semibold text-stone-400">
+                  <span className="text-sm font-semibold text-stone-400">
                     {selectedIds.length}/{group.chooseCount} dipilih
                   </span>
                 </div>
                 {isDuoPayHighest && (
-                  <p className="mb-3 text-xs font-medium text-orange-500">
+                  <p className="mb-3 text-sm font-medium text-orange-500">
                     💡 Pilih 2 menu — kamu hanya bayar harga yang tertinggi saja
                   </p>
                 )}
                 <div className="grid grid-cols-3 gap-3">
                   {group.options.map((option) => {
-                    const isSelected = selectedIds.includes(option.id);
-                    const isLocked =
-                      !isSelected && selectedIds.length >= group.chooseCount;
+                    const countOfThis = isDuoPayHighest
+                      ? (picks[groupIndex] || []).filter(
+                          (id) => id === option.id,
+                        ).length
+                      : 0;
+                    const isSelected = isDuoPayHighest
+                      ? countOfThis > 0
+                      : selectedIds.includes(option.id);
+                    const isLocked = isDuoPayHighest
+                      ? selectedIds.length >= group.chooseCount &&
+                        countOfThis === 0
+                      : !isSelected && selectedIds.length >= group.chooseCount;
                     return (
                       <button
                         key={option.id}
@@ -321,11 +341,21 @@ export const OrderBundling = () => {
                               : "cursor-pointer border-stone-400 bg-white hover:border-orange-400"
                         }`}
                       >
-                        {isSelected && (
-                          <span className="absolute right-2 top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full border-2 border-orange-500 bg-orange-500 text-xs text-white">
-                            ✓
-                          </span>
-                        )}
+                        {(() => {
+                          const count = isDuoPayHighest
+                            ? (picks[groupIndex] || []).filter(
+                                (id) => id === option.id,
+                              ).length
+                            : isSelected
+                              ? 1
+                              : 0;
+                          if (count === 0) return null;
+                          return (
+                            <span className="absolute right-2 top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full border-2 border-orange-500 bg-orange-500 text-xs text-white">
+                              {count > 1 ? count : "✓"}
+                            </span>
+                          );
+                        })()}
                         {option.image ? (
                           <div className="flex h-24 items-center justify-center bg-white sm:h-60">
                             <img

@@ -299,7 +299,7 @@
               "image": "/bundling tomoro/Duo.jpg",
               "chooseGroups": [
                 {
-                  "label": "Pilih 2 menu (bayar harga tertinggi)",
+                  "label": "Pilih 2 menu",
                   "chooseCount": 2,
                   "options": [
                     { "id": "tmr-strawberry-matcha-latte",           "name": "Strawberry Matcha Latte",           "image": "/product/minuman/tomoro/Strawberry Matcha Latte.png",          "price": 30000 },
