@@ -211,7 +211,7 @@
         "id": "janjijiwa",
         "name": "Janji Jiwa",
         "logo": "/logo/minuman/janjiw.jfif",
-        "tagline": "Janji rasa, jiwa kopi Indonesia 🇮🇩",
+        "tagline": "Harga spesial, kualitas terjamin ✨",
         "modes": {
           "satuan": []
         }
@@ -220,7 +220,7 @@
         "id": "tomoro",
         "name": "Tomoro",
         "logo": "/logo/minuman/tomoro.png",
-        "tagline": "Kopi kekinian, harga ramah kantong ☕",
+        "tagline": "Harga spesial, kualitas terjamin ✨",
         "modes": {
           "satuan": {
             "minuman": {
@@ -287,7 +287,33 @@
                 { "id": "tmr-strawberry-jasmine-smoothie",   "name": "Strawberry Jasmine Smoothie",       "image": "/product/minuman/tomoro/Strawberry Jasmine Smoothie.png",    "noHot": true,   "sizes": { "S": { "price": 19000, "discPrice": 14500 } } }
               ]
             }
-          }
+          },
+          "bundling": [
+            {
+              "id": "tmr-b-duo",
+              "name": "Duo Pay Highest",
+              "price": null,
+              "type": "duo_pay_highest",
+              "chooseCount": 2,
+              "description": "Pilih 2 menu, bayar harga tertinggi saja",
+              "image": "/bundling tomoro/Duo.jpg",
+              "chooseGroups": [
+                {
+                  "label": "Pilih 2 menu (bayar harga tertinggi)",
+                  "chooseCount": 2,
+                  "options": [
+                    { "id": "tmr-tomoro-aren-latte",   "name": "TOMORO Aren Latte",   "image": "/product/minuman/tomoro/TOMORO Aren Latte.png",   "price": 15500 },
+                    { "id": "tmr-caffe-americano",     "name": "Caffe Americano",     "image": "/product/minuman/tomoro/Caffe Americano.PNG",     "price": 14000 },
+                    { "id": "tmr-kopi-susu-aren",      "name": "Kopi Susu Aren",      "image": "/product/minuman/tomoro/Kopi Susu Aren.png",      "price": 14000 },
+                    { "id": "tmr-caffe-latte",         "name": "Caffe Latte",         "image": "/product/minuman/tomoro/Caffe Latte.png",         "price": 17000 },
+                    { "id": "tmr-cappuccino",          "name": "Cappuccino",          "image": "/product/minuman/tomoro/Cappuccino.png",          "price": 17000 },
+                    { "id": "tmr-caffe-mocha",         "name": "Caffe Mocha",         "image": "/product/minuman/tomoro/Caffe Mocha.png",         "price": 17500 },
+                    { "id": "tmr-spanish-latte",       "name": "Spanish Latte",       "image": "/product/minuman/tomoro/Spanish Latte.PNG",       "price": 17500 }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       }
     ]

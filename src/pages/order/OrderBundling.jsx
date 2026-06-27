@@ -69,6 +69,23 @@ export const OrderBundling = () => {
     return [];
   }, [bundle, satuanProducts]);
 
+  const isDuoPayHighest = bundle?.type === "duo_pay_highest";
+
+  const bundlePrice = useMemo(() => {
+    if (!isDuoPayHighest) return bundle?.price ?? 0;
+    // Kumpulkan semua item yang dipilih dari semua group
+    const allPicked = [];
+    groups.forEach((group, groupIndex) => {
+      const ids = picks[groupIndex] || [];
+      ids.forEach((id) => {
+        const option = group.options.find((o) => o.id === id);
+        if (option?.price) allPicked.push(option.price);
+      });
+    });
+    if (allPicked.length === 0) return 0;
+    return Math.max(...allPicked);
+  }, [isDuoPayHighest, bundle, groups, picks]);
+
   const togglePick = (groupIndex, optionId, chooseCount) => {
     setPicks((prev) => {
       const current = prev[groupIndex] || [];
@@ -126,10 +143,21 @@ export const OrderBundling = () => {
       `Jam Pengambilan: ${pickupTime}`,
       note ? `Catatan : ${note}` : null,
       ` `, // ← pakai spasi " " bukan ""
-      ...allPickedLines.map((name, i) => `Pilih ${i + 1} Menu: ${name}`),
-      ` `, // ← pakai spasi " " bukan ""
-      `Total: ${formatRupiah(bundle.price)}`,
-    ].filter((line) => line !== null); // ← filter null saja, bukan falsy
+      ...allPickedLines.map((name, i) => {
+        // Untuk duo_pay_highest, tampilkan harga per item
+        if (isDuoPayHighest) {
+          const group = groups[0];
+          const ids = picks[0] || [];
+          const id = ids[i];
+          const option = group?.options.find((o) => o.id === id);
+          return `Pilih ${i + 1} Menu: ${name}${option?.price ? ` - ${formatRupiah(option.price)}` : ""}`;
+        }
+        return `Pilih ${i + 1} Menu: ${name}`;
+      }),
+      ` `,
+      isDuoPayHighest ? `*(Bayar harga tertinggi)*` : null,
+      `*Total: ${formatRupiah(bundlePrice)}*`,
+    ].filter((line) => line !== null);
 
     const text = encodeURIComponent(lines.join("\n"));
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
@@ -267,6 +295,11 @@ export const OrderBundling = () => {
                     {selectedIds.length}/{group.chooseCount} dipilih
                   </span>
                 </div>
+                {isDuoPayHighest && (
+                  <p className="mb-3 text-xs font-medium text-orange-500">
+                    💡 Pilih 2 menu — kamu hanya bayar harga yang lebih mahal
+                  </p>
+                )}
                 <div className="grid grid-cols-3 gap-3">
                   {group.options.map((option) => {
                     const isSelected = selectedIds.includes(option.id);
@@ -308,6 +341,11 @@ export const OrderBundling = () => {
                         )}
                         <span className="px-2 pb-3 pt-1 text-xs font-medium leading-snug text-stone-900">
                           {option.name}
+                          {isDuoPayHighest && option.price && (
+                            <span className="mt-0.5 block text-xs font-bold text-orange-600">
+                              {formatRupiah(option.price)}
+                            </span>
+                          )}
                         </span>
                       </button>
                     );
@@ -326,7 +364,11 @@ export const OrderBundling = () => {
               Total
             </p>
             <p className="text-lg font-extrabold text-orange-600">
-              {bundle ? formatRupiah(bundle.price) : "-"}
+              {bundlePrice > 0
+                ? formatRupiah(bundlePrice)
+                : bundle
+                  ? formatRupiah(bundle.price ?? 0)
+                  : "-"}
             </p>
           </div>
           <button
