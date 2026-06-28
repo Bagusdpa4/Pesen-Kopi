@@ -203,6 +203,21 @@
                   ]
                 }
               ]
+            },
+            {
+              "id": "kpk-b-004",
+              "name": "Bundling Kopi Kenangan Mantan",
+              "price": null,
+              "description": "Paket Kopi Kenangan Mantan",
+              "image": "/bundling kopken/Bundling KKM.PNG",
+              "chooseGroups": [
+                {
+                  "label": "Pilih 2 menu Berry Series (Regular)",
+                  "options": [
+                    { "id": "kpk-kopi-kenangan-mantan",          "name": "Kopi Kenangan Mantan",              "image": "/product/minuman/kopken/Kopi Kenangan Mantan.png",             "sizes": { "R": { "price": 19000, "discPrice": 14500 }, "L": { "price": 25000, "discPrice": 17500 } } }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -389,14 +404,26 @@
                 { "id": "jj-hibiscus-mix-berry",            "name": "Hibiscus Mix Berry",                "image": "/product/minuman/janjiw/Hibiscus Mix Berry.png",               "sizes": { "R": { "price": 22000, "discPrice": 16000 }, "L": { "price": 28000, "discPrice": 19000 } } },
                 { "id": "jj-jasmine-fresh-mint",            "name": "Jasmine Fresh Mint",                "image": "/product/minuman/janjiw/Jasmine Fresh Mint.png",               "sizes": { "R": { "price": 22000, "discPrice": 16000 }, "L": { "price": 28000, "discPrice": 19000 } } }
               ],
-              "tea-based": [
-                
+              "tea_based": [
+                { "id": "jj-earl-grey-tea",                 "name": "Earl Grey Tea",                     "image": "/product/minuman/janjiw/Earl Grey Tea.png",                    "sizes": { "R": { "price": 20000, "discPrice": 15000 }, "L": { "price": 26000, "discPrice": 18000 } } },
+                { "id": "jj-lychee-tea-with-coco-jelly",    "name": "Lychee Tea With Coco Jelly",        "image": "/product/minuman/janjiw/Lychee Tea With Coco Jelly.png",       "noHot": true,     "sizes": { "R": { "price": 26000, "discPrice": 18000 }, "L": { "price": 32000, "discPrice": 21000 } } },
+                { "id": "jj-peach-tea-with-coco-jelly",     "name": "Peach Tea With Coco Jelly",         "image": "/product/minuman/janjiw/Peach Tea With Coco Jelly.png",        "noHot": true,     "sizes": { "R": { "price": 26000, "discPrice": 18000 }, "L": { "price": 32000, "discPrice": 21000 } } },
+                { "id": "jj-lemon-tea-with-coco-jelly",     "name": "Lemon Tea With Coco Jelly",         "image": "/product/minuman/janjiw/Lemon Tea With Coco Jelly.png",        "noHot": true,     "sizes": { "R": { "price": 26000, "discPrice": 18000 }, "L": { "price": 32000, "discPrice": 21000 } } },
+                { "id": "jj-earl-grey-milk-tea",            "name": "Earl Grey Milk Tea",                "image": "/product/minuman/janjiw/Earl Grey Milk Tea.png",               "noHot": true,     "sizes": { "R": { "price": 28000, "discPrice": 19000 }, "L": { "price": 34000, "discPrice": 22000 } } },
+                { "id": "jj-thai-milk-tea",                 "name": "Thai Milk Tea",                     "image": "/product/minuman/janjiw/Thai Milk Tea.png",                    "noHot": true,     "sizes": { "R": { "price": 28000, "discPrice": 19000 }, "L": { "price": 34000, "discPrice": 22000 } } }
               ],
               "non_coffee_series": [
-                
+                { "id": "jj-matcha-latte",                 "name": "Matcha Latte",                       "image": "/product/minuman/janjiw/Matcha Latte.png",                     "sizes": { "R": { "price": 33000, "discPrice": 21500 }, "L": { "price": 39000, "discPrice": 24500 } } },
+                { "id": "jj-classic-chocolate",            "name": "Classic Chocolate",                  "image": "/product/minuman/janjiw/Classic Chocolate.png",                "sizes": { "R": { "price": 25000, "discPrice": 17500 }, "L": { "price": 31000, "discPrice": 20500 } } },
+                { "id": "jj-hazelnut-choco",               "name": "Hazelnut Choco",                     "image": "/product/minuman/janjiw/Hazelnut Choco.png",                   "sizes": { "R": { "price": 28000, "discPrice": 19000 }, "L": { "price": 34000, "discPrice": 22000 } } },
+                { "id": "jj-royale-milo",                  "name": "Royale Milo",                        "image": "/product/minuman/janjiw/Royale Milo.png",                      "noHot": true,     "sizes": { "R": { "price": 30000, "discPrice": 20000 }, "L": { "price": 36000, "discPrice": 23000 } } },
+                { "id": "jj-milo-macchiato",               "name": "Milo Macchiato",                     "image": "/product/minuman/janjiw/Milo Macchiato.png",                   "noHot": true,     "sizes": { "R": { "price": 30000, "discPrice": 20000 }, "L": { "price": 36000, "discPrice": 23000 } } }
               ],
               "breeze_series": [
-                
+                { "id": "jj-double-choco-breeze",          "name": "Double Choco Breeze (L)",            "image": "/product/minuman/janjiw/Double Choco Breeze.png",               "noHot": true,     "sizes": { "L": { "price": 40000, "discPrice": 25000 } } },
+                { "id": "jj-java-mocha-breeze",            "name": "Java Mocha Breeze (L)",              "image": "/product/minuman/janjiw/Java Mocha Breeze.png",                 "noHot": true,     "sizes": { "L": { "price": 40000, "discPrice": 25000 } } },
+                { "id": "jj-matcha-breeze",                "name": "Matcha Breeze (L)",                  "image": "/product/minuman/janjiw/Matcha Breeze.png",                     "noHot": true,     "sizes": { "L": { "price": 45000, "discPrice": 30000 } } },
+                { "id": "jj-sea-salt-caramel-breeze",      "name": "Sea Salt Caramel Breeze (L)",        "image": "/product/minuman/janjiw/Sea Salt Caramel Breeze.png",           "noHot": true,     "sizes": { "L": { "price": 40000, "discPrice": 25000 } } }
               ],
               "jiwa_toast": [
                 
