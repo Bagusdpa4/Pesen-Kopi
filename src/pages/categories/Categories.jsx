@@ -36,11 +36,11 @@ export const Categories = () => {
               className="flex w-full cursor-pointer items-center justify-between gap-4 rounded-2xl border border-stone-200 bg-white px-5 py-4 text-left transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md hover:shadow-orange-100"
             >
               <div className="flex items-center gap-4">
-                <div className="flex -space-x-2">
-                  {category.brands.slice(0, 2).map((brand) => (
+                <div className="grid grid-cols-2 gap-0.5">
+                  {category.brands.slice(0, 4).map((brand) => (
                     <div
                       key={brand.id}
-                      className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-white p-1"
+                      className="flex h-6 w-6 sm:h-9 sm:w-9 items-center justify-center overflow-hidden rounded-sm bg-white p-0.5"
                     >
                       <img
                         src={brand.logo}
