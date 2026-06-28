@@ -175,7 +175,7 @@ export const OrderBundling = () => {
     ].filter((line) => line !== null);
 
     const text = encodeURIComponent(lines.join("\n"));
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
+    window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
 
     // ← Reset setelah order
     setPicks({});
