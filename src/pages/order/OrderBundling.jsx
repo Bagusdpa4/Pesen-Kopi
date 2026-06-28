@@ -11,7 +11,7 @@ import {
   getNowMinute,
 } from "../../helper/ScrollPicker";
 
-const WHATSAPP_NUMBER = import.meta.env.WHATSAPP_NUMBER;
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
 export const OrderBundling = () => {
   const { categoryId, brandId, bundleId } = useParams();

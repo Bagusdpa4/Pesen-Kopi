@@ -13,7 +13,7 @@ import {
   getNowMinute,
 } from "../../helper/ScrollPicker";
 
-const WHATSAPP_NUMBER = import.meta.env.WHATSAPP_NUMBER;
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
 // Label tampilan untuk tiap kategori minuman
 const DRINK_CATEGORY_LABELS = {
