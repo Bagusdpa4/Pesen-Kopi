@@ -79,7 +79,9 @@ export const Bundling = () => {
                   {bundle.name}
                 </p>
                 <p className="mt-1 text-sm font-extrabold text-orange-600">
-                  {formatRupiah(bundle.price)}
+                  {bundle.price
+                    ? formatRupiah(bundle.price)
+                    : "Bayar harga tertinggi"}
                 </p>
               </div>
             </button>

@@ -59,7 +59,7 @@ export const Categories = () => {
                   </p>
                 </div>
               </div>
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-stone-200 text-stone-400">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-stone-300 text-stone-400">
                 <HiChevronRight className="h-4 w-4" />
               </span>
             </button>

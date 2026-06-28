@@ -47,7 +47,7 @@ export const Selected = () => {
         </button>
 
         <div className="mb-8 flex items-center gap-4 rounded-2xl border border-stone-200 bg-white px-6 py-5">
-          <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-stone-200 bg-white p-1.5">
+          <div className="flex h-12 w-16 items-center justify-center overflow-hidden rounded-xl bg-white">
             <img
               src={brand.logo}
               alt={brand.name}

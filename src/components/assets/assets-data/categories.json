@@ -208,15 +208,6 @@
         }
       },
       {
-        "id": "janjijiwa",
-        "name": "Janji Jiwa",
-        "logo": "/logo/minuman/janjiw.jfif",
-        "tagline": "Harga spesial, kualitas terjamin ✨",
-        "modes": {
-          "satuan": []
-        }
-      },
-      {
         "id": "tomoro",
         "name": "Tomoro",
         "logo": "/logo/minuman/tomoro.png",
@@ -296,7 +287,7 @@
               "type": "duo_pay_highest",
               "chooseCount": 2,
               "description": "Pilih 2 menu, bayar harga tertinggi saja",
-              "image": "/bundling tomoro/Duo.jpg",
+              "image": "/public/product/minuman/tomoro/Bundling.PNG",
               "chooseGroups": [
                 {
                   "label": "Pilih 2 menu",
@@ -351,6 +342,15 @@
               ]
             }
           ]
+        }
+      },
+      {
+        "id": "janjijiwa",
+        "name": "Janji Jiwa",
+        "logo": "/logo/minuman/janjiw.jfif",
+        "tagline": "Harga spesial, kualitas terjamin ✨",
+        "modes": {
+          "satuan": []
         }
       }
     ]
