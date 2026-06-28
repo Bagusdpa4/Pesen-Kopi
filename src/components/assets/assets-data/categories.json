@@ -206,18 +206,17 @@
             },
             {
               "id": "kpk-b-004",
-              "name": "Bundling Kopi Kenangan Mantan",
+              "name": "Bundling KKM",
               "price": null,
+              "type": "fixed_choice",
               "description": "Paket Kopi Kenangan Mantan",
               "image": "/bundling kopken/Bundling KKM.PNG",
-              "chooseGroups": [
-                {
-                  "label": "Pilih 2 menu Berry Series (Regular)",
-                  "options": [
-                    { "id": "kpk-kopi-kenangan-mantan",          "name": "Kopi Kenangan Mantan",              "image": "/product/minuman/kopken/Kopi Kenangan Mantan.png",             "sizes": { "R": { "price": 19000, "discPrice": 14500 }, "L": { "price": 25000, "discPrice": 17500 } } }
-                  ]
-                }
-              ]
+              "fixedOptions": [
+                { "id": "kkm-3l", "label": "3 KKM Large",    "price": 52000, "description": "3 Kopi Kenangan Mantan (Large)" },
+                { "id": "kkm-2l", "label": "2 KKM Large",    "price": 35000, "description": "2 Kopi Kenangan Mantan (Large)" },
+                { "id": "kkm-3r", "label": "3 KKM Reguler",  "price": 40000, "description": "3 Kopi Kenangan Mantan (Reguler)" }
+              ],
+              "chooseGroups": []
             }
           ]
         }

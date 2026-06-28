@@ -79,9 +79,20 @@ export const Bundling = () => {
                   {bundle.name}
                 </p>
                 <p className="mt-1 text-sm font-extrabold text-orange-600">
-                  {bundle.price
-                    ? formatRupiah(bundle.price)
-                    : "Bayar harga tertinggi"}
+                  {bundle.type === "fixed_choice"
+                    ? (() => {
+                        const prices =
+                          bundle.fixedOptions?.map((o) => o.price) || [];
+                        if (prices.length === 0) return "Pilih paket";
+                        const min = Math.min(...prices);
+                        const max = Math.max(...prices);
+                        return min === max
+                          ? formatRupiah(min)
+                          : `${formatRupiah(min)} - ${formatRupiah(max)}`;
+                      })()
+                    : bundle.price
+                      ? formatRupiah(bundle.price)
+                      : "Bayar harga tertinggi"}
                 </p>
               </div>
             </button>

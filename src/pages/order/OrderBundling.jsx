@@ -32,6 +32,7 @@ export const OrderBundling = () => {
   const [picks, setPicks] = useState({});
   const pickupTime =
     pickupHour && pickupMinute ? `${pickupHour}:${pickupMinute}` : "";
+  const [selectedFixedOption, setSelectedFixedOption] = useState(null);
 
   if (!brand || !bundles?.length) {
     return (
@@ -50,6 +51,7 @@ export const OrderBundling = () => {
   }
 
   const bundle = bundles.find((b) => b.id === selectedBundleId);
+  const isFixedChoice = bundle?.type === "fixed_choice";
 
   const groups = useMemo(() => {
     if (!bundle) return [];
@@ -72,6 +74,8 @@ export const OrderBundling = () => {
   const isDuoPayHighest = bundle?.type === "duo_pay_highest";
 
   const bundlePrice = useMemo(() => {
+    if (isFixedChoice) return selectedFixedOption?.price ?? 0;
+    if (!isDuoPayHighest) return bundle?.price ?? 0;
     if (!isDuoPayHighest) return bundle?.price ?? 0;
     // Kumpulkan semua item yang dipilih dari semua group
     const allPicked = [];
@@ -84,7 +88,14 @@ export const OrderBundling = () => {
     });
     if (allPicked.length === 0) return 0;
     return Math.max(...allPicked);
-  }, [isDuoPayHighest, bundle, groups, picks]);
+  }, [
+    isFixedChoice,
+    selectedFixedOption,
+    isDuoPayHighest,
+    bundle,
+    groups,
+    picks,
+  ]);
 
   const togglePick = (groupIndex, optionId, chooseCount) => {
     setPicks((prev) => {
@@ -122,12 +133,15 @@ export const OrderBundling = () => {
   const handleSelectBundle = (id) => {
     setSelectedBundleId(id);
     setPicks({});
+    setSelectedFixedOption(null);
     navigate(`/${categoryId}/${brandId}/bundling/${id}`, { replace: true });
   };
 
-  const isGroupsComplete = groups.every(
-    (group, index) => (picks[index]?.length || 0) === group.chooseCount,
-  );
+  const isGroupsComplete = isFixedChoice
+    ? !!selectedFixedOption
+    : groups.every(
+        (group, index) => (picks[index]?.length || 0) === group.chooseCount,
+      );
   const isFormValid =
     customerName.trim() &&
     outletAddress.trim() &&
@@ -138,13 +152,17 @@ export const OrderBundling = () => {
     if (!isFormValid || !bundle) return;
 
     const allPickedLines = [];
-    groups.forEach((group, groupIndex) => {
-      const ids = picks[groupIndex] || [];
-      ids.forEach((id) => {
-        const option = group.options.find((o) => o.id === id);
-        allPickedLines.push(option?.name || id);
+    if (isFixedChoice) {
+      allPickedLines.push(selectedFixedOption.description);
+    } else {
+      groups.forEach((group, groupIndex) => {
+        const ids = picks[groupIndex] || [];
+        ids.forEach((id) => {
+          const option = group.options.find((o) => o.id === id);
+          allPickedLines.push(option?.name || id);
+        });
       });
-    });
+    }
 
     const lines = [
       `*PESANAN ${brand.name.toUpperCase()} - PROMO ${bundle.name.toUpperCase()}*`,
@@ -294,96 +312,154 @@ export const OrderBundling = () => {
         </div>
 
         <div className="mt-8 space-y-6">
-          {groups.map((group, groupIndex) => {
-            const selectedIds = picks[groupIndex] || [];
-            return (
-              <div key={groupIndex}>
-                <div className="mb-3 flex items-center justify-between">
-                  <p className="text-sm font-bold text-stone-900">
-                    {group.label}
-                  </p>
-                  <span className="text-sm font-semibold text-stone-400">
-                    {selectedIds.length}/{group.chooseCount} dipilih
-                  </span>
-                </div>
-                {isDuoPayHighest && (
-                  <p className="mb-3 text-sm font-medium text-orange-500">
-                    💡 Pilih 2 menu — kamu hanya bayar harga yang tertinggi saja
-                  </p>
-                )}
-                <div className="grid grid-cols-3 gap-3">
-                  {group.options.map((option) => {
-                    const countOfThis = isDuoPayHighest
-                      ? (picks[groupIndex] || []).filter(
-                          (id) => id === option.id,
-                        ).length
-                      : 0;
-                    const isSelected = isDuoPayHighest
-                      ? countOfThis > 0
-                      : selectedIds.includes(option.id);
-                    const isLocked = isDuoPayHighest
-                      ? selectedIds.length >= group.chooseCount &&
-                        countOfThis === 0
-                      : !isSelected && selectedIds.length >= group.chooseCount;
-                    return (
-                      <button
-                        key={option.id}
-                        type="button"
-                        disabled={isLocked}
-                        onClick={() =>
-                          togglePick(groupIndex, option.id, group.chooseCount)
-                        }
-                        className={`relative flex flex-col overflow-hidden rounded-2xl border text-center transition-colors ${
-                          isSelected
-                            ? "cursor-pointer border-orange-400 bg-orange-50"
-                            : isLocked
-                              ? "cursor-not-allowed border-stone-200 bg-stone-50 opacity-50"
-                              : "cursor-pointer border-stone-400 bg-white hover:border-orange-400"
-                        }`}
-                      >
-                        {(() => {
-                          const count = isDuoPayHighest
-                            ? (picks[groupIndex] || []).filter(
-                                (id) => id === option.id,
-                              ).length
-                            : isSelected
-                              ? 1
-                              : 0;
-                          if (count === 0) return null;
-                          return (
-                            <span className="absolute right-2 top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full border-2 border-orange-500 bg-orange-500 text-xs text-white">
-                              {count > 1 ? count : "✓"}
-                            </span>
-                          );
-                        })()}
-                        {option.image ? (
-                          <div className="flex h-24 items-center justify-center bg-white sm:h-60">
-                            <img
-                              src={option.image}
-                              alt={option.name}
-                              className="h-full w-full object-contain"
-                            />
-                          </div>
-                        ) : (
-                          <div className="flex h-24 items-center justify-center bg-orange-50 text-2xl sm:h-60">
-                            🍽️
-                          </div>
+          {/* Fixed choice (misal paket KKM) */}
+          {isFixedChoice && (
+            <div className="mt-8">
+              <p className="mb-3 text-sm font-bold text-stone-900">
+                Pilih Salah Satu Paket
+              </p>
+              <div className="flex flex-col gap-3">
+                {bundle.fixedOptions.map((opt) => {
+                  const isSelected = selectedFixedOption?.id === opt.id;
+                  return (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      onClick={() => setSelectedFixedOption(opt)}
+                      className={`flex cursor-pointer items-center justify-between rounded-2xl border px-5 py-4 text-left transition-colors ${
+                        isSelected
+                          ? "border-orange-400 bg-orange-50"
+                          : "border-stone-300 bg-white hover:border-orange-300"
+                      }`}
+                    >
+                      <div>
+                        <p
+                          className={`text-base font-bold ${isSelected ? "text-orange-600" : "text-stone-900"}`}
+                        >
+                          {opt.label}
+                        </p>
+                        <p className="text-sm text-stone-500">
+                          {opt.description}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <p className="text-sm font-extrabold text-orange-600">
+                          {formatRupiah(opt.price)}
+                        </p>
+                        {isSelected && (
+                          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-orange-500 text-xs text-white">
+                            ✓
+                          </span>
                         )}
-                        <span className="px-2 pb-3 pt-1 text-xs font-medium leading-snug text-stone-900">
-                          {option.name}
-                          {isDuoPayHighest && option.price && (
-                            <span className="mt-0.5 block text-xs font-bold text-orange-600">
-                              {formatRupiah(option.price)}
-                            </span>
-                          )}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
-            );
-          })}
+            </div>
+          )}
+
+          {/* Groups untuk bundle biasa & duo_pay_highest */}
+          {!isFixedChoice && (
+            <div className="mt-8 space-y-6">
+              {groups.map((group, groupIndex) => {
+                const selectedIds = picks[groupIndex] || [];
+                return (
+                  <div key={groupIndex}>
+                    <div className="mb-3 flex items-center justify-between">
+                      <p className="text-sm font-bold text-stone-900">
+                        {group.label}
+                      </p>
+                      <span className="text-sm font-semibold text-stone-400">
+                        {selectedIds.length}/{group.chooseCount} dipilih
+                      </span>
+                    </div>
+                    {isDuoPayHighest && (
+                      <p className="mb-3 text-sm font-medium text-orange-500">
+                        💡 Pilih 2 menu — kamu hanya bayar harga yang tertinggi
+                        saja
+                      </p>
+                    )}
+                    <div className="grid grid-cols-3 gap-3">
+                      {group.options.map((option) => {
+                        const countOfThis = isDuoPayHighest
+                          ? (picks[groupIndex] || []).filter(
+                              (id) => id === option.id,
+                            ).length
+                          : 0;
+                        const isSelected = isDuoPayHighest
+                          ? countOfThis > 0
+                          : selectedIds.includes(option.id);
+                        const isLocked = isDuoPayHighest
+                          ? selectedIds.length >= group.chooseCount &&
+                            countOfThis === 0
+                          : !isSelected &&
+                            selectedIds.length >= group.chooseCount;
+                        return (
+                          <button
+                            key={option.id}
+                            type="button"
+                            disabled={isLocked}
+                            onClick={() =>
+                              togglePick(
+                                groupIndex,
+                                option.id,
+                                group.chooseCount,
+                              )
+                            }
+                            className={`relative flex flex-col overflow-hidden rounded-2xl border text-center transition-colors ${
+                              isSelected
+                                ? "cursor-pointer border-orange-400 bg-orange-50"
+                                : isLocked
+                                  ? "cursor-not-allowed border-stone-200 bg-stone-50 opacity-50"
+                                  : "cursor-pointer border-stone-400 bg-white hover:border-orange-400"
+                            }`}
+                          >
+                            {(() => {
+                              const count = isDuoPayHighest
+                                ? (picks[groupIndex] || []).filter(
+                                    (id) => id === option.id,
+                                  ).length
+                                : isSelected
+                                  ? 1
+                                  : 0;
+                              if (count === 0) return null;
+                              return (
+                                <span className="absolute right-2 top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full border-2 border-orange-500 bg-orange-500 text-xs text-white">
+                                  {count > 1 ? count : "✓"}
+                                </span>
+                              );
+                            })()}
+                            {option.image ? (
+                              <div className="flex h-24 items-center justify-center bg-white sm:h-60">
+                                <img
+                                  src={option.image}
+                                  alt={option.name}
+                                  className="h-full w-full object-contain"
+                                />
+                              </div>
+                            ) : (
+                              <div className="flex h-24 items-center justify-center bg-orange-50 text-2xl sm:h-60">
+                                🍽️
+                              </div>
+                            )}
+                            <span className="px-2 pb-3 pt-1 text-xs font-medium leading-snug text-stone-900">
+                              {option.name}
+                              {isDuoPayHighest && option.price && (
+                                <span className="mt-0.5 block text-xs font-bold text-orange-600">
+                                  {formatRupiah(option.price)}
+                                </span>
+                              )}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
 
@@ -394,11 +470,15 @@ export const OrderBundling = () => {
               Total
             </p>
             <p className="text-lg font-extrabold text-orange-600">
-              {bundlePrice > 0
-                ? formatRupiah(bundlePrice)
-                : bundle
-                  ? formatRupiah(bundle.price ?? 0)
-                  : "-"}
+              {isFixedChoice
+                ? selectedFixedOption
+                  ? formatRupiah(selectedFixedOption.price)
+                  : "-"
+                : bundlePrice > 0
+                  ? formatRupiah(bundlePrice)
+                  : bundle
+                    ? formatRupiah(bundle.price ?? 0)
+                    : "-"}
             </p>
           </div>
           <button
