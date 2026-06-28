@@ -100,32 +100,18 @@ export const OrderBundling = () => {
   const togglePick = (groupIndex, optionId, chooseCount) => {
     setPicks((prev) => {
       const current = prev[groupIndex] || [];
+      const countOfThis = current.filter((id) => id === optionId).length;
+      const totalSelected = current.length;
 
-      if (isDuoPayHighest) {
-        const countOfThis = current.filter((id) => id === optionId).length;
-        const totalSelected = current.length;
-
-        if (countOfThis > 0 && totalSelected >= chooseCount) {
-          // Sudah penuh & item ini ada → kurangi 1
-          const idx = current.lastIndexOf(optionId);
-          const next = [...current];
-          next.splice(idx, 1);
-          return { ...prev, [groupIndex]: next };
-        }
-        if (totalSelected >= chooseCount) return prev; // Penuh, item berbeda
-        // Tambah 1
-        return { ...prev, [groupIndex]: [...current, optionId] };
+      if (countOfThis > 0 && totalSelected >= chooseCount) {
+        // Sudah penuh & item ini ada → kurangi 1
+        const idx = current.lastIndexOf(optionId);
+        const next = [...current];
+        next.splice(idx, 1);
+        return { ...prev, [groupIndex]: next };
       }
-
-      // Logika lama untuk bundle biasa
-      const isSelected = current.includes(optionId);
-      if (isSelected) {
-        return {
-          ...prev,
-          [groupIndex]: current.filter((id) => id !== optionId),
-        };
-      }
-      if (current.length >= chooseCount) return prev;
+      if (totalSelected >= chooseCount) return prev; // Penuh, item berbeda
+      // Tambah 1
       return { ...prev, [groupIndex]: [...current, optionId] };
     });
   };
@@ -382,19 +368,13 @@ export const OrderBundling = () => {
                     )}
                     <div className="grid grid-cols-3 gap-3">
                       {group.options.map((option) => {
-                        const countOfThis = isDuoPayHighest
-                          ? (picks[groupIndex] || []).filter(
-                              (id) => id === option.id,
-                            ).length
-                          : 0;
-                        const isSelected = isDuoPayHighest
-                          ? countOfThis > 0
-                          : selectedIds.includes(option.id);
-                        const isLocked = isDuoPayHighest
-                          ? selectedIds.length >= group.chooseCount &&
-                            countOfThis === 0
-                          : !isSelected &&
-                            selectedIds.length >= group.chooseCount;
+                        const countOfThis = (picks[groupIndex] || []).filter(
+                          (id) => id === option.id,
+                        ).length;
+                        const isSelected = countOfThis > 0;
+                        const isLocked =
+                          !isSelected &&
+                          selectedIds.length >= group.chooseCount;
                         return (
                           <button
                             key={option.id}
@@ -416,13 +396,9 @@ export const OrderBundling = () => {
                             }`}
                           >
                             {(() => {
-                              const count = isDuoPayHighest
-                                ? (picks[groupIndex] || []).filter(
-                                    (id) => id === option.id,
-                                  ).length
-                                : isSelected
-                                  ? 1
-                                  : 0;
+                              const count = (picks[groupIndex] || []).filter(
+                                (id) => id === option.id,
+                              ).length;
                               if (count === 0) return null;
                               return (
                                 <span className="absolute right-2 top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full border-2 border-orange-500 bg-orange-500 text-xs text-white">
