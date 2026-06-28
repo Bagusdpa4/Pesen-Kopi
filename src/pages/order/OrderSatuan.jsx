@@ -195,7 +195,7 @@ export const OrderSatuan = () => {
 
         const variantNote =
           item.type === "drink"
-            ? ` (${item.size === "R" ? "Reguler" : item.size === "L" ? "Large" : item.size}, ${item.sugar}, ${item.ice})`
+            ? ` (${item.size === "R" ? "Reguler" : item.size === "L" ? "Large" : item.size}${item.sugar !== "-" ? `, ${item.sugar}` : ""}${item.ice !== "-" ? `, ${item.ice}` : ""})`
             : "";
 
         const priceText = hasDiscount
@@ -231,6 +231,31 @@ export const OrderSatuan = () => {
     const hasDiscount =
       sizeInfo.discPrice && sizeInfo.discPrice < sizeInfo.price;
 
+    // Cek apakah perlu modal atau tidak
+    const needsModal =
+      sizeKeys.length > 1 || // ada pilihan size
+      !product.noSugar || // ada pilihan sugar
+      (!product.noIce && !product.noHot); // ada pilihan ice termasuk hot
+
+    const handleCardClick = () => {
+      if (needsModal) {
+        setActiveProduct(product);
+      } else {
+        // Langsung tambah dengan default
+        const defaultIce = product.noIce
+          ? "-"
+          : product.noHot
+            ? "No Ice"
+            : "Normal Ice";
+        const defaultSugar = product.noSugar ? "-" : "Normal Sugar";
+        handleAddDrinkToCart(product, {
+          size: firstSize,
+          sugar: defaultSugar,
+          ice: defaultIce,
+        });
+      }
+    };
+
     return (
       <div
         key={product.id}
@@ -259,7 +284,7 @@ export const OrderSatuan = () => {
           </div>
           <button
             type="button"
-            onClick={() => setActiveProduct(product)}
+            onClick={handleCardClick}
             className="mt-auto cursor-pointer rounded-full bg-orange-600 py-1.5 text-[10px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-orange-700 sm:py-2 sm:text-xs"
           >
             + Pilih

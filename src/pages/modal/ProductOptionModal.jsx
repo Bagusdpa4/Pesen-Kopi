@@ -8,7 +8,6 @@ const ICE_LEVELS = ["Hot", "No Ice", "Less Ice", "Normal Ice"];
 export const ProductOptionModal = ({ product, onClose, onAdd }) => {
   const sizeKeys = Object.keys(product.sizes);
   const [size, setSize] = useState(sizeKeys[0]);
-  const [sugar, setSugar] = useState("Normal Sugar");
 
   const baseSizeInfo = product.sizes[sizeKeys[0]];
   const basePrice = baseSizeInfo.discPrice ?? baseSizeInfo.price;
@@ -21,10 +20,13 @@ export const ProductOptionModal = ({ product, onClose, onAdd }) => {
     ? ICE_LEVELS.filter((level) => level !== "Hot")
     : ICE_LEVELS;
 
+  const [sugar, setSugar] = useState(product.noSugar ? "-" : "Normal Sugar");
   const [ice, setIce] = useState(
-    availableIceLevels.includes("Normal Ice")
-      ? "Normal Ice"
-      : availableIceLevels[0],
+    product.noIce
+      ? "-"
+      : availableIceLevels.includes("Normal Ice")
+        ? "Normal Ice"
+        : availableIceLevels[0],
   );
 
   const handleAdd = () => {
@@ -87,55 +89,61 @@ export const ProductOptionModal = ({ product, onClose, onAdd }) => {
           </div>
         )}
 
-        <div className="mb-5">
-          <p className="mb-2 text-xs font-bold uppercase tracking-wide text-orange-600">
-            Level Sugar
-          </p>
-          <div className="grid grid-cols-2 gap-2">
-            {SUGAR_LEVELS.map((level) => {
-              const isSelected = sugar === level;
-              return (
-                <button
-                  key={level}
-                  type="button"
-                  onClick={() => setSugar(level)}
-                  className={`cursor-pointer rounded-xl border px-4 py-3 text-center text-sm font-medium transition-colors ${
-                    isSelected
-                      ? "border-orange-400 bg-orange-50 text-orange-600"
-                      : "border-stone-200 bg-white text-stone-700 hover:border-orange-200"
-                  }`}
-                >
-                  {level}
-                </button>
-              );
-            })}
+        {/* Sembunyikan jika noSugar */}
+        {!product.noSugar && (
+          <div className="mb-5">
+            <p className="mb-2 text-xs font-bold uppercase tracking-wide text-orange-600">
+              Level Sugar
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {SUGAR_LEVELS.map((level) => {
+                const isSelected = sugar === level;
+                return (
+                  <button
+                    key={level}
+                    type="button"
+                    onClick={() => setSugar(level)}
+                    className={`cursor-pointer rounded-xl border px-4 py-3 text-center text-sm font-medium transition-colors ${
+                      isSelected
+                        ? "border-orange-400 bg-orange-50 text-orange-600"
+                        : "border-stone-200 bg-white text-stone-700 hover:border-orange-200"
+                    }`}
+                  >
+                    {level}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="mb-6">
-          <p className="mb-2 text-xs font-bold uppercase tracking-wide text-orange-600">
-            Level Ice
-          </p>
-          <div className="grid grid-cols-2 gap-2">
-            {availableIceLevels.map((level) => {
-              const isSelected = ice === level;
-              return (
-                <button
-                  key={level}
-                  type="button"
-                  onClick={() => setIce(level)}
-                  className={`cursor-pointer rounded-xl border px-4 py-3 text-center text-sm font-medium transition-colors ${
-                    isSelected
-                      ? "border-orange-400 bg-orange-50 text-orange-600"
-                      : "border-stone-200 bg-white text-stone-700 hover:border-orange-200"
-                  }`}
-                >
-                  {level}
-                </button>
-              );
-            })}
+        {/* Sembunyikan jika noIce */}
+        {!product.noIce && (
+          <div className="mb-6">
+            <p className="mb-2 text-xs font-bold uppercase tracking-wide text-orange-600">
+              Level Ice
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {availableIceLevels.map((level) => {
+                const isSelected = ice === level;
+                return (
+                  <button
+                    key={level}
+                    type="button"
+                    onClick={() => setIce(level)}
+                    className={`cursor-pointer rounded-xl border px-4 py-3 text-center text-sm font-medium transition-colors ${
+                      isSelected
+                        ? "border-orange-400 bg-orange-50 text-orange-600"
+                        : "border-stone-200 bg-white text-stone-700 hover:border-orange-200"
+                    }`}
+                  >
+                    {level}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
 
         <button
           type="button"
