@@ -252,7 +252,7 @@ export const OrderBundling = () => {
           </div>
           <div>
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
-              Nama Outlet <span className="text-red-500">*</span>
+              Nama Outlet Untuk Di Ambil<span className="text-red-500">*</span>
             </label>
             <input
               type="text"
