@@ -252,13 +252,13 @@ export const OrderBundling = () => {
           </div>
           <div>
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
-              Alamat Outlet <span className="text-red-500">*</span>
+              Nama Outlet <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               value={outletAddress}
               onChange={(e) => setOutletAddress(e.target.value)}
-              placeholder="Alamat outlet sesuai google maps..."
+              placeholder="Nama outlet sesuai google maps..."
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>

@@ -16,6 +16,15 @@ import { ToastOptionModal } from "../modal/ToastOptionModal";
 
 const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
+// Label tampilan untuk tiap kategori makanan
+const FOOD_CATEGORY_LABELS = {
+  jiwa_toast: "Jiwa Toast",
+  noodle: "Noodle",
+  rice: "Rice",
+  bites: "Bites",
+  snack: "Snack",
+};
+
 // Label tampilan untuk tiap kategori minuman
 const DRINK_CATEGORY_LABELS = {
   coffee_series: "Coffee Series",
@@ -42,6 +51,9 @@ const DRINK_CATEGORY_LABELS = {
 const isNewStructure = (satuan) =>
   satuan && !Array.isArray(satuan) && (satuan.minuman || satuan.makanan);
 
+const isMakananCategorized = (makanan) =>
+  makanan && !Array.isArray(makanan) && typeof makanan === "object";
+
 export const OrderSatuan = () => {
   const { categoryId, brandId } = useParams();
   const navigate = useNavigate();
@@ -56,7 +68,19 @@ export const OrderSatuan = () => {
 
   // Untuk struktur baru: minuman per kategori + makanan
   const drinkCategories = useNew ? Object.keys(rawSatuan.minuman || {}) : [];
-  const makananProducts = useNew ? rawSatuan.makanan || [] : [];
+  const rawMakanan = useNew ? rawSatuan.makanan : null;
+  const makananIsCategorized = isMakananCategorized(rawMakanan);
+
+  // Untuk lookup flat (cart, dsb) — selalu flatten jadi array
+  const makananProducts = useNew
+    ? makananIsCategorized
+      ? Object.values(rawMakanan || {}).flat()
+      : rawMakanan || []
+    : [];
+
+  const foodCategories = makananIsCategorized
+    ? Object.keys(rawMakanan || {})
+    : [];
 
   // Untuk struktur lama: flat array
   const flatProducts = useNew ? [] : rawSatuan || [];
@@ -533,13 +557,13 @@ export const OrderSatuan = () => {
           </div>
           <div>
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-700">
-              Alamat Outlet <span className="text-red-500">*</span>
+              Nama Outlet <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               value={outletAddress}
               onChange={(e) => setOutletAddress(e.target.value)}
-              placeholder="Alamat outlet sesuai google maps..."
+              placeholder="Nama outlet sesuai google maps..."
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>
@@ -609,23 +633,58 @@ export const OrderSatuan = () => {
 
               {/* Makanan */}
               {makananProducts.length > 0 &&
-                (() => {
-                  const items = filterBySearch(makananProducts);
-                  if (items.length === 0) return null;
-                  return (
-                    <section key="makanan">
-                      <div className="mb-4 flex items-center gap-3">
-                        <h2 className="text-sm font-bold uppercase tracking-widest text-orange-600">
-                          Makanan
-                        </h2>
-                        <div className="h-px flex-1 bg-orange-200" />
-                      </div>
-                      <div className="grid grid-cols-3 gap-4">
-                        {items.map(renderMakananCard)}
-                      </div>
-                    </section>
-                  );
-                })()}
+                (makananIsCategorized
+                  ? // Render per kategori, sama seperti minuman
+                    foodCategories.map((catKey) => {
+                      const items = filterBySearch(rawMakanan[catKey] || []);
+                      if (items.length === 0) return null;
+                      return (
+                        <section key={catKey}>
+                          <div className="mb-4 flex items-center gap-3">
+                            <h2 className="text-sm font-bold uppercase tracking-widest text-orange-600">
+                              {FOOD_CATEGORY_LABELS[catKey] ?? catKey}
+                            </h2>
+                            <div className="h-px flex-1 bg-orange-200" />
+                          </div>
+                          <div className="grid grid-cols-3 gap-4">
+                            {items.map((item) =>
+                              item.hasTopping
+                                ? renderToastCard(item)
+                                : renderMakananCard(item),
+                            )}
+                          </div>
+                        </section>
+                      );
+                    })
+                  : // Struktur lama Kopken: array flat tanpa sub-kategori, judul "Makanan" tunggal
+                    (() => {
+                      const items = filterBySearch(makananProducts);
+                      if (items.length === 0) return null;
+                      return (
+                        <section key="makanan">
+                          <div className="mb-4 flex items-center gap-3">
+                            <h2 className="text-sm font-bold uppercase tracking-widest text-orange-600">
+                              Makanan
+                            </h2>
+                            <div className="h-px flex-1 bg-orange-200" />
+                          </div>
+                          <div className="grid grid-cols-3 gap-4">
+                            {items.map(renderMakananCard)}
+                          </div>
+                        </section>
+                      );
+                    })())}
+              {/* Menu Kosong */}
+              {drinkCategories.every(
+                (catKey) =>
+                  filterBySearch(rawSatuan.minuman?.[catKey] || []).length ===
+                  0,
+              ) &&
+                makananProducts.length === 0 && (
+                  <p className="col-span-full py-6 text-center text-sm text-stone-400">
+                    Menu tidak ditemukan
+                  </p>
+                )}
             </>
           ) : (
             /* Struktur lama: flat array tanpa kategori */
