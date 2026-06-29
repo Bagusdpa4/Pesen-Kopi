@@ -577,20 +577,6 @@
             }
           }
         }
-      },
-      {
-        "id": "fore",
-        "name": "Fore Coffee",
-        "logo": "/logo/minuman/fore.jpg",
-        "tagline": "Harga spesial, kualitas terjamin ✨",
-        "modes": {
-          "satuan": {
-            "minuman": {
-              "coffee_series": [
-              ]
-            }
-          }
-        }
       }
     ]
   }
