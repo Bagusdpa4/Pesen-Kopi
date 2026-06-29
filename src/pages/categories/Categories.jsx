@@ -36,11 +36,11 @@ export const Categories = () => {
               className="flex w-full cursor-pointer items-center justify-between gap-4 rounded-2xl border border-stone-200 bg-white px-5 py-4 text-left transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md hover:shadow-orange-100"
             >
               <div className="flex items-center gap-4">
-                <div className="grid grid-cols-2 gap-0.5">
+                <div className="grid w-20 grid-cols-2 gap-0.5">
                   {category.brands.slice(0, 4).map((brand) => (
                     <div
                       key={brand.id}
-                      className="flex h-6 w-6 sm:h-9 sm:w-9 items-center justify-center overflow-hidden rounded-sm bg-white p-0.5"
+                      className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-sm bg-white p-1 sm:h-9 sm:w-9"
                     >
                       <img
                         src={brand.logo}
@@ -54,12 +54,12 @@ export const Categories = () => {
                   <h2 className="text-base font-semibold text-stone-900">
                     {category.title}
                   </h2>
-                  <p className="text-sm text-stone-400">
+                  <p className="line-clamp-1 text-sm text-stone-400">
                     {category.brands.map((b) => b.name).join(", ")}
                   </p>
                 </div>
               </div>
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-stone-300 text-stone-400">
+              <span className="flex h-6 w-10 items-center justify-center rounded-full border border-stone-300 text-stone-400 sm:w-6">
                 <HiChevronRight className="h-4 w-4" />
               </span>
             </button>
