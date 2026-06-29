@@ -17,7 +17,7 @@ export const Selected = () => {
         <button
           type="button"
           onClick={() => navigate(`/${categoryId}`)}
-          className="mt-4 text-sm font-semibold text-orange-600"
+          className="mt-4 inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-stone-500 shadow-sm transition-colors hover:text-orange-600"
         >
           <HiArrowLeft className="h-4 w-4" />
           Kembali ke pilih brand
