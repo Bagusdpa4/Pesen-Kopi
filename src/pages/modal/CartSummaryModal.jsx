@@ -1,8 +1,14 @@
 import React from "react";
 import { HiXMark, HiTrash } from "react-icons/hi2";
-import { formatRupiah } from "../../helper/FormatRupiah"; 
+import { formatRupiah } from "../../helper/FormatRupiah";
 
-export const CartSummaryModal = ({ cartItems, total, onClose, onRemove, onUpdateQty }) => {
+export const CartSummaryModal = ({
+  cartItems,
+  total,
+  onClose,
+  onRemove,
+  onUpdateQty,
+}) => {
   return (
     <div
       className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 sm:items-center sm:px-4"
@@ -39,9 +45,23 @@ export const CartSummaryModal = ({ cartItems, total, onClose, onRemove, onUpdate
                     {item.product.name}
                   </p>
                   <p className="text-xs text-stone-400">
-                    {item.size === "R" ? "Reguler" : item.size === "L" ? "Large" : item.size}
-                    {item.sugar ? ` • ${item.sugar}` : ""}
-                    {item.ice ? ` • ${item.ice}` : ""}
+                    {[
+                      item.size && item.size !== "-"
+                        ? item.size === "R"
+                          ? "Reguler"
+                          : item.size === "L"
+                            ? "Large"
+                            : item.size
+                        : null,
+                      item.sugar && item.sugar !== "-" ? item.sugar : null,
+                      item.ice && item.ice !== "-" ? item.ice : null,
+                      item.toppings?.length > 0
+                        ? `Topping: ${item.toppings.join(", ")}`
+                        : null,
+                      item.noteStr ? `Catatan: ${item.noteStr}` : null,
+                    ]
+                      .filter(Boolean)
+                      .join(" • ")}
                   </p>
                   <p className="mt-1 text-sm font-semibold text-orange-600">
                     {formatRupiah(item.unitPrice * item.qty)}
@@ -55,7 +75,9 @@ export const CartSummaryModal = ({ cartItems, total, onClose, onRemove, onUpdate
                   >
                     −
                   </button>
-                  <span className="w-4 text-center text-sm font-semibold">{item.qty}</span>
+                  <span className="w-4 text-center text-sm font-semibold">
+                    {item.qty}
+                  </span>
                   <button
                     type="button"
                     onClick={() => onUpdateQty(item.key, 1)}

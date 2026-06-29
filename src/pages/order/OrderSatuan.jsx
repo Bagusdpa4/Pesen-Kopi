@@ -12,6 +12,7 @@ import {
   getNowHour,
   getNowMinute,
 } from "../../helper/ScrollPicker";
+import { ToastOptionModal } from "../modal/ToastOptionModal";
 
 const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
@@ -22,6 +23,19 @@ const DRINK_CATEGORY_LABELS = {
   frappe_series: "Frappe Series",
   oatside_series: "Oatside Series",
   berry_series: "Berry Series",
+  matcha_series: "Matcha Series",
+  tomoro_signature: "Tomoro Signature",
+  classic_coffee: "Classic Coffee",
+  flavored_latte: "Flavored Latte",
+  cheese_x_nailoong_series: "Cheese X Nailoong Series",
+  cloud_series: "Cloud Series",
+  refreshing_series: "Refreshing Series",
+  premium_matcha_vibes: "Premium Matcha Series",
+  flavored_americano: "Flavored Americano",
+  classic_tea: "Classic Tea",
+  tea_based: "Tea Based",
+  breeze_series: "Breeze Series",
+  jiwa_toast: "Jiwa Toast",
 };
 
 // Deteksi apakah data satuan pakai struktur baru (minuman + makanan) atau lama (flat array)
@@ -55,6 +69,7 @@ export const OrderSatuan = () => {
   const [search, setSearch] = useState("");
   const [cart, setCart] = useState({});
   const [activeProduct, setActiveProduct] = useState(null);
+  const [activeToastProduct, setActiveToastProduct] = useState(null);
   const [showCart, setShowCart] = useState(false);
   const pickupTime =
     pickupHour && pickupMinute ? `${pickupHour}:${pickupMinute}` : "";
@@ -74,15 +89,63 @@ export const OrderSatuan = () => {
       </div>
     );
   }
+  const isFlatProduct = (product) => !product.sizes;
+  const renderToastCard = (product) => {
+    const hasDiscount = product.discPrice && product.discPrice < product.price;
+
+    return (
+      <div
+        key={product.id}
+        className="flex flex-col overflow-hidden rounded-2xl border border-stone-400 bg-white"
+      >
+        <div className="flex h-24 items-center justify-center bg-white sm:h-48">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="h-full w-full object-contain"
+          />
+        </div>
+        <div className="flex flex-1 flex-col px-2 pb-2 pt-1.5 text-center sm:px-3 sm:pb-3 sm:pt-2">
+          <p className="mb-1 line-clamp-3 flex min-h-[3.3em] items-center justify-center text-xs font-semibold leading-tight text-stone-900 sm:min-h-[3.75em] sm:text-sm">
+            {product.name}
+          </p>
+          <div className="mb-2 flex min-h-[2.4em] flex-col items-center justify-center sm:mb-3 sm:min-h-[1.5em] sm:flex-row sm:gap-1">
+            {hasDiscount && (
+              <span className="text-[10px] text-stone-400 line-through sm:text-xs">
+                {formatRupiah(product.price)}
+              </span>
+            )}
+            <span className="text-xs font-bold text-orange-600 sm:text-sm">
+              {formatRupiah(product.discPrice ?? product.price)}
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setActiveToastProduct(product)}
+            className="mt-auto cursor-pointer rounded-full bg-orange-600 py-1.5 text-[10px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-orange-700 sm:py-2 sm:text-xs"
+          >
+            + Pilih
+          </button>
+        </div>
+      </div>
+    );
+  };
 
   // Filter produk berdasarkan search
   const filterBySearch = (list) =>
     list.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
 
   // ─── Cart helpers ──────────────────────────────────────────────────
-  // Minuman: key = "productId:size:sugar:ice"
-  const handleAddDrinkToCart = (product, { size, sugar, ice }) => {
-    const key = `drink:${product.id}:${size}:${sugar}:${ice}`;
+  const handleAddDrinkToCart = (
+    product,
+    { size, sugar, ice, toppings = [], note = "" },
+  ) => {
+    // toppings sekarang array of {id, name, price} — encode jadi "id1:price1,id2:price2"
+    const toppingKey =
+      toppings.length > 0
+        ? toppings.map((t) => `${t.id}_${t.price}`).join(",")
+        : "";
+    const key = `drink:${product.id}:${size}:${sugar}:${ice}:${toppingKey}:${note}`;
     setCart((prev) => ({ ...prev, [key]: (prev[key] || 0) + 1 }));
   };
 
@@ -139,10 +202,59 @@ export const OrderSatuan = () => {
             const size = parts[2];
             const sugar = parts[3];
             const ice = parts[4];
+            const toppingStr = parts[5] || "";
+            const noteStr = parts[6] || "";
+
+            // Parse "id1_price1,id2_price2" jadi array {id, price}
+            const toppingEntries = toppingStr
+              ? toppingStr
+                  .split(",")
+                  .filter(Boolean)
+                  .map((entry) => {
+                    const lastUnderscoreIdx = entry.lastIndexOf("_");
+                    const id = entry.slice(0, lastUnderscoreIdx);
+                    const price = Number(entry.slice(lastUnderscoreIdx + 1));
+                    return { id, price };
+                  })
+              : [];
+
             const product = allDrinkProducts.find((p) => p.id === productId);
+
+            // Resolusi nama topping dari daftar topping produk (untuk tampilan)
+            const resolveToppingNames = (entries) =>
+              entries.map((entry) => {
+                const found = product?.toppings?.find((t) => t.id === entry.id);
+                return found?.name || entry.id;
+              });
+
+            const toppingTotal = toppingEntries.reduce(
+              (sum, t) => sum + t.price,
+              0,
+            );
+
+            if (isFlatProduct(product)) {
+              if (!product) return null;
+              const basePrice = product.discPrice ?? product.price;
+              const unitPrice = basePrice + toppingTotal;
+              return {
+                key,
+                product,
+                type: "drink",
+                size: "-",
+                sugar: "-",
+                ice: "-",
+                toppings: resolveToppingNames(toppingEntries),
+                noteStr,
+                unitPrice,
+                originalPrice: product.price,
+                qty,
+              };
+            }
+
             const sizeInfo = product?.sizes?.[size];
             if (!product || !sizeInfo) return null;
-            const unitPrice = sizeInfo.discPrice ?? sizeInfo.price;
+            const basePrice = sizeInfo.discPrice ?? sizeInfo.price;
+            const unitPrice = basePrice + toppingTotal;
             return {
               key,
               product,
@@ -150,6 +262,8 @@ export const OrderSatuan = () => {
               size,
               sugar,
               ice,
+              toppings: resolveToppingNames(toppingEntries),
+              noteStr,
               unitPrice,
               originalPrice: sizeInfo.price,
               qty,
@@ -188,14 +302,35 @@ export const OrderSatuan = () => {
       `Catatan : ${note || "-"}`,
       ` `, // ← pakai spasi " " bukan ""
       ...cartItems.map((item) => {
-        const tag = item.type === "food" ? "[Makanan]" : "[Minuman]";
+        const tag =
+          item.type === "food" || item.product.hasTopping
+            ? "[Makanan]"
+            : "[Minuman]";
         const itemTotal = item.unitPrice * item.qty;
         const originalTotal = item.originalPrice * item.qty;
         const hasDiscount = originalTotal > itemTotal;
 
         const variantNote =
           item.type === "drink"
-            ? ` (${item.size === "R" ? "Reguler" : item.size === "L" ? "Large" : item.size}${item.sugar !== "-" ? `, ${item.sugar}` : ""}${item.ice !== "-" ? `, ${item.ice}` : ""})`
+            ? (() => {
+                const parts = [];
+                if (item.size && item.size !== "-") {
+                  const sizeLabel =
+                    item.size === "R"
+                      ? "Reguler"
+                      : item.size === "L"
+                        ? "Large"
+                        : item.size;
+                  parts.push(sizeLabel);
+                }
+                if (item.sugar && item.sugar !== "-") parts.push(item.sugar);
+                if (item.ice && item.ice !== "-") parts.push(item.ice);
+                if (item.toppings?.length > 0) {
+                  parts.push(`Topping: ${item.toppings.join(", ")}`);
+                }
+                if (item.noteStr) parts.push(`Catatan: ${item.noteStr}`);
+                return parts.length > 0 ? ` (${parts.join(", ")})` : "";
+              })()
             : "";
 
         const priceText = hasDiscount
@@ -238,10 +373,11 @@ export const OrderSatuan = () => {
       (!product.noIce && !product.noHot); // ada pilihan ice termasuk hot
 
     const handleCardClick = () => {
-      if (needsModal) {
+      if (product.hasTopping) {
+        setActiveToastProduct(product);
+      } else if (needsModal) {
         setActiveProduct(product);
       } else {
-        // Langsung tambah dengan default
         const defaultIce = product.noIce
           ? "-"
           : product.noHot
@@ -391,7 +527,7 @@ export const OrderSatuan = () => {
               type="text"
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
-              placeholder="Nama"
+              placeholder="Nama Customer..."
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>
@@ -403,7 +539,7 @@ export const OrderSatuan = () => {
               type="text"
               value={outletAddress}
               onChange={(e) => setOutletAddress(e.target.value)}
-              placeholder="Alamat outlet"
+              placeholder="Alamat outlet sesuai google maps..."
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>
@@ -436,7 +572,7 @@ export const OrderSatuan = () => {
               type="text"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder="Permintaan tambahan"
+              placeholder="Permintaan tambahan..."
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>
@@ -461,7 +597,11 @@ export const OrderSatuan = () => {
                       <div className="h-px flex-1 bg-orange-200" />
                     </div>
                     <div className="grid grid-cols-3 gap-4">
-                      {products.map(renderDrinkCard)}
+                      {products.map((product) =>
+                        isFlatProduct(product)
+                          ? renderToastCard(product)
+                          : renderDrinkCard(product),
+                      )}
                     </div>
                   </section>
                 );
@@ -555,6 +695,23 @@ export const OrderSatuan = () => {
           onAdd={(opts) => {
             handleAddDrinkToCart(activeProduct, opts);
             setActiveProduct(null);
+          }}
+        />
+      )}
+
+      {activeToastProduct && (
+        <ToastOptionModal
+          product={activeToastProduct}
+          onClose={() => setActiveToastProduct(null)}
+          onAdd={(opts) => {
+            handleAddDrinkToCart(activeToastProduct, {
+              size: opts.size,
+              sugar: "-",
+              ice: "-",
+              toppings: opts.toppings,
+              note: opts.note,
+            });
+            setActiveToastProduct(null);
           }}
         />
       )}

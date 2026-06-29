@@ -425,7 +425,141 @@
                 { "id": "jj-sea-salt-caramel-breeze",      "name": "Sea Salt Caramel Breeze (L)",        "image": "/product/minuman/janjiw/Sea Salt Caramel Breeze.png",           "noHot": true,     "sizes": { "L": { "price": 40000, "discPrice": 25000 } } }
               ],
               "jiwa_toast": [
-                
+                {
+                  "id": "jj-spicy-bulgogi",
+                  "name": "Spicy Bulgogi",
+                  "price": 37000,
+                  "discPrice": 23500,
+                  "image": "/product/makanan/janjiw/Spicy Bulgogi.png",
+                  "hasTopping": true,
+                  "toppings": [
+                    { "id": "mentai-sauce", "name": "Mentai Sauce", "price": 6000 },
+                    { "id": "spicy-bulgogi-sauce", "name": "Spicy Bulgogi Sauce", "price": 6000 },
+                    { "id": "mayonnaise-sauce", "name": "Mayonnaise Sauce", "price": 6000 },
+                    { "id": "cheese-sauce", "name": "Cheese Sauce", "price": 6000 },
+                    { "id": "jiwa-toast-sweet-sauce", "name": "Jiwa Toast Sweet Sauce", "price": 6000 }
+                  ]
+                },
+                {
+                  "id": "jj-cheezy-crispy-chicken-mentai",
+                  "name": "Cheezy Crispy Chicken Mentai",
+                  "price": 36000,
+                  "discPrice": 23000,
+                  "image": "/product/makanan/janjiw/Cheezy Crispy Chicken Mentai.png",
+                  "hasTopping": true,
+                  "toppings": [
+                    { "id": "mentai-sauce", "name": "Mentai Sauce", "price": 6000 },
+                    { "id": "spicy-bulgogi-sauce", "name": "Spicy Bulgogi Sauce", "price": 6000 },
+                    { "id": "mayonnaise-sauce", "name": "Mayonnaise Sauce", "price": 6000 },
+                    { "id": "cheese-sauce", "name": "Cheese Sauce", "price": 6000 },
+                    { "id": "jiwa-toast-sweet-sauce", "name": "Jiwa Toast Sweet Sauce", "price": 6000 }
+                  ]
+                },
+                {
+                  "id": "jj-crispy-chicken-mentai",
+                  "name": "Crispy Chicken Mentai",
+                  "price": 36000,
+                  "discPrice": 23000,
+                  "image": "/product/makanan/janjiw/Crispy Chicken Mentai.png",
+                  "hasTopping": true,
+                  "toppings": [
+                    { "id": "mentai-sauce", "name": "Mentai Sauce", "price": 6000 },
+                    { "id": "spicy-bulgogi-sauce", "name": "Spicy Bulgogi Sauce", "price": 6000 },
+                    { "id": "mayonnaise-sauce", "name": "Mayonnaise Sauce", "price": 6000 },
+                    { "id": "cheese-sauce", "name": "Cheese Sauce", "price": 6000 },
+                    { "id": "jiwa-toast-sweet-sauce", "name": "Jiwa Toast Sweet Sauce", "price": 6000 }
+                  ]
+                },
+                {
+                  "id": "jj-crispy-spicy-chicken",
+                  "name": "Crispy Spicy Chicken",
+                  "price": 36000,
+                  "discPrice": 23000,
+                  "image": "/product/makanan/janjiw/Crispy Spicy Chicken.png",
+                  "hasTopping": true,
+                  "toppings": [
+                    { "id": "mentai-sauce", "name": "Mentai Sauce", "price": 6000 },
+                    { "id": "spicy-bulgogi-sauce", "name": "Spicy Bulgogi Sauce", "price": 6000 },
+                    { "id": "mayonnaise-sauce", "name": "Mayonnaise Sauce", "price": 6000 },
+                    { "id": "cheese-sauce", "name": "Cheese Sauce", "price": 6000 },
+                    { "id": "jiwa-toast-sweet-sauce", "name": "Jiwa Toast Sweet Sauce", "price": 6000 }
+                  ]
+                },
+                {
+                  "id": "jj-smoked-beef-n-cheese",
+                  "name": "Smoked Beef n Cheese",
+                  "price": 37000,
+                  "discPrice": 23500,
+                  "image": "/product/makanan/janjiw/Smoked Beef n Cheese.png",
+                  "hasTopping": true,
+                  "toppings": [
+                    { "id": "mentai-sauce", "name": "Mentai Sauce", "price": 6000 },
+                    { "id": "spicy-bulgogi-sauce", "name": "Spicy Bulgogi Sauce", "price": 6000 },
+                    { "id": "mayonnaise-sauce", "name": "Mayonnaise Sauce", "price": 6000 },
+                    { "id": "cheese-sauce", "name": "Cheese Sauce", "price": 6000 },
+                    { "id": "jiwa-toast-sweet-sauce", "name": "Jiwa Toast Sweet Sauce", "price": 6000 }
+                  ]
+                },
+                {
+                  "id": "jj-egg-n-cheese",
+                  "name": "Egg n Cheese",
+                  "price": 30000,
+                  "discPrice": 20000,
+                  "image": "/product/makanan/janjiw/Egg n Cheese.png",
+                  "hasTopping": true,
+                  "toppings": [
+                    { "id": "mentai-sauce", "name": "Mentai Sauce", "price": 6000 },
+                    { "id": "spicy-bulgogi-sauce", "name": "Spicy Bulgogi Sauce", "price": 6000 },
+                    { "id": "mayonnaise-sauce", "name": "Mayonnaise Sauce", "price": 6000 },
+                    { "id": "cheese-sauce", "name": "Cheese Sauce", "price": 6000 },
+                    { "id": "jiwa-toast-sweet-sauce", "name": "Jiwa Toast Sweet Sauce", "price": 6000 }
+                  ]
+                },
+                {
+                  "id": "jj-ultimate-cheesy-beef",
+                  "name": "Ultimate Cheesy Beef",
+                  "price": 37000,
+                  "discPrice": 23500,
+                  "image": "/product/makanan/janjiw/Ultimate Cheesy Beef.png",
+                  "hasTopping": true,
+                  "toppings": [
+                    { "id": "mentai-sauce", "name": "Mentai Sauce", "price": 6000 },
+                    { "id": "spicy-bulgogi-sauce", "name": "Spicy Bulgogi Sauce", "price": 6000 },
+                    { "id": "mayonnaise-sauce", "name": "Mayonnaise Sauce", "price": 6000 },
+                    { "id": "cheese-sauce", "name": "Cheese Sauce", "price": 6000 },
+                    { "id": "jiwa-toast-sweet-sauce", "name": "Jiwa Toast Sweet Sauce", "price": 6000 }
+                  ]
+                },
+                {
+                  "id": "jj-beef-truffle-mayo",
+                  "name": "Beef Truffle Mayo",
+                  "price": 37000,
+                  "discPrice": 23500,
+                  "image": "/product/makanan/janjiw/Beef Truffle Mayo.png",
+                  "hasTopping": true,
+                  "toppings": [
+                    { "id": "mentai-sauce", "name": "Mentai Sauce", "price": 6000 },
+                    { "id": "spicy-bulgogi-sauce", "name": "Spicy Bulgogi Sauce", "price": 6000 },
+                    { "id": "mayonnaise-sauce", "name": "Mayonnaise Sauce", "price": 6000 },
+                    { "id": "cheese-sauce", "name": "Cheese Sauce", "price": 6000 }
+                  ]
+                },
+                {
+                  "id": "jj-plain-toast",
+                  "name": "Plain Toast",
+                  "price": 19000,
+                  "discPrice": 14500,
+                  "image": "/product/makanan/janjiw/Plain Toast.png",
+                  "hasTopping": true,
+                  "toppings": [
+                    { "id": "kaya-spread", "name": "Kaya Spread", "price": 5000 },
+                    { "id": "blueberry-spread", "name": "Blueberry Spread", "price": 5000 },
+                    { "id": "strawberry-spread", "name": "Strawberry Spread", "price": 5000 },
+                    { "id": "peanut-butter-spread", "name": "Peanut Butter Spread", "price": 7000 },
+                    { "id": "nastar-spread", "name": "Nastar Spread", "price": 7000 },
+                    { "id": "choco-crunchy-spread", "name": "Choco Crunchy Spread", "price": 7000 }
+                  ]
+                }
               ],
               "noodle": [
                 

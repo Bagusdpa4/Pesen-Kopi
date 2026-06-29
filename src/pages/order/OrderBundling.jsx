@@ -246,7 +246,7 @@ export const OrderBundling = () => {
               type="text"
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
-              placeholder="Nama"
+              placeholder="Nama Customer..."
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>
@@ -258,7 +258,7 @@ export const OrderBundling = () => {
               type="text"
               value={outletAddress}
               onChange={(e) => setOutletAddress(e.target.value)}
-              placeholder="Alamat outlet"
+              placeholder="Alamat outlet sesuai google maps..."
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>
@@ -291,7 +291,7 @@ export const OrderBundling = () => {
               type="text"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder="Permintaan tambahan"
+              placeholder="Permintaan tambahan..."
               className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-orange-300 focus:bg-white"
             />
           </div>
