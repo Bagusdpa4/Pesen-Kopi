@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiXMark } from "react-icons/hi2";
 import { formatRupiah } from "../../helper/FormatRupiah";
 
@@ -6,6 +6,14 @@ const SUGAR_LEVELS = ["No Sugar", "Less Sugar", "Normal Sugar", "Extra Sugar"];
 const ICE_LEVELS = ["Hot", "No Ice", "Less Ice", "Normal Ice"];
 
 export const ProductOptionModal = ({ product, onClose, onAdd }) => {
+  useEffect(() => {
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, []);
+
   const sizeKeys = Object.keys(product.sizes);
   const [size, setSize] = useState(sizeKeys[0]);
 
@@ -40,7 +48,7 @@ export const ProductOptionModal = ({ product, onClose, onAdd }) => {
       onClick={onClose}
     >
       <div
-        className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6"
+        className="max-h-[70vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-5 flex items-center justify-between">
