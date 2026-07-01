@@ -110,7 +110,7 @@ export const ProductOptionModal = ({ product, onClose, onAdd }) => {
       onClick={onClose}
     >
       <div
-        className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6"
+        className="max-h-[60vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-5 flex items-center justify-between">

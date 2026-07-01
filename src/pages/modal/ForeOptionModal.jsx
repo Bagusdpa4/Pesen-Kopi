@@ -94,7 +94,7 @@ export const ForeOptionModal = ({ product, onClose, onAdd }) => {
         {sweetnessOptions.length > 0 && (
           <div className="mb-5">
             <p className="mb-2 text-xs font-bold uppercase tracking-wide text-orange-600">
-              Rasa
+              Sweet Level
             </p>
             {renderOptions(
               sweetnessOptions.map((id) => ({
