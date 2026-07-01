@@ -214,9 +214,9 @@
               "description": "Paket Kopi Kenangan Mantan",
               "image": "/bundling kopken/Bundling KKM.PNG",
               "fixedOptions": [
-                { "id": "kkm-3l", "label": "3 KKM Large",    "price": 52000, "description": "3 Kopi Kenangan Mantan (Large)" },
-                { "id": "kkm-2l", "label": "2 KKM Large",    "price": 35000, "description": "2 Kopi Kenangan Mantan (Large)" },
-                { "id": "kkm-3r", "label": "3 KKM Reguler",  "price": 40000, "description": "3 Kopi Kenangan Mantan (Reguler)" }
+                { "id": "kkm-3l", "label": "3 KKM Large",    "price": 50000, "description": "3 Kopi Kenangan Mantan (Large)" },
+                { "id": "kkm-2l", "label": "2 KKM Large",    "price": 33000, "description": "2 Kopi Kenangan Mantan (Large)" },
+                { "id": "kkm-3r", "label": "3 KKM Reguler",  "price": 38500, "description": "3 Kopi Kenangan Mantan (Reguler)" }
               ],
               "chooseGroups": []
             }
