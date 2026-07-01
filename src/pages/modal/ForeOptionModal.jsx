@@ -25,7 +25,7 @@ export const ForeOptionModal = ({ product, onClose, onAdd }) => {
 
   // Sweetness — dari JSON product.sweetness
   const sweetnessOptions = product.sweetness ?? [];
-const [sweet, setSweet] = useState(sweetnessOptions[0] ?? "-");
+  const [sweet, setSweet] = useState(sweetnessOptions[0] ?? "-");
 
   // Espresso — dari JSON product.allowedEspresso (opsional)
   const espressoOptions = product.allowedEspresso
@@ -76,7 +76,7 @@ const [sweet, setSweet] = useState(sweetnessOptions[0] ?? "-");
       onClick={onClose}
     >
       <div
-        className="max-h-[80vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6"
+        className="max-h-[60vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-5 flex items-center justify-between">
