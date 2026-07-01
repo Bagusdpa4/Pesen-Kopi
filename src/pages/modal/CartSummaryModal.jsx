@@ -52,23 +52,70 @@ export const CartSummaryModal = ({
                     {item.product.name}
                   </p>
                   <p className="text-xs text-stone-400">
-                    {[
-                      item.size && item.size !== "-"
-                        ? item.size === "R"
-                          ? "Reguler"
-                          : item.size === "L"
-                            ? "Large"
-                            : item.size
-                        : null,
-                      item.sugar && item.sugar !== "-" ? item.sugar : null,
-                      item.ice && item.ice !== "-" ? item.ice : null,
-                      item.toppings?.length > 0
-                        ? `Topping: ${item.toppings.join(", ")}`
-                        : null,
-                      item.noteStr ? `Catatan: ${item.noteStr}` : null,
-                    ]
-                      .filter(Boolean)
-                      .join(" • ")}
+                    {item.type === "fore1L"
+                      ? [
+                          item.sweet && item.sweet !== "-"
+                            ? item.sweet === "normal_sweet"
+                              ? "Normal Sweet"
+                              : "Less Sweet"
+                            : null,
+                          item.espresso && item.espresso !== "normal_shot"
+                            ? item.espresso === "no_coffee"
+                              ? "No Coffee"
+                              : item.espresso === "plus_1_shot"
+                                ? "+1 Shot"
+                                : "+2 Shot"
+                            : null,
+                        ]
+                          .filter(Boolean)
+                          .join(" • ")
+                      : item.type === "fore"
+                        ? [
+                            item.size === "R"
+                              ? "Reguler"
+                              : item.size === "L"
+                                ? "Large"
+                                : item.size,
+                            item.sugar && item.sugar !== "-"
+                              ? item.sugar
+                              : null,
+                            item.ice && item.ice !== "-" ? item.ice : null,
+                            item.espresso && item.espresso !== "normal_shot"
+                              ? item.espresso === "no_coffee"
+                                ? "No Coffee"
+                                : item.espresso === "plus_1_shot"
+                                  ? "+1 Shot"
+                                  : "+2 Shot"
+                              : null,
+                            item.dairy && item.dairy !== "milk"
+                              ? item.dairy === "soy_multigrain"
+                                ? "Soy Multigrain"
+                                : item.dairy === "oat_milk"
+                                  ? "Oat Milk"
+                                  : "Almond Milk"
+                              : null,
+                          ]
+                            .filter(Boolean)
+                            .join(" • ")
+                        : [
+                            item.size && item.size !== "-"
+                              ? item.size === "R"
+                                ? "Reguler"
+                                : item.size === "L"
+                                  ? "Large"
+                                  : item.size
+                              : null,
+                            item.sugar && item.sugar !== "-"
+                              ? item.sugar
+                              : null,
+                            item.ice && item.ice !== "-" ? item.ice : null,
+                            item.toppings?.length > 0
+                              ? `Topping: ${item.toppings.join(", ")}`
+                              : null,
+                            item.noteStr ? `Catatan: ${item.noteStr}` : null,
+                          ]
+                            .filter(Boolean)
+                            .join(" • ")}
                   </p>
                   <p className="mt-1 text-sm font-semibold text-orange-600">
                     {formatRupiah(item.unitPrice * item.qty)}

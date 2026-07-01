@@ -13,6 +13,7 @@ import {
   getNowMinute,
 } from "../../helper/ScrollPicker";
 import { ToastOptionModal } from "../modal/ToastOptionModal";
+import { ForeOptionModal } from "../modal/ForeOptionModal";
 
 const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
@@ -44,7 +45,10 @@ const DRINK_CATEGORY_LABELS = {
   classic_tea: "Classic Tea",
   tea_based: "Tea Based",
   breeze_series: "Breeze Series",
-  jiwa_toast: "Jiwa Toast",
+  fore_signature: "Fore Signature",
+  americano_series: "Americano Series",
+  fore_junior: "Fore Junior",
+  foreveryone_1L: "FOREveryone 1L",
 };
 
 // Deteksi apakah data satuan pakai struktur baru (minuman + makanan) atau lama (flat array)
@@ -95,8 +99,17 @@ export const OrderSatuan = () => {
   const [activeProduct, setActiveProduct] = useState(null);
   const [activeToastProduct, setActiveToastProduct] = useState(null);
   const [showCart, setShowCart] = useState(false);
+  const [activeForeProduct, setActiveForeProduct] = useState(null);
   const pickupTime =
     pickupHour && pickupMinute ? `${pickupHour}:${pickupMinute}` : "";
+  const imageClass =
+    brandId === "fore"
+      ? "h-full w-full object-cover"
+      : "h-full w-full object-contain";
+  const imageWrapClass =
+    brandId === "fore"
+      ? "h-24 overflow-hidden sm:h-72"
+      : "flex h-24 items-center justify-center bg-white sm:h-48";
 
   if (!brand) {
     return (
@@ -122,12 +135,8 @@ export const OrderSatuan = () => {
         key={product.id}
         className="flex flex-col overflow-hidden rounded-2xl border border-stone-400 bg-white"
       >
-        <div className="flex h-24 items-center justify-center bg-white sm:h-48">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="h-full w-full object-contain"
-          />
+        <div className={imageWrapClass}>
+          <img src={product.image} alt={product.name} className={imageClass} />
         </div>
         <div className="flex flex-1 flex-col px-2 pb-2 pt-1.5 text-center sm:px-3 sm:pb-3 sm:pt-2">
           <p className="mb-1 line-clamp-3 flex min-h-[3.3em] items-center justify-center text-xs font-semibold leading-tight text-stone-900 sm:min-h-[3.75em] sm:text-sm">
@@ -146,6 +155,45 @@ export const OrderSatuan = () => {
           <button
             type="button"
             onClick={() => setActiveToastProduct(product)}
+            className="mt-auto cursor-pointer rounded-full bg-orange-600 py-1.5 text-[10px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-orange-700 sm:py-2 sm:text-xs"
+          >
+            + Pilih
+          </button>
+        </div>
+      </div>
+    );
+  };
+
+  // Card khusus produk FOREveryone 1L (flat, tanpa "sizes") — harus buka ForeOptionModal
+  // (Sweetness + Espresso), BUKAN ToastOptionModal (yang isinya field Catatan untuk makanan)
+  const renderFore1LCard = (product) => {
+    const hasDiscount = product.discPrice && product.discPrice < product.price;
+
+    return (
+      <div
+        key={product.id}
+        className="flex flex-col overflow-hidden rounded-2xl border border-stone-400 bg-white"
+      >
+        <div className={imageWrapClass}>
+          <img src={product.image} alt={product.name} className={imageClass} />
+        </div>
+        <div className="flex flex-1 flex-col px-2 pb-2 pt-1.5 text-center sm:px-3 sm:pb-3 sm:pt-2">
+          <p className="mb-1 line-clamp-3 flex min-h-[3.3em] items-center justify-center text-xs font-semibold leading-tight text-stone-900 sm:min-h-[3.75em] sm:text-sm">
+            {product.name}
+          </p>
+          <div className="mb-2 flex min-h-[2.4em] flex-col items-center justify-center sm:mb-3 sm:min-h-[1.5em] sm:flex-row sm:gap-1">
+            {hasDiscount && (
+              <span className="text-[10px] text-stone-400 line-through sm:text-xs">
+                {formatRupiah(product.price)}
+              </span>
+            )}
+            <span className="text-xs font-bold text-orange-600 sm:text-sm">
+              {formatRupiah(product.discPrice ?? product.price)}
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setActiveForeProduct(product)}
             className="mt-auto cursor-pointer rounded-full bg-orange-600 py-1.5 text-[10px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-orange-700 sm:py-2 sm:text-xs"
           >
             + Pilih
@@ -220,6 +268,70 @@ export const OrderSatuan = () => {
               originalPrice: product.price,
               qty,
             };
+          } else if (key.startsWith("fore1L:")) {
+            const parts = key.split(":");
+            const productId = parts[1];
+            const sweet = parts[2];
+            const espresso = parts[3];
+            const product = allDrinkProducts.find((p) => p.id === productId);
+            if (!product) return null;
+            const espressoExtra =
+              espresso === "plus_1_shot"
+                ? 7000
+                : espresso === "plus_2_shot"
+                  ? 14000
+                  : 0;
+            const basePrice = product.discPrice ?? product.price;
+            const unitPrice = basePrice + espressoExtra;
+            return {
+              key,
+              product,
+              type: "fore1L",
+              sweet,
+              espresso,
+              unitPrice,
+              originalPrice: basePrice,
+              qty,
+            };
+          } else if (key.startsWith("fore:")) {
+            const parts = key.split(":");
+            const productId = parts[1];
+            const size = parts[2];
+            const sugar = parts[3];
+            const ice = parts[4];
+            const espresso = parts[5];
+            const dairy = parts[6];
+            const product = allDrinkProducts.find((p) => p.id === productId);
+            if (!product) return null;
+            const sizeInfo = product.sizes?.[size];
+            if (!sizeInfo) return null;
+            const espressoExtra =
+              espresso === "plus_1_shot"
+                ? 7000
+                : espresso === "plus_2_shot"
+                  ? 14000
+                  : 0;
+            const dairyExtra =
+              dairy === "soy_multigrain"
+                ? 7000
+                : dairy === "oat_milk" || dairy === "almond_milk"
+                  ? 15000
+                  : 0;
+            const basePrice = sizeInfo.discPrice ?? sizeInfo.price;
+            const unitPrice = basePrice + espressoExtra + dairyExtra;
+            return {
+              key,
+              product,
+              type: "fore",
+              size,
+              sugar,
+              ice,
+              espresso,
+              dairy,
+              unitPrice,
+              originalPrice: sizeInfo.price,
+              qty,
+            };
           } else {
             const parts = key.split(":");
             const productId = parts[1];
@@ -229,7 +341,6 @@ export const OrderSatuan = () => {
             const toppingStr = parts[5] || "";
             const noteStr = parts[6] || "";
 
-            // Parse "id1_price1,id2_price2" jadi array {id, price}
             const toppingEntries = toppingStr
               ? toppingStr
                   .split(",")
@@ -244,7 +355,6 @@ export const OrderSatuan = () => {
 
             const product = allDrinkProducts.find((p) => p.id === productId);
 
-            // Resolusi nama topping dari daftar topping produk (untuk tampilan)
             const resolveToppingNames = (entries) =>
               entries.map((entry) => {
                 const found = product?.toppings?.find((t) => t.id === entry.id);
@@ -335,27 +445,86 @@ export const OrderSatuan = () => {
         const hasDiscount = originalTotal > itemTotal;
 
         const variantNote =
-          item.type === "drink"
+          item.type === "fore1L"
             ? (() => {
                 const parts = [];
-                if (item.size && item.size !== "-") {
-                  const sizeLabel =
-                    item.size === "R"
-                      ? "Reguler"
-                      : item.size === "L"
-                        ? "Large"
-                        : item.size;
-                  parts.push(sizeLabel);
-                }
-                if (item.sugar && item.sugar !== "-") parts.push(item.sugar);
-                if (item.ice && item.ice !== "-") parts.push(item.ice);
-                if (item.toppings?.length > 0) {
-                  parts.push(`Topping: ${item.toppings.join(", ")}`);
-                }
-                if (item.noteStr) parts.push(`Catatan: ${item.noteStr}`);
+                if (item.sweet && item.sweet !== "-")
+                  parts.push(
+                    item.sweet === "normal_sweet"
+                      ? "Normal Sweet"
+                      : "Less Sweet",
+                  );
+                if (item.espresso && item.espresso !== "normal_shot")
+                  parts.push(
+                    item.espresso === "no_coffee"
+                      ? "No Coffee"
+                      : item.espresso === "plus_1_shot"
+                        ? "+1 Shot"
+                        : "+2 Shot",
+                  );
+                if (item.dairy && item.dairy !== "milk")
+                  parts.push(
+                    item.dairy === "soy_multigrain"
+                      ? "Soy Multigrain"
+                      : item.dairy === "oat_milk"
+                        ? "Oat Milk"
+                        : "Almond Milk",
+                  );
                 return parts.length > 0 ? ` (${parts.join(", ")})` : "";
               })()
-            : "";
+            : item.type === "fore"
+              ? (() => {
+                  const parts = [];
+                  if (item.size && item.size !== "-")
+                    parts.push(
+                      item.size === "R"
+                        ? "Reguler"
+                        : item.size === "L"
+                          ? "Large"
+                          : item.size,
+                    );
+                  if (item.sugar && item.sugar !== "-") parts.push(item.sugar);
+                  if (item.ice && item.ice !== "-") parts.push(item.ice);
+                  if (item.espresso !== "normal_shot")
+                    parts.push(
+                      item.espresso === "no_coffee"
+                        ? "No Coffee"
+                        : item.espresso === "plus_1_shot"
+                          ? "+1 Shot"
+                          : "+2 Shot",
+                    );
+                  if (item.dairy !== "milk")
+                    parts.push(
+                      item.dairy === "soy_multigrain"
+                        ? "Soy Multigrain"
+                        : item.dairy === "oat_milk"
+                          ? "Oat Milk"
+                          : "Almond Milk",
+                    );
+                  return parts.length > 0 ? ` (${parts.join(", ")})` : "";
+                })()
+              : item.type === "drink"
+                ? (() => {
+                    // ...existing drink code tidak berubah...
+                    const parts = [];
+                    if (item.size && item.size !== "-") {
+                      const sizeLabel =
+                        item.size === "R"
+                          ? "Reguler"
+                          : item.size === "L"
+                            ? "Large"
+                            : item.size;
+                      parts.push(sizeLabel);
+                    }
+                    if (item.sugar && item.sugar !== "-")
+                      parts.push(item.sugar);
+                    if (item.ice && item.ice !== "-") parts.push(item.ice);
+                    if (item.toppings?.length > 0)
+                      parts.push(`Topping: ${item.toppings.join(", ")}`);
+                    if (item.noteStr) parts.push(`Catatan: ${item.noteStr}`);
+                    return parts.length > 0 ? ` (${parts.join(", ")})` : "";
+                  })()
+                : "";
 
         const priceText = hasDiscount
           ? `~${formatRupiah(originalTotal)}~ ${formatRupiah(itemTotal)}`
@@ -397,7 +566,14 @@ export const OrderSatuan = () => {
       (!product.noIce && !product.noHot); // ada pilihan ice termasuk hot
 
     const handleCardClick = () => {
-      if (product.hasTopping) {
+      if (brandId === "fore") {
+        const is1L = !product.sizes; // produk 1L tidak punya sizes (flat)
+        if (is1L) {
+          setActiveForeProduct(product); // → ForeOptionModal (sweet + espresso)
+        } else {
+          setActiveProduct(product); // → ProductOptionModal (sugar, ice, espresso, dairy dari JSON)
+        }
+      } else if (product.hasTopping) {
         setActiveToastProduct(product);
       } else if (needsModal) {
         setActiveProduct(product);
@@ -421,12 +597,8 @@ export const OrderSatuan = () => {
         key={product.id}
         className="flex flex-col overflow-hidden rounded-2xl border border-stone-400 bg-white"
       >
-        <div className="flex h-24 items-center justify-center bg-white sm:h-48">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="h-full w-full object-contain"
-          />
+        <div className={imageWrapClass}>
+          <img src={product.image} alt={product.name} className={imageClass} />
         </div>
         <div className="flex flex-1 flex-col px-2 pb-2 pt-1.5 text-center sm:px-3 sm:pb-3 sm:pt-2">
           <p className="mb-1 line-clamp-3 flex min-h-[3.3em] items-center justify-center text-xs font-semibold leading-tight text-stone-900 sm:min-h-[3.75em] sm:text-sm">
@@ -463,13 +635,9 @@ export const OrderSatuan = () => {
         key={item.id}
         className="flex flex-col overflow-hidden rounded-2xl border border-stone-400 bg-white"
       >
-        <div className="flex h-24 items-center justify-center bg-white sm:h-48">
+        <div className={imageWrapClass}>
           {item.image ? (
-            <img
-              src={item.image}
-              alt={item.name}
-              className="h-full w-full object-contain"
-            />
+            <img src={item.image} alt={item.name} className={imageClass} />
           ) : (
             <span className="text-3xl">🍞</span>
           )}
@@ -622,9 +790,11 @@ export const OrderSatuan = () => {
                     </div>
                     <div className="grid grid-cols-3 gap-4">
                       {products.map((product) =>
-                        isFlatProduct(product)
-                          ? renderToastCard(product)
-                          : renderDrinkCard(product),
+                        brandId === "fore" && isFlatProduct(product)
+                          ? renderFore1LCard(product)
+                          : isFlatProduct(product)
+                            ? renderToastCard(product)
+                            : renderDrinkCard(product),
                       )}
                     </div>
                   </section>
@@ -752,7 +922,13 @@ export const OrderSatuan = () => {
           product={activeProduct}
           onClose={() => setActiveProduct(null)}
           onAdd={(opts) => {
-            handleAddDrinkToCart(activeProduct, opts);
+            if (brandId === "fore") {
+              // key: fore:productId:size:sugar:ice:espresso:dairy
+              const key = `fore:${activeProduct.id}:${opts.size}:${opts.sugar ?? "-"}:${opts.ice ?? "-"}:${opts.espresso ?? "normal_shot"}:${opts.dairy ?? "milk"}`;
+              setCart((prev) => ({ ...prev, [key]: (prev[key] || 0) + 1 }));
+            } else {
+              handleAddDrinkToCart(activeProduct, opts);
+            }
             setActiveProduct(null);
           }}
         />
@@ -782,6 +958,19 @@ export const OrderSatuan = () => {
           onClose={() => setShowCart(false)}
           onRemove={removeItem}
           onUpdateQty={updateQty}
+        />
+      )}
+
+      {activeForeProduct && (
+        <ForeOptionModal
+          product={activeForeProduct}
+          onClose={() => setActiveForeProduct(null)}
+          onAdd={(opts) => {
+            // Hanya produk 1L yang masuk sini
+            const key = `fore1L:${activeForeProduct.id}:${opts.sweet}:${opts.espresso}`;
+            setCart((prev) => ({ ...prev, [key]: (prev[key] || 0) + 1 }));
+            setActiveForeProduct(null);
+          }}
         />
       )}
     </div>
